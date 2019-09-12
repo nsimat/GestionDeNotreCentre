@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using GestionDeNotreCentre.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GestionDeNotreCentre;
-using GestionDeNotreCentre.Controllers;
+using System.Web.Mvc;
 
 namespace GestionDeNotreCentre.Tests.Controllers
 {
