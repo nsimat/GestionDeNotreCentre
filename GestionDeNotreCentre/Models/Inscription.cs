@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,19 +17,31 @@ namespace GestionDeNotreCentre.Models
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Date d'inscription")]
         public DateTime DateInscription { get; set; }
 
         [Required]
-        [DataType(DataType.Dare)]
-        [DisplayFormat(DataFormatString = "{0: yyyy-MM-dd}", ApplicationIdentity = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0: yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Date de validation")]
         public DateTime DateValidation { get; set; }
 
-       // public int IdInstanceFormation { get; set; }
+        [Required]
+        [Display(Name ="Formation")]
+        public int IdInstanceFormation { get; set; }
         public InstanceFormation InstanceFormation  { get; set; }
 
-        public NumeroRegistreStatigiaire NumeroRegistreStatigiaire{ get; set; }
+        [Required]
+        [MaxLength(25), MinLength(11)]
+        [Display(Name ="Stagiaire")]
+        public string NumeroRegistreStatigiaire{ get; set; }
+        public Personne Personne { get; set; }
 
-        public ICollection<NumeroRegistreEmploye> numeroRegistreEmployes { get; set; }
+        [Required]
+        [MaxLength(25), MinLength(11)]
+        [Display(Name ="Employé")]
+        public string NumeroRegistreEmployes { get; set; }
+        public Employe Employe { get; set; }
 
 
     }

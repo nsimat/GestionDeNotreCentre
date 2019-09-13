@@ -13,24 +13,29 @@ namespace GestionDeNotreCentre.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdTchat { get; set; }
 
-        [MaxLength(100)]
-        [Required]
+        [MaxLength(100), MinLength(3)]
+        [Required(ErrorMessage ="Un message doit avoir au moins 3 caractères.")]
+        [Display(Name ="Message")]
         public string MessageTchat { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Date de début")]
         public DateTime DateDebut { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Date de clôture")]
         public DateTime? DateCloture { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Le champ 'Envoyeur' ne peut être vide.")]
+        [MaxLength(25)]
         [Display(Name ="Envoyeur")]
         public string NumeroRegistreEnvoyeur { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Le champ 'Recepteur' ne peut être vide.")]
+        [MaxLength(25)]
         [Display(Name ="Recepteur")]
         public string NumeroRegistreRecepteur { get; set; }
     }

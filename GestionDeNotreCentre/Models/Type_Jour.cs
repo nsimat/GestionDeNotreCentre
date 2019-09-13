@@ -15,6 +15,7 @@ namespace GestionDeNotreCentre.Models
 
         [MaxLength(50)]
         [Required]
+        [Display(Name ="Type de Jour")]
         public string TypeJour { get; set; }
 
         public ICollection<Planification> Planifications { get; set; }

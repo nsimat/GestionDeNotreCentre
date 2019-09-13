@@ -15,6 +15,6 @@ namespace GestionDeNotreCentre.Models
         public string NumeroRegistre { get; set; }
 
         public ICollection<Planification> Planifications { get; set; }
-        //public ICollection<Competence> Competences { get; set; }
+        public ICollection<Competence> Competences { get; set; }
     }
 }

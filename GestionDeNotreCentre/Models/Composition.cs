@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,12 +13,12 @@ namespace GestionDeNotreCentre.Models
     {
 
         [Required]
-        
+        [Display(Name ="Formation")]
         public int IdFormation { get; set; }
 
         [Required]
+        [Display(Name ="Module")]
         public int IdModule { get; set; }
-
 
 
         [Required]
@@ -25,8 +27,8 @@ namespace GestionDeNotreCentre.Models
         public DateTime DateAjout { get; set; }
 
         [Required]
-        [DataType(DataType.Dare)]
-        [DisplayFormat(DataFormatString = "{0: yyyy-MM-dd}", ApplicationIdentity = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0: yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateSuppression { get; set; }
     }
 }

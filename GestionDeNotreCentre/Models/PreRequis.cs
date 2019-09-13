@@ -9,11 +9,12 @@ namespace GestionDeNotreCentre.Models
 {
     [Table("PREREQUIS")]
     public class PreRequis
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    {        
         public int IdModulePreRequis { get; set; }
+        public Module ModulePreRequis { get; set; }
 
-        [Required]
+
         public int IdModule { get; set; }
+        public Module Module { get; set; }
     }
 }
