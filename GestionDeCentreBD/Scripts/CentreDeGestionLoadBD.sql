@@ -2,17 +2,17 @@
 GO
 
 /****** Object:  Database GestionDeCentre******/
-IF DB_ID('GestionDeCentre') IS NOT NULL
-	DROP DATABASE GestionDeCentre
+IF DB_ID('GestionDeCentreBD') IS NOT NULL
+	DROP DATABASE GestionDeCentreBD
 GO
 
 -- Database Section
 -- ________________ 
 
-create database GestionDeCentre;
+create database GestionDeCentreBD;
 GO
 
-Use GestionDeCentre
+Use GestionDeCentreBD
 GO
 
 -- DBSpace Section
