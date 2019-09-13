@@ -36,6 +36,10 @@ namespace GestionDeNotreCentre.Models
         [Display(Name ="Pays")]
         public string Pays { get; set; }
 
-
+        [Required(ErrorMessage = "Le champ 'Numéro de téléphone' ne peut être vide.")]
+        [MaxLength(25)]
+        [Phone]
+        [Display(Name = "Numéro de téléphone")]
+        public string NumeroTelephone { get; set; }
     }
 }

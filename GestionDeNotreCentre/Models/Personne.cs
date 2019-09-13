@@ -16,12 +16,12 @@ namespace GestionDeNotreCentre.Models
         public string NumeroRegistre { get; set; }
 
         [MaxLength(50), MinLength(2)]
-        [Required(ErrorMessage ="Le nom de la personne doit avoir au moins 2 caractères.")]
+        [Required(ErrorMessage ="Le champ 'Nom' doit contenir au moins 2 caractères.")]
         [Display(Name ="Nom")]
         public string Nom { get; set; }
 
         [MaxLength(50), MinLength(2)]
-        [Required(ErrorMessage ="Le prenom de la personne doit avoir au moins 2 caractères.")]
+        [Required(ErrorMessage ="Le champ 'Prenom' doit contenir au moins 2 caractères.")]
         [Display(Name ="Prenom")]
         public string Prenom { get; set; }
 
@@ -30,15 +30,10 @@ namespace GestionDeNotreCentre.Models
         [Required(ErrorMessage ="Tout candidat doit fournir l'adresse de contact.")]
         [Display(Name ="Adresse électronique")]
         public string Email { get; set; }
-
-        [Required(ErrorMessage ="Toute personne doit signaler son numéro de contact.")]
-        [MaxLength(25)]
-        [Phone]
-        [Display(Name ="Numéro de téléphone")]
-        public string PhoneNumber { get; set; }
+        
 
         [MaxLength(25)]
-        [Required(ErrorMessage ="Le champ Rue ne peut être vide.")]
+        [Required(ErrorMessage ="Le champ 'Rue' ne peut être vide.")]
         [Display(Name ="Rue")]
         public string Rue { get; set; }
 
@@ -57,17 +52,23 @@ namespace GestionDeNotreCentre.Models
         [Display(Name ="Pays")]
         public string Pays { get; set; }
 
+        [Required(ErrorMessage = "Le champ 'Numéro de téléphone' ne peut être vide.")]
+        [MaxLength(25)]
+        [Phone]
+        [Display(Name = "Numéro de téléphone")]
+        public string NumeroTelephone { get; set; }
+
         [Required(ErrorMessage ="L'ajout du CV est obligatoire.")]
         [Display(Name ="CV")]
         public byte[] CV { get; set; }
 
         [MaxLength(25)]
-        [Required(ErrorMessage ="Le champ Nom d'utilisateur ne peut être vide.")]
+        [Required(ErrorMessage ="Le champ 'Nom' d'utilisateur ne peut être vide.")]
         [Display(Name ="Nom d'utilisateur")]
         public string UserLogin { get; set; }
 
         [MaxLength(25), MinLength(5)]
-        [Required(ErrorMessage ="Le champ mot de passe ne peut être vide ou avoir moins de 5 caractères.")]
+        [Required(ErrorMessage ="Le champ 'Mot' de passe ne peut être vide ou avoir moins de 5 caractères.")]
         [Display(Name ="Mot de passe")]
         public string MotDePasse { get; set; }
 
