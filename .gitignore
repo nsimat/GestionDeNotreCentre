@@ -339,5 +339,5 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-#Visual Studio config files
+#Visual Studio Config files
 GestionDeNotreCentre/Web.config
