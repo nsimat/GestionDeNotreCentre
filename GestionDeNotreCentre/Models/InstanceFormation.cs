@@ -34,7 +34,7 @@ namespace GestionDeNotreCentre.Models
         public string NumeroRegistre { get; set; }
 
         //Clefs étrangères
-        //public ICollection<Inscription> Inscriptions { get; set; }
+        public ICollection<Inscription> Inscriptions { get; set; }
         public ICollection<Planification> Planifications { get; set; }
     }
 }
