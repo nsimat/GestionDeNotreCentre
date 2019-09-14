@@ -57,8 +57,41 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Scripts" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\CentreDeGestionLoadBD.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\COMPOSITION.sql" />
+    <Build Include="dbo\Tables\EMPLOYE.sql" />
+    <Build Include="dbo\Tables\INSCRIPTION.sql" />
+    <Build Include="dbo\Tables\ENTREPRISE.sql" />
+    <Build Include="dbo\Tables\FORMATEUR.sql" />
+    <Build Include="dbo\Tables\FORMATION.sql" />
+    <Build Include="dbo\Tables\INSTANCEFORMATION.sql" />
+    <Build Include="dbo\Tables\MODULE.sql" />
+    <Build Include="dbo\Tables\PERSONNE.sql" />
+    <Build Include="dbo\Tables\PLANIFICATION.sql" />
+    <Build Include="dbo\Tables\COMPETENCE.sql" />
+    <Build Include="dbo\Tables\PREREQUIS.sql" />
+    <Build Include="dbo\Tables\TACHE.sql" />
+    <Build Include="dbo\Tables\TCHAT.sql" />
+    <Build Include="dbo\Tables\TYPE_JOUR.sql" />
+    <Build Include="dbo\Views\V_Employe.sql" />
+    <Build Include="dbo\Views\V_Formateur.sql" />
+    <Build Include="dbo\Views\V_Stagiaire.sql" />
+    <Build Include="dbo\Views\V_Professionel.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Personne.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Employe.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Formateur.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Entreprise.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Module.sql" />
+    <Build Include="dbo\Stored Procedures\sp_Formation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_TypeJour.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
   </ItemGroup>
 </Project>
