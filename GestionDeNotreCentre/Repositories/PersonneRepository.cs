@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-using Toolbox.DataAccess;
 using ToolBox.DataAccess;
+using ToolBox.Repositories;
 
 namespace GestionDeNotreCentre.Repositories
 {
@@ -14,10 +14,12 @@ namespace GestionDeNotreCentre.Repositories
         private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString,
                                                                 ConfigurationManager.ConnectionStrings["SQLServer"].ProviderName);
 
-        public Personne Create(Personne entity)
+        public Personne Insert(Personne entity)
         {
-            Command command = new Command(@"INSERT INTO PERSONNE(NumeroRegistre, Nom, Prenom, Email, Rue, Ville, CodePostal, Pays, NumeroTelePhone, CV, UserLogin, MotDePasse) 
-                                            VALUES (@NumeroRegistre, @Nom, @Prenom, @Email, @Rue, @Ville, @CodePostal, @Pays, @NumeroTelephone, @CV, @UserLogin, @MotDePasse);");
+            string query = @"INSERT INTO PERSONNE(NumeroRegistre, Nom, Prenom, Email, Rue, Ville, CodePostal, Pays, NumeroTelePhone, CV, UserLogin, MotDePasse) 
+                             VALUES (@NumeroRegistre, @Nom, @Prenom, @Email, @Rue, @Ville, @CodePostal, @Pays, @NumeroTelephone, @CV, @UserLogin, @MotDePasse);";
+
+            Command command = new Command(query, true);
 
             command["NumeroRegistre"] = entity.NumeroRegistre;
             command["Nom"] = entity.Nom;
@@ -47,14 +49,14 @@ namespace GestionDeNotreCentre.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Personne> GetAll()
+        public IEnumerable<Personne> Get()//à modifier
         {
             Command command = new Command("SELECT * FROM PERSONNE;");
 
             return _Connection.ExecuteReader(command, dr => new Personne().From(dr));
         }
 
-        public bool Update(Personne entity, int id)
+        public bool Put(Personne entity, int id)
         {
             throw new NotImplementedException();
         }

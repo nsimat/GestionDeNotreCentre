@@ -140,7 +140,6 @@
     <Compile Include="Models\Tchat.cs" />
     <Compile Include="Models\Type_Jour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\PersonneRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +232,9 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Toolbox\Toolbox.csproj">
-      <Project>{b423eef9-00a8-4607-b15e-6f1df8c298fb}</Project>
-      <Name>Toolbox</Name>
+    <ProjectReference Include="..\ToolBox\ToolBox.csproj">
+      <Project>{50da84dd-6c6d-49f5-a398-50780f8983e5}</Project>
+      <Name>ToolBox</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
