@@ -1,8 +1,8 @@
 ﻿create table FORMATEUR (     
-	NumeroRegistre varchar(25) unique not null,     
-	constraint ID_FORMATEUR primary key (NumeroRegistre));
+	IdFormateur int unique not null,     
+	constraint ID_FORMATEUR primary key (IdFormateur));
 GO
 alter table FORMATEUR 
-add constraint ID_FORMA_PERSO_FK foreign key (NumeroRegistre) references PERSONNE;
+add constraint ID_FORMA_PERSO_FK foreign key (IdFormateur) references PERSONNE;
 GO
-create unique index ID_FORMA_PERSO_IND on FORMATEUR (NumeroRegistre);
+create unique index ID_FORMA_PERSO_IND on FORMATEUR (IdFormateur);

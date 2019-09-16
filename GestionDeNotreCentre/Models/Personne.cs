@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -80,6 +81,26 @@ namespace GestionDeNotreCentre.Models
         public ICollection<Inscription> Inscriptions { get; set; }
         public Employe Employe { get; set; }
         public Formateur Formateur { get; set; }
-        
+
+        public Personne From(IDataRecord dr)
+        {
+            return new Personne()
+            {
+                NumeroRegistre = (string)dr["NumeroRegistre"],
+                Nom = (string)dr["Nom"],
+                Prenom = (string)dr["Prenom"],
+                Rue = (string)dr["Rue"],
+                Email = (string)dr["Email"],
+                Ville = (string)dr["Ville"],
+                CodePostal = (string)dr["CodePostal"],
+                Pays = (string)dr["Pays"],
+                NumeroTelephone = (string)dr["NumeroTelePhone"],
+                CV = (byte[])dr["CV"],
+                UserLogin = (string)dr["UserLogin"],
+                MotDePasse = (string)dr["MotDePasse"],
+                IdEntreprise = (int)dr["IdEntreprise"] //à revoir
+            };
+        }
+
     }
 }

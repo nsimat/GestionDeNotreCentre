@@ -1,4 +1,5 @@
-﻿create table PERSONNE (     
+﻿create table PERSONNE (  
+    IdPersonne int IDENTITY(1,1) not null,
 	NumeroRegistre varchar(25) unique not null,     
 	Nom varchar(50) not null,     
 	Prenom varchar(50) not null,     
@@ -12,7 +13,7 @@
 	UserLogin varchar(25) not null,     
 	MotDePasse varchar(25) not null,     
 	IdEntreprise int,     
-	constraint ID_PERSONNE primary key (NumeroRegistre));
+	constraint ID_PERSONNE primary key (IdPersonne));
 GO
 --alter table MODULE 
 --add constraint ID_MODULE_CHK check(exists(select * from PREREQUIS where PREREQUIS.IdModule = IdModule)); 

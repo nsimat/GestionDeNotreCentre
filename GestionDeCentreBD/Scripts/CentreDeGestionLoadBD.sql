@@ -95,7 +95,8 @@ create table MODULE (
 GO
 
 
-create table PERSONNE (     
+create table PERSONNE ( 
+    IdPersonne int IDENTITY(1,1) not null,
 	NumeroRegistre varchar(25) unique not null,     
 	Nom varchar(50) not null,     
 	Prenom varchar(50) not null,     
@@ -109,7 +110,7 @@ create table PERSONNE (
 	UserLogin varchar(25) not null,     
 	MotDePasse varchar(25) not null,     
 	IdEntreprise int,     
-	constraint ID_PERSONNE primary key (NumeroRegistre));
+	constraint ID_PERSONNE primary key (IdPersonne));
 GO
 
 
@@ -619,7 +620,7 @@ begin
   select @IdInstanceformation = IdInstanceFormation, @DateDebut = DateDebut, @DateFin = DateFin
   from inserted;
 
-  if(@DateFin > @DateFin)
+  if(@DateFin > @DateDebut)
     UPDATE INSTANCEFORMATION
 	SET DateFin = @DateFin 
 	WHERE IdInstanceFormation = @IdInstanceformation

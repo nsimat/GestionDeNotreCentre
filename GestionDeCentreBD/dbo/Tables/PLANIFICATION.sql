@@ -2,7 +2,7 @@
 	IdPlanification int IDENTITY(1,1) not null,     
 	DatePlanification date not null,     
 	IdTypeJour int not null,     
-	NumeroRegistre varchar(25) not null,     
+	[IdFormateur] INT not null,     
 	IdInstanceFormation int not null,     
 	IdModule int not null,     
 	constraint ID_PLANIFICATION primary key (IdPlanification));
@@ -11,7 +11,7 @@ alter table PLANIFICATION
 add constraint REF_PLANI_TYPE__FK foreign key (IdTypeJour) references TYPE_JOUR;
 GO
 alter table PLANIFICATION 
-add constraint REF_PLANI_FORMA_FK foreign key (NumeroRegistre) references FORMATEUR;
+add constraint REF_PLANI_FORMA_FK foreign key ([IdFormateur]) references FORMATEUR;
 GO
 alter table PLANIFICATION 
 add constraint EQU_PLANI_INSTA_FK foreign key (IdInstanceFormation) references INSTANCEFORMATION;
@@ -23,7 +23,7 @@ create unique index ID_PLANIFICATION_IND on PLANIFICATION (IdPlanification);
 GO
 create index REF_PLANI_TYPE_IND on PLANIFICATION (IdTypeJour);
 GO
-create index REF_PLANI_FORMA_IND on PLANIFICATION (NumeroRegistre);
+create index REF_PLANI_FORMA_IND on PLANIFICATION ([IdFormateur]);
 GO
 create index EQU_PLANI_INSTA_IND on PLANIFICATION (IdInstanceFormation);
 GO

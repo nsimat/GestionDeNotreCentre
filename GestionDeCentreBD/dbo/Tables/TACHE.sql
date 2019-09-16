@@ -4,21 +4,21 @@
 	MessageTache varchar(100) not null,     
 	DateCreation DateTime not null,     
 	DateCloture DateTime,     
-	NumeroRegistreCreateur varchar(25) not null,     
-	NumeroRegistreRealisateur varchar(25) not null,     
+	[IdCreateur] INT not null,     
+	[IdRealisateur] INT not null,     
 	constraint ID_TACHE primary key (IdTache));
 GO
 alter table TACHE 
-add constraint REF_TACHE_EMPLO_1_FK foreign key (NumeroRegistreCreateur) references EMPLOYE;
+add constraint REF_TACHE_EMPLO_1_FK foreign key ([IdCreateur]) references EMPLOYE;
 GO
 alter table TACHE 
-add constraint REF_TACHE_EMPLO_FK foreign key (NumeroRegistreRealisateur) references EMPLOYE;
+add constraint REF_TACHE_EMPLO_FK foreign key ([IdRealisateur]) references EMPLOYE;
 GO
 create unique index ID_TACHE_IND on TACHE (IdTache);
 GO
-create index REF_TACHE_EMPLO_1_IND on TACHE (NumeroRegistreCreateur);
+create index REF_TACHE_EMPLO_1_IND on TACHE ([IdCreateur]);
 GO
-create index REF_TACHE_EMPLO_IND on TACHE (NumeroRegistreRealisateur);
+create index REF_TACHE_EMPLO_IND on TACHE ([IdRealisateur]);
 GO
 --Trigger pour l'ajout de la date de fin dans la table TACHE--
 create trigger Tache_Update
@@ -38,5 +38,5 @@ begin
    SET DateCreation = @DateCreation
    WHERE IdTache = @IdTache;
  else
-   THROW 50027, 'La date de clôture de la tâche doit être supérieure à la date de création de sa création.', 1;
+   THROW 50027, 'La date de clôture de la tâche doit être supérieure à la date de sa création.', 1;
 end;

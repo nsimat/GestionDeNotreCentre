@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f6774edf-5db0-40f3-9d70-88888042154a" ChangeDateTime="09/16/2019 08:11:49">
+    <Property Name="ElementName" Value="[dbo].[TCHAT].[NumeroRegistreEnvoyeur]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TCHAT]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdEnvoyeur" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ace5cbe4-b2d4-48bf-8b03-150bb5d3661d" ChangeDateTime="09/16/2019 08:11:57">
+    <Property Name="ElementName" Value="[dbo].[TCHAT].[NumeroRegistreRecepteur]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TCHAT]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdRecepteur" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="293bdf38-cd59-4b32-90e2-2f4219c252c9" ChangeDateTime="09/16/2019 08:13:10">
+    <Property Name="ElementName" Value="[dbo].[TACHE].[NumeroRegistreCreateur]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TACHE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdCreateur" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fec2ee35-783d-4a05-9442-7ae60f7396be" ChangeDateTime="09/16/2019 08:13:21">
+    <Property Name="ElementName" Value="[dbo].[TACHE].[NumeroRegistreRealisateur]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TACHE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdRealisateur" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ddf05aa1-8467-4f91-9b0d-34fe4227ee50" ChangeDateTime="09/16/2019 08:15:06">
+    <Property Name="ElementName" Value="[dbo].[INSCRIPTION].[NumeroRegistreStagiaire]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[INSCRIPTION]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdStagiaire" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1e4d0211-a527-40cd-a081-f48b8961906d" ChangeDateTime="09/16/2019 08:15:24">
+    <Property Name="ElementName" Value="[dbo].[INSCRIPTION].[NumeroRegistreEmploye]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[INSCRIPTION]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdEmploye" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="902564d5-610a-488f-a09f-9ef6db35d70a" ChangeDateTime="09/16/2019 08:16:24">
+    <Property Name="ElementName" Value="[dbo].[COMPETENCE].[NumeroRegistre]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[COMPETENCE]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdFormateur" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6527385a-1ccf-4a98-a4bf-8d8246b09a38" ChangeDateTime="09/16/2019 08:17:12">
+    <Property Name="ElementName" Value="[dbo].[INSTANCEFORMATION].[NumeroRegistre]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[INSTANCEFORMATION]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdPersonne" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="306aaa08-7c4c-4343-bfad-24282bcbec06" ChangeDateTime="09/16/2019 08:19:01">
+    <Property Name="ElementName" Value="[dbo].[PLANIFICATION].[NumeroRegistre]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PLANIFICATION]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdFormateur" />
+  </Operation>
+</Operations>

@@ -3,21 +3,21 @@
 	MessageTchat varchar(100) not null,     
 	DateDebut DateTime not null,     
 	DateCloture DateTime,     
-	NumeroRegistreEnvoyeur varchar(25) not null,     
-	NumeroRegistreRecepteur varchar(25) not null,     
+	[IdEnvoyeur] INT not null,     
+	[IdRecepteur] INT not null,     
 	constraint ID_TCHAT primary key (IdTchat));
 GO
 alter table TCHAT 
-add constraint REF_TCHAT_EMPLO_1_FK foreign key (NumeroRegistreEnvoyeur) references EMPLOYE;
+add constraint REF_TCHAT_EMPLO_1_FK foreign key ([IdEnvoyeur]) references EMPLOYE;
 GO
 alter table TCHAT 
-add constraint REF_TCHAT_EMPLO_FK foreign key (NumeroRegistreRecepteur) references EMPLOYE;
+add constraint REF_TCHAT_EMPLO_FK foreign key ([IdRecepteur]) references EMPLOYE;
 GO
 create unique index ID_TCHAT_IND on TCHAT (IdTchat);
 GO
-create index REF_TCHAT_EMPLO_1_IND on TCHAT (NumeroRegistreEnvoyeur);
+create index REF_TCHAT_EMPLO_1_IND on TCHAT ([IdEnvoyeur]);
 GO
-create index REF_TCHAT_EMPLO_IND on TCHAT (NumeroRegistreRecepteur);
+create index REF_TCHAT_EMPLO_IND on TCHAT ([IdRecepteur]);
 GO
 --Trigger pour l'ajout de la date de fin dans la table TCHAT--
 create trigger Tchat_Update
