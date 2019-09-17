@@ -11,15 +11,12 @@ namespace GestionDeNotreCentre.Repositories
 {
     public class PersonneRepository : IRepository<Personne, int>
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString,
-                                                                ConfigurationManager.ConnectionStrings["SQLServer"].ProviderName);
+        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
 
         public Personne Insert(Personne entity)
         {
-            string query = @"INSERT INTO PERSONNE(NumeroRegistre, Nom, Prenom, Email, Rue, Ville, CodePostal, Pays, NumeroTelePhone, CV, UserLogin, MotDePasse) 
-                             VALUES (@NumeroRegistre, @Nom, @Prenom, @Email, @Rue, @Ville, @CodePostal, @Pays, @NumeroTelephone, @CV, @UserLogin, @MotDePasse);";
-
-            Command command = new Command(query, true);
+            Command command = new Command("sp_Personne", true);
 
             command["NumeroRegistre"] = entity.NumeroRegistre;
             command["Nom"] = entity.Nom;
@@ -30,11 +27,12 @@ namespace GestionDeNotreCentre.Repositories
             command["CodePostal"] = entity.CodePostal;
             command["Pays"] = entity.Pays;
             command["NumeroTelephone"] = entity.NumeroTelephone;
-            command["CV"] = entity.CV;
+            command["CV"] = entity.personCV;
             command["UserLogin"] = entity.UserLogin;
             command["MotDePasse"] = entity.MotDePasse;
 
-            int result = _Connection.ExecuteNonQuery(command);
+            int lastId = _Connection.ExecuteNonQuery(command);
+            entity.IdPersonne = lastId;
 
             return entity;
         }
@@ -51,7 +49,7 @@ namespace GestionDeNotreCentre.Repositories
 
         public IEnumerable<Personne> Get()//à modifier
         {
-            Command command = new Command("SELECT * FROM PERSONNE;");
+            Command command = new Command("SELECT * FROM V_Personne;");
 
             return _Connection.ExecuteReader(command, dr => new Personne().From(dr));
         }

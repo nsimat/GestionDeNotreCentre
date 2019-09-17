@@ -1,0 +1,23 @@
+﻿<nav role="navigation" class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="False" aria-label="Toggle Navigation">
+            @*<span class="navbar-toggler-icon"><img src="@Url.Content("~/Images/icons8_movie.png")" alt="TechnoFutur TIC_Logo" class="img-responsive" /></span>*@
+            @*<span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>*@
+            @Html.ActionLink("TechnoFutur TIC - Centre des compétences", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </button>
+    </div>
+    @*<a class="navbar-brand" href="#">TechnoFutur TIC - Centre des compétences</a>*@
+    @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>*@
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">            
+                <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>            
+        </ul>        
+    </div>
+</nav>

@@ -93,6 +93,8 @@
     <Build Include="dbo\Stored Procedures\sp_Formation.sql" />
     <Build Include="dbo\Stored Procedures\sp_TypeJour.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="dbo\Views\V_Personne.sql" />
+    <Build Include="dbo\Views\V_Entreprise.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GestionDeCentreBD.refactorlog" />

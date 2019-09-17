@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionDeNotreCentre.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +12,9 @@ namespace GestionDeNotreCentre.Models
     [Table("PERSONNE")]
     public class Personne
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdPersonne { get; set; }
+
         [MaxLength(25), MinLength(11)]
         [Required(ErrorMessage ="Le numéro de registre doit avoir au moins 11 chiffres.")]
         [Display(Name ="Numéro de registre")]
@@ -39,17 +43,17 @@ namespace GestionDeNotreCentre.Models
         public string Rue { get; set; }
 
         [MaxLength(25), MinLength(2)]
-        [Required(ErrorMessage ="Le champ Ville ne peut avoir moins de 2 caractères.")]
+        [Required(ErrorMessage ="Le champ 'Ville' ne peut avoir moins de 2 caractères.")]
         [Display(Name ="Ville")]
         public string Ville { get; set; }
 
         [MaxLength(25)]
-        [Required(ErrorMessage ="Le champ code postal est obligatoire et ne peut être vide.")]
+        [Required(ErrorMessage ="Le champ 'Code Postal' est obligatoire et ne peut être vide.")]
         [Display(Name ="Code Postal")]
         public string CodePostal { get; set; }
 
         [MaxLength(25)]
-        [Required(ErrorMessage ="")]
+        [Required(ErrorMessage ="Le champ 'Pays' ne peut être vide ou doit avoir moins de 25 caractères.")]
         [Display(Name ="Pays")]
         public string Pays { get; set; }
 
@@ -60,8 +64,10 @@ namespace GestionDeNotreCentre.Models
         public string NumeroTelephone { get; set; }
 
         [Required(ErrorMessage ="L'ajout du CV est obligatoire.")]
-        [Display(Name ="CV")]
-        public byte[] CV { get; set; }
+        [DataType(DataType.Upload)]
+        [Display(Name ="Attacher votre CV")]
+        public HttpPostedFileBase AttachedFile { get; set; }
+        public byte[] personCV { get; set; }
 
         [MaxLength(25)]
         [Required(ErrorMessage ="Le champ 'Nom' d'utilisateur ne peut être vide.")]
@@ -69,13 +75,23 @@ namespace GestionDeNotreCentre.Models
         public string UserLogin { get; set; }
 
         [MaxLength(25), MinLength(5)]
-        [Required(ErrorMessage ="Le champ 'Mot' de passe ne peut être vide ou avoir moins de 5 caractères.")]
+        [Required(ErrorMessage ="Le champ 'Mot de passe' ne peut être vide ou avoir moins de 5 caractères.")]
         [Display(Name ="Mot de passe")]
         public string MotDePasse { get; set; }
 
-        [Display(Name ="Entreprise")]
+        
         public int? IdEntreprise { get; set; }
-        public Entreprise Entreprise { get; set; }
+
+        [Display(Name = "Entreprise")]
+        public Entreprise Entreprise
+        {
+            get
+            {
+                if (!(IdEntreprise is null)) return new EntrepriseRepository().Get((int)IdEntreprise);
+
+                return null;
+            }
+        }
 
         //les clefs étrangères
         public ICollection<Inscription> Inscriptions { get; set; }
@@ -95,10 +111,10 @@ namespace GestionDeNotreCentre.Models
                 CodePostal = (string)dr["CodePostal"],
                 Pays = (string)dr["Pays"],
                 NumeroTelephone = (string)dr["NumeroTelePhone"],
-                CV = (byte[])dr["CV"],
+                personCV = (byte[])dr["CV"],
                 UserLogin = (string)dr["UserLogin"],
                 MotDePasse = (string)dr["MotDePasse"],
-                IdEntreprise = (int)dr["IdEntreprise"] //à revoir
+                IdEntreprise = (dr["IdEntreprise"] is DBNull) ? null : (int?)dr["IdEntreprise"]
             };
         }
 

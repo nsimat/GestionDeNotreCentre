@@ -1,0 +1,2 @@
+﻿CREATE VIEW [dbo].[V_Entreprise]
+	AS SELECT * FROM [ENTREPRISE];

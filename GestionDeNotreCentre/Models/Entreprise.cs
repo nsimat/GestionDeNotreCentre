@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -41,5 +42,21 @@ namespace GestionDeNotreCentre.Models
         [Phone]
         [Display(Name = "Numéro de téléphone")]
         public string NumeroTelephone { get; set; }
+
+        
+        public Entreprise From(IDataRecord dr)
+        {
+            return new Entreprise()
+            {
+                IdEntreprise = (int)dr["IdEntreprise"],
+                NomEntreprise = (string)dr["NomEntreprise"],
+                Rue = (string)dr["Rue"],
+                Ville = (string)dr["Ville"],
+                CodePostal = (string)dr["CodePostal"],
+                Pays = (string)dr["Pays"],
+                NumeroTelephone = (string)dr["NumeroTelephone"]
+            };
+            
+        }
     }
 }

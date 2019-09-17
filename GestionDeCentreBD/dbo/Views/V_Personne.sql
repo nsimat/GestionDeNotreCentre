@@ -1,0 +1,6 @@
+﻿CREATE VIEW V_Personne
+AS 
+SELECT * FROM PERSONNE;
+
+
+	
