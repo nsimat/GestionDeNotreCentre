@@ -70,13 +70,14 @@ namespace GestionDeNotreCentre.Models
         public byte[] personCV { get; set; }
 
         [MaxLength(25)]
-        [Required(ErrorMessage ="Le champ 'Nom' d'utilisateur ne peut être vide.")]
+        [Required(ErrorMessage ="Le champ 'Nom d'utilisateur' ne peut être vide.")]
         [Display(Name ="Nom d'utilisateur")]
         public string UserLogin { get; set; }
 
         [MaxLength(25), MinLength(5)]
         [Required(ErrorMessage ="Le champ 'Mot de passe' ne peut être vide ou avoir moins de 5 caractères.")]
         [Display(Name ="Mot de passe")]
+        [DataType(DataType.Password)]
         public string MotDePasse { get; set; }
 
         
