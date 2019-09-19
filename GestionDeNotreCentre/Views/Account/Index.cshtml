@@ -1,0 +1,19 @@
+﻿@model GestionDeNotreCentre.Models.Personne
+{
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Utiliser votre compte pour vous identifier.</h4>
+        <hr />
+
+
+    </div>
+}

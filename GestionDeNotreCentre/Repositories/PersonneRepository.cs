@@ -47,6 +47,13 @@ namespace GestionDeNotreCentre.Repositories
             throw new NotImplementedException();
         }
 
+        //Ajout pour trouver la personne via son nom d'utilisateur qui est unique
+        public Personne Get(string ussername)
+        {
+            Command command = new Command("");
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Personne> Get()//à modifier
         {
             Command command = new Command("SELECT * FROM V_Personne;");

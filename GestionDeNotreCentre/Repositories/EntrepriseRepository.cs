@@ -13,45 +13,29 @@ namespace GestionDeNotreCentre.Repositories
     {
         private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString,
                                                                  ConfigurationManager.ConnectionStrings["SqlServer"].ProviderName);
-        // la méthode insert
-        
-
-        //la méthode delete
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
-        //Get
+
         public IEnumerable<Entreprise> Get()
         {
-            Command command = new Command("SELECT * FROM Entreprise;");
+            Command command = new Command("SELECT * FROM V_Entreprise;");
 
             return _Connection.ExecuteReader(command, dr => new Entreprise().From(dr));
         }
 
         public Entreprise Get(int id)
         {
-            Command command = new Command("SELECT * FROM Entreprise WHERE IdEntreprise = @IdEntreprise;");
+            Command command = new Command("SELECT * FROM V_Entreprise WHERE IdEntreprise = @IdEntreprise;");
             command["IdEntreprise"] = id;
 
             return _Connection.ExecuteReader(command, dr => new Entreprise().From(dr)).FirstOrDefault();
         }
 
-
-
-
         public Entreprise Insert(Entreprise entity)
         {
-            Command command = new Command("sp_Entreprise", true);
-            command["NomEntreprise"] = entity.NomEntreprise;
-            command["Rue"] = entity.Rue;
-            command["Ville"] = entity.Ville;
-            command["CodePostal"] = entity.CodePostal;
-            command["Pays"] = entity.Pays;
-            command["NumeroTelephone"] = entity.NumeroTelephone;
-            int lastId = _Connection.ExecuteNonQuery(command);
-            entity.IdEntreprise = lastId;
-            return entity;
+            throw new NotImplementedException();
         }
 
         public bool Put(Entreprise entity, int id)
