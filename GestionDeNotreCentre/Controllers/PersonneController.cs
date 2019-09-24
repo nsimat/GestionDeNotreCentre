@@ -1,11 +1,13 @@
-﻿using GestionDeNotreCentre.Models;
-using GestionDeNotreCentre.Repositories;
+﻿using GestionDeCentreDAL.Models;
+using GestionDeCentreDAL.Repositories;
+using GestionDeNotreCentre.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ToolBox.Repositories;
 
 namespace GestionDeNotreCentre.Controllers
 {
@@ -24,39 +26,66 @@ namespace GestionDeNotreCentre.Controllers
             return View();
         }
 
-        // GET: Personne/Create
-        public ActionResult Create()
-        {            
-            return View();
-        }        
+        /*Ajout de l'Action NewPersonne*/
+        // GET: Personne/NewPersonne
+        public ActionResult NewPersonne()
+        {
+            var personne = new PersonneViewModel();
+            return View(personne);
+        }
 
         [HttpPost]
-        public ActionResult Create(Personne personne)
+        public ActionResult NewPersonne(PersonneViewModel viewModel)
         {
-            String FileExt = Path.GetExtension(personne.AttachedFile.FileName).ToUpper();
-
-            if(FileExt == ".PDF")
+            if (!ModelState.IsValid)
             {
-                //Stream stream = personneCV.InputStream;
-                //BinaryReader reader = new BinaryReader(stream);
-                //byte[] fileContent = reader.ReadBytes((Int32)stream.Length);
+                return View(viewModel);
+            }
 
-                byte[] uploadedFile = new byte[personne.AttachedFile.InputStream.Length];
-                personne.AttachedFile.InputStream.Read(uploadedFile, 0, uploadedFile.Length);
+            String FileExt = Path.GetExtension(viewModel.AttachedFile.FileName).ToUpper();
 
-                personne.personCV = uploadedFile;
+            if (FileExt == ".PDF")
+            {
 
-                persoRepo.Insert(personne);
+                byte[] uploadedFile = new byte[viewModel.AttachedFile.InputStream.Length];
+                viewModel.AttachedFile.InputStream.Read(uploadedFile, 0, uploadedFile.Length);
+
+                //Mappage avec la classe Personne
+                Personne utilisateur = new Personne
+                {
+                    NumeroRegistre = viewModel.NumeroRegistre,
+                    Nom = viewModel.Nom,
+                    Prenom = viewModel.Prenom,
+                    Email = viewModel.Email,
+                    Rue = viewModel.Rue,
+                    Ville = viewModel.Ville,
+                    CodePostal = viewModel.CodePostal,
+                    Pays = viewModel.Pays,
+                    NumeroTelephone = viewModel.NumeroTelephone,
+                    UserLogin = viewModel.UserLogin,
+                    MotDePasse = HashPassword.Hash(viewModel.MotDePasse),
+                    PersonCV = uploadedFile
+                };
+
+                
+                //utilisateur.Entreprise = personne.NomEntreprise;//à revoir car erreur
+
+                persoRepo.Insert(utilisateur);
 
             }
             else
             {
                 ViewBag.Status = "Format de fichier invalide.";
-                return View();
+                return View(viewModel);
             }
 
             return RedirectToAction("Index");
-        }        
+        }
+
+
+
+
+
 
         // GET: Personne/Edit/5
         public ActionResult Edit(int id)

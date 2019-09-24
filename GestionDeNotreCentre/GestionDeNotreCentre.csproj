@@ -127,6 +127,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\PersonneViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +197,7 @@
     <Content Include="Views\Entreprise\Edit.cshtml" />
     <Content Include="Views\Entreprise\Details.cshtml" />
     <Content Include="Views\Entreprise\Delete.cshtml" />
+    <Content Include="Views\Personne\NewPersonne.cshtml" />
     <None Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -237,6 +240,10 @@
     <ProjectReference Include="..\GestionDeCentreDAL\GestionDeCentreDAL.csproj">
       <Project>{cc22ab57-3bf5-47c0-be66-7d38b89cf1de}</Project>
       <Name>GestionDeCentreDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolBox\ToolBox.csproj">
+      <Project>{50DA84DD-6C6D-49F5-A398-50780F8983E5}</Project>
+      <Name>ToolBox</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
