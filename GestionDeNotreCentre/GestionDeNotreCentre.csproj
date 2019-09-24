@@ -127,21 +127,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Competence.cs" />
-    <Compile Include="Models\Composition.cs" />
-    <Compile Include="Models\Employe.cs" />
-    <Compile Include="Models\Entreprise.cs" />
-    <Compile Include="Models\Formateur.cs" />
-    <Compile Include="Models\Formation.cs" />
-    <Compile Include="Models\Inscription.cs" />
-    <Compile Include="Models\InstanceFormation.cs" />
-    <Compile Include="Models\Module.cs" />
-    <Compile Include="Models\Personne.cs" />
-    <Compile Include="Models\Planification.cs" />
-    <Compile Include="Models\PreRequis.cs" />
-    <Compile Include="Models\Tache.cs" />
-    <Compile Include="Models\Tchat.cs" />
-    <Compile Include="Models\Type_Jour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
