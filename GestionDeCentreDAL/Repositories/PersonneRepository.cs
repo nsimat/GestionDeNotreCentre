@@ -7,7 +7,7 @@ using System.Web;
 using ToolBox.DataAccess;
 using ToolBox.Repositories;
 
-namespace GestionDeNotreCentre.Repositories
+namespace GestionDeCentreDAL.Repositories
 {
     public class PersonneRepository : IRepository<Personne, int>
     {
