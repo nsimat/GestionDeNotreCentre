@@ -1,4 +1,4 @@
-﻿using GestionDeNotreCentre.Models;
+﻿using GestionDeCentreDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

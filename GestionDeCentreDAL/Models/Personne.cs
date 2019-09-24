@@ -1,4 +1,4 @@
-﻿using GestionDeNotreCentre.Repositories;
+﻿using GestionDeCentreDAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace GestionDeNotreCentre.Models
+namespace GestionDeCentreDAL.Models
 {
     [Table("PERSONNE")]
     public class Personne
@@ -65,9 +65,8 @@ namespace GestionDeNotreCentre.Models
 
         [Required(ErrorMessage ="L'ajout du CV est obligatoire.")]
         [DataType(DataType.Upload)]
-        [Display(Name ="Attacher votre CV")]
-        //public HttpPostedFileBase AttachedFile { get; set; }
-        public byte[] personCV { get; set; }
+        [Display(Name ="Attacher votre CV")]        
+        public byte[] PersonCV { get; set; }
 
         [MaxLength(25)]
         [Required(ErrorMessage ="Le champ 'Nom d'utilisateur' ne peut être vide.")]
@@ -112,7 +111,7 @@ namespace GestionDeNotreCentre.Models
                 CodePostal = (string)dr["CodePostal"],
                 Pays = (string)dr["Pays"],
                 NumeroTelephone = (string)dr["NumeroTelePhone"],
-                personCV = (byte[])dr["CV"],
+                PersonCV = (byte[])dr["CV"],
                 UserLogin = (string)dr["UserLogin"],
                 MotDePasse = (string)dr["MotDePasse"],
                 IdEntreprise = (dr["IdEntreprise"] is DBNull) ? null : (int?)dr["IdEntreprise"]

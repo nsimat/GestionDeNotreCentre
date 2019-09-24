@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace GestionDeNotreCentre.Models
+namespace GestionDeCentreDAL.Models
 {
     [Table("FORMATION")]
     public class Formation

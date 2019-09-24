@@ -1,4 +1,4 @@
-﻿using GestionDeNotreCentre.Models;
+﻿using GestionDeCentreDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -27,7 +27,7 @@ namespace GestionDeNotreCentre.Repositories
             command["CodePostal"] = entity.CodePostal;
             command["Pays"] = entity.Pays;
             command["NumeroTelephone"] = entity.NumeroTelephone;
-            command["CV"] = entity.personCV;
+            command["CV"] = entity.PersonCV;
             command["UserLogin"] = entity.UserLogin;
             command["MotDePasse"] = entity.MotDePasse;
 

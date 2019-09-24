@@ -1,4 +1,4 @@
-﻿using GestionDeNotreCentre.Models;
+﻿using GestionDeCentreDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,7 +7,7 @@ using System.Web;
 using ToolBox.DataAccess;
 using ToolBox.Repositories;
 
-namespace GestionDeNotreCentre.Repositories
+namespace GestionDeCentreDAL.Repositories
 {
     public class EntrepriseRepository : IRepository<Entreprise, int>
     {
