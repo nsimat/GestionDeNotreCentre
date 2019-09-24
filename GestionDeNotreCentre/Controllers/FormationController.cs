@@ -1,5 +1,5 @@
-﻿using GestionDeNotreCentre.Models;
-using GestionDeNotreCentre.Repositories;
+﻿using GestionDeCentreDAL.Models;
+using GestionDeCentreDAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
