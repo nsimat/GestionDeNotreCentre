@@ -210,6 +210,9 @@
     <Content Include="Views\Formation\Edit.cshtml" />
     <Content Include="Views\Formation\Delete.cshtml" />
     <Content Include="Views\Entreprise\Create.cshtml" />
+    <Content Include="Views\Entreprise\Edit.cshtml" />
+    <Content Include="Views\Entreprise\Details.cshtml" />
+    <Content Include="Views\Entreprise\Delete.cshtml" />
     <None Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -249,9 +252,9 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ToolBox\ToolBox.csproj">
-      <Project>{50da84dd-6c6d-49f5-a398-50780f8983e5}</Project>
-      <Name>ToolBox</Name>
+    <ProjectReference Include="..\GestionDeCentreDAL\GestionDeCentreDAL.csproj">
+      <Project>{cc22ab57-3bf5-47c0-be66-7d38b89cf1de}</Project>
+      <Name>GestionDeCentreDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

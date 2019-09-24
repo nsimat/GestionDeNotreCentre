@@ -1,4 +1,5 @@
-﻿using GestionDeNotreCentre.Repositories;
+﻿using GestionDeNotreCentre.Models;
+using GestionDeNotreCentre.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace GestionDeNotreCentre.Controllers
         // GET: Entreprise/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(entrepRepo.Get(id));
         }
 
         // GET: Entreprise/Create
@@ -30,62 +31,51 @@ namespace GestionDeNotreCentre.Controllers
 
         // POST: Entreprise/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Entreprise entreprise)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
+            entrepRepo.Insert(entreprise);
+           return RedirectToAction("Index");
+           
         }
+
+
 
         // GET: Entreprise/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+           
+            return View(entrepRepo.Get(id));
         }
 
         // POST: Entreprise/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Entreprise entrep)
         {
-            try
+            if (entrepRepo.Put(entrep, entrep.IdEntreprise))
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return null;
         }
 
         // GET: Entreprise/Delete/5
+        
         public ActionResult Delete(int id)
         {
-            return View();
+             return View(entrepRepo.Get(id));
+            //return entrepRepo.Delete(id);
         }
 
         // POST: Entreprise/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Entreprise entrep)
         {
-            try
+            if (entrepRepo.Delete(entrep.IdEntreprise))
             {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return null;
         }
     }
 }

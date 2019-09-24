@@ -34,6 +34,7 @@ namespace GestionDeNotreCentre.Controllers
         {
 
             formatRepo.Insert(formation);
+            
             return RedirectToAction("Index");
             
         }

@@ -12,9 +12,7 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdEntreprise)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.NomEntreprise)
         </th>
@@ -60,9 +58,9 @@
             @Html.DisplayFor(modelItem => item.NumeroTelephone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdEntreprise }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdEntreprise }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.IdEntreprise })
         </td>
     </tr>
 }
