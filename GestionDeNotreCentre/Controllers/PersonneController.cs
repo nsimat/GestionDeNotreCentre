@@ -64,7 +64,7 @@ namespace GestionDeNotreCentre.Controllers
                     Pays = viewModel.Pays,
                     NumeroTelephone = viewModel.NumeroTelephone,
                     UserLogin = viewModel.UserLogin,
-                    MotDePasse = HashingMotDePasse.EncodageMD5(viewModel.MotDePasse),
+                    MotDePasse = HashPassword.Hash(viewModel.MotDePasse),
                     PersonCV = uploadedFile
                 };
 
