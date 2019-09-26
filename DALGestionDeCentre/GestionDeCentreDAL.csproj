@@ -62,6 +62,7 @@
     <Compile Include="Repositories\EntrepriseRepository.cs" />
     <Compile Include="Repositories\FormationRepository.cs" />
     <Compile Include="Repositories\PersonneRepository.cs" />
+    <Compile Include="Services\HashingMotDePasse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ToolBox\ToolBox.csproj">
@@ -69,5 +70,6 @@
       <Name>ToolBox</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

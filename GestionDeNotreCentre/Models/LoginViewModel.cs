@@ -22,5 +22,7 @@ namespace GestionDeNotreCentre.Models
 
         [Display(Name = "Restez connecté(e)?")]
         public bool RememberMe { get; set; }
+
+        public bool Authentifie { get; set; }
     }
 }

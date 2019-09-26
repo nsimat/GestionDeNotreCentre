@@ -1,4 +1,5 @@
-﻿using GestionDeCentreDAL.Models;
+﻿using DALGestionDeCentre.Services;
+using GestionDeCentreDAL.Models;
 using GestionDeCentreDAL.Repositories;
 using GestionDeNotreCentre.Models;
 using System;
@@ -63,7 +64,7 @@ namespace GestionDeNotreCentre.Controllers
                     Pays = viewModel.Pays,
                     NumeroTelephone = viewModel.NumeroTelephone,
                     UserLogin = viewModel.UserLogin,
-                    MotDePasse = HashPassword.Hash(viewModel.MotDePasse),
+                    MotDePasse = HashingMotDePasse.EncodageMD5(viewModel.MotDePasse),
                     PersonCV = uploadedFile
                 };
 

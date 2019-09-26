@@ -65,7 +65,7 @@ namespace GestionDeNotreCentre.Models
 
         [Required(ErrorMessage = "L'ajout du CV est obligatoire.")]
         [DataType(DataType.Upload)]
-        [Display(Name = "Attacher votre CV")]
+        [Display(Name = "Attacher votre CV au format PDF")]
         public HttpPostedFileBase AttachedFile { get; set; }        
 
         [EmailAddress]
@@ -73,18 +73,7 @@ namespace GestionDeNotreCentre.Models
         [Required(ErrorMessage = "Le champ 'Nom d'utilisateur' est l'adresse éléctronique fournie par l'utilisateur.")]
         [Display(Name = "Nom d'utilisateur")]
         [Compare("Email")]
-        public string UserLogin
-        {
-            get
-            {
-                return Email;
-            }
-            set
-            {
-                if (Email != null)
-                    UserLogin = Email;
-            }
-        }
+        public string UserLogin { get; set; }          
 
         [MaxLength(25), MinLength(5)]
         [Required(ErrorMessage = "Le champ 'Mot de passe' ne peut être vide ou avoir moins de 5 caractères.")]

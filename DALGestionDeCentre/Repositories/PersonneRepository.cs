@@ -1,4 +1,5 @@
-﻿using GestionDeCentreDAL.Models;
+﻿using DALGestionDeCentre.Services;
+using GestionDeCentreDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -52,6 +53,25 @@ namespace GestionDeCentreDAL.Repositories
             Command command = new Command("SELECT * FROM V_Personne;");
 
             return _Connection.ExecuteReader(command, dr => new Personne().From(dr));
+        }
+
+        public Personne Authentifier(string userLogin, string motDePasse)
+        {
+            string motDePasseEncode = HashPassword.Hash(motDePasse).Substring(0,25);
+            Command command = new Command("SELECT * FROM V_Personne WHERE UserLogin LIKE @UserLogin AND MotDePasse LIKE @MotdePasse;");
+
+            command.AddParameter("UserLogin", userLogin);
+            command.AddParameter("MotDePasse", motDePasseEncode);
+
+            return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
+        }
+
+        public Personne Get(string userLogin)
+        {
+            Command command = new Command("SELECT * FROM V_Personne WHERE UserLogin=@UserLogin;");
+
+            command["UserLogin"] = userLogin;
+            return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
         }
 
         public bool Put(Personne entity, int id)
