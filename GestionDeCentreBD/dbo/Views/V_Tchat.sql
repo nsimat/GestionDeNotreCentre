@@ -1,0 +1,3 @@
+﻿CREATE VIEW V_Tchat
+As
+SELECT * FROM TCHAT
