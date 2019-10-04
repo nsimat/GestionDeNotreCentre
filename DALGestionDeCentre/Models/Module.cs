@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -43,5 +44,19 @@ namespace GestionDeCentreDAL.Models
         public ICollection<Planification> Planifications { get; set; }
         public ICollection<Competence> Competences { get; set; }
         public ICollection<Composition> Compositions { get; set; }
+
+        public Module From(IDataRecord dr)
+        {
+            return new Module()
+            {
+                Nom = (string)dr["Nom"],
+                DescriptionModule = (string)dr["DescriptionModule"],
+                TableDeMatieres = (byte[])dr["TableDeMatieres"],
+                PrixJournalier = (decimal)dr["PrixJournalier"],
+                NombreJours = (int)dr["NombreJours"],
+                NbreJoursAffectes = (int)dr["NbreJoursAffectes"],
+
+            };
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -43,5 +44,20 @@ namespace GestionDeCentreDAL.Models
         //Clefs étrangères
         public ICollection<Inscription> Inscriptions { get; set; }
         public ICollection<Planification> Planifications { get; set; }
+
+
+        public InstanceFormation From(IDataRecord dr)
+        {
+            return new InstanceFormation()
+            {
+                IdInstanceformation = (int)dr["IdInstanceFormation"],
+                Statut = (string)dr["Statut"],
+                DateDebut = (DateTime)dr["DateDebut"],
+                DateFin = (DateTime)dr["DateFin"],
+                IdFormation = (int)dr["IdFormation"],
+                NumeroRegistre = (string)dr["IdPersonne"]
+            };
+
+        }
     }
 }

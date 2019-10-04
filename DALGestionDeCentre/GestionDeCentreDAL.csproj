@@ -59,9 +59,16 @@
     <Compile Include="Models\Tchat.cs" />
     <Compile Include="Models\Type_Jour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CompetenceRepository.cs" />
+    <Compile Include="Repositories\CompositionRepository.cs" />
     <Compile Include="Repositories\EntrepriseRepository.cs" />
     <Compile Include="Repositories\FormationRepository.cs" />
+    <Compile Include="Repositories\InstanceFormationRepository.cs" />
+    <Compile Include="Repositories\ModuleRepository.cs" />
     <Compile Include="Repositories\PersonneRepository.cs" />
+    <Compile Include="Repositories\PlanificationRepository.cs" />
+    <Compile Include="Repositories\TacheRepository.cs" />
+    <Compile Include="Repositories\TchatRepository.cs" />
     <Compile Include="Services\HashingMotDePasse.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,5 +54,8 @@ namespace GestionDeCentreDAL.Repositories
             Command command = new Command("sp_UpdateAInstanceFormation");
             return _Connection.ExecuteNonQuery(command) == 1;
         }
+
+       
+
     }
 }

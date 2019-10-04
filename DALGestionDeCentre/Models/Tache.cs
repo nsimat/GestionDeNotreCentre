@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -45,5 +46,21 @@ namespace GestionDeCentreDAL.Models
         [Display(Name ="Destinataire")]
         public string NumeroRegistreRealisateur { get; set; }
         public Employe Realisateur { get; set; }
+
+        public Tache From(IDataRecord dr)
+        {
+            return new Tache()
+            {
+                IdTache = (int)dr["IdTache"],
+                LibelleTache = (string)dr["LibelleTache"],
+                MessageTache = (string)dr["MessageTache"],
+                DateCreation = (DateTime)dr["DateCreation"],
+                DateCloture = (DateTime)dr["DateCloture"],
+                /* Createur     = (string)dr["IdCreateur"],
+                 Realisateur = (string)dr["IdRealisateur"]*/
+
+            };
+
+        }
     }
 }

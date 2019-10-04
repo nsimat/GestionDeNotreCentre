@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -38,5 +39,19 @@ namespace GestionDeCentreDAL.Models
         [MaxLength(25)]
         [Display(Name ="Recepteur")]
         public string NumeroRegistreRecepteur { get; set; }
+
+        public Tchat From(IDataRecord dr)
+        {
+            return new Tchat()
+            {
+                IdTchat = (int)dr["IdTchat"],
+                MessageTchat = (string)dr["MessageTchat"],
+                DateDebut = (DateTime)dr["DateDebut"],
+                DateCloture = (DateTime)dr["DateCloture"],
+                /* IdEnvoyeur     = (string)dr["NumeroRegistreEnvoyeur"],
+                 IdRecepteur = (string)dr["NumeroRegistreRecepteur"] */
+
+            };
+        }
     }
 }
