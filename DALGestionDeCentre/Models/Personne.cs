@@ -102,6 +102,7 @@ namespace GestionDeCentreDAL.Models
         {
             return new Personne()
             {
+                IdPersonne = (int)dr["IdPersonne"],
                 NumeroRegistre = (string)dr["NumeroRegistre"],
                 Nom = (string)dr["Nom"],
                 Prenom = (string)dr["Prenom"],

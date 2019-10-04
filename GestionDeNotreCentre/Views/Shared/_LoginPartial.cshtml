@@ -1,0 +1,20 @@
+﻿@*@using Microsoft.AspNet.Identity*@
+@if (HttpContext.Current.Session["UserName"] != null)
+{
+    using (Html.BeginForm("Deconnexion", "Login", FormMethod.Post, new { id = "logoutForm", @class = "navbar-nav ml-auto" }))
+    {
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">@Html.ActionLink("Bonjour " + HttpContext.Current.Session["UserName"] + "!", "Details", "Personne", null, new { @class = "nav-link" })</li>
+            <li class="nav-item active"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Déconnexion</a></li>
+        </ul>
+
+    }
+}
+else
+{
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">@Html.ActionLink("S'enregistrer", "NewPersonne", "Personne", null, new { id ="registerLink", @class = "nav-link" })</li>
+        <li class="nav-item active">@Html.ActionLink("S'identifier", "Index", "Login", null, new { id= "loginLink", @class = "nav-link" })</li>
+    </ul>
+
+}

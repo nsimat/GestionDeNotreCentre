@@ -1,0 +1,128 @@
+﻿@model GestionDeCentreDAL.Models.Personne
+
+@{
+    ViewBag.Title = "DeletePersonne";
+}
+
+<h2>Suppression d'une personne</h2>
+
+<h3>Êtes-vous sûr de vouloir supprimer cette personne de la base de données?</h3>
+<div>
+    <h4>Données de @Model.Prenom + " " + @Model.Nom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPersonne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdPersonne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroRegistre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroRegistre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroTelephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroTelephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserLogin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotDePasse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotDePasse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdEntreprise)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdEntreprise)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

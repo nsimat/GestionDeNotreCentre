@@ -1,4 +1,4 @@
-﻿using DALGestionDeCentre.Services;
+﻿using GestionDeCentreDAL.Services;
 using GestionDeCentreDAL.Models;
 using GestionDeCentreDAL.Repositories;
 using GestionDeNotreCentre.Models;
@@ -47,11 +47,13 @@ namespace GestionDeNotreCentre.Controllers
 
                 if (personne != null)
                 {
+                    loginViewModel.Authentifie = true;
+                    HttpContext.Session["UserName"] = personne.Prenom + " " + personne.Nom;
                     FormsAuthentication.SetAuthCookie(personne.IdPersonne.ToString(), false);
                     if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
 
-                    return RedirectToAction("Index", "Home");//à revoir
+                    return RedirectToAction("AfterLogin");//Mettre ici l'accès vers la vue AfterLogin à modifier
                 }
                 ModelState.AddModelError(loginViewModel.Email, "Email et/ou mot de passe incorrect(s)!");
 
@@ -60,10 +62,17 @@ namespace GestionDeNotreCentre.Controllers
             return View(loginViewModel);
         }
 
-        public ActionResult Deconnexion()//Logout à faire
+        public ActionResult AfterLogin()
         {
-
-            return View("/");//à revoir
+            return View();
+        }
+        
+        
+        public ActionResult Deconnexion()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");//Retourne vers le home, la page d'accueil à modifier?
         }
 
 

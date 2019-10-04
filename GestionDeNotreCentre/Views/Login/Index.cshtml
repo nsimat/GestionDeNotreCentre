@@ -4,53 +4,142 @@
     ViewBag.Title = "Authentification de stagiaire";
 }
 
-<h2>Authentification pour inscription</h2>
+<h2>Identifiez-vous ou inscrivez-vous</h2>
 
-@using (Html.BeginForm()) 
+@if (Model.Authentifie)
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Veuillez utiliser un compte enregistré pour vous connecter:</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <h3>
+        Vous êtes déjà authentifié avec le login: @Model.Email
+    </h3>
+    @Html.ActionLink("Deconnexion", "Login")
+}
+else
+{
+    using (Html.BeginForm("Index", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MotDePasse, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.RememberMe)
-                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>Connectez-vous:</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">                            
+                                <span class="fas fa-user"></span>                            
+                        </div>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Adresse électronique" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Se connecter" class="btn btn-primary" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.MotDePasse, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">                            
+                                <span class="fas fa-key"></span>                           
+                        </div>
+                        @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mot de passe", @id = "myPassword" } })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
+                </div>
             </div>
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.RememberMe)
+                        @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "checkbox remember-me" })
+                        @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Se connecter" class="btn btn-primary" />
+                </div>
+            </div>
+            <p>
+                @Html.ActionLink("Enregistrez-vous", "NewPersonne", "Personne") si vous n'avez pas encore de compte sur notre site.
+            </p>
         </div>
-        <p>
-            @Html.ActionLink("S'enregistrer", "Personne") si vous n'avez pas encore de compte sur notre site.
-        </p>
-    </div>
+    }
+
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts
+{
+    <script>
+            //$(document).ready(function () {
+            //    $('#show_password').on('click', function () {
+            //        var passwordField = $('#myPassword');
+            //        var passwordFieldType = passwordField.attr('type');
+
+            //        if (passwordFieldType == 'password')
+            //        {
+            //            $('#myIcon').removeClass('fas fa-eye-slash').addClass('fas fa-eye');
+            //            passwordField.attr('type', 'text');
+
+            //        }
+            //        else
+            //        {
+            //            $('#myIcon').removeClass('fas fa-eye').addClass('fas fa-eye-slash');
+            //            passwordField.attr('type', 'password');
+
+            //        }
+
+            //    });
+
+
+
+
+            //    //    .hover(function show() {
+            //    //    //changer l'attribut en texte
+            //    //    $('#myPassword').attr('type', 'text');
+            //    //    $('.icon').removeClass('fas fa-eye-slash').addClass('fas fa-eye');
+            //    //},
+            //    //    function () {
+            //    //        //Changer l'attribut en mot de passe caché
+            //    //        $('myPassword').attr('type', 'password');
+            //    //        $('.icon').removeClass('fas fa-eye').addClass('fas fa-eye-slash')
+            //    //    });
+            //});
+
+            //var pwdField = document.getElementById('myPassword');
+            //var eye = document.getElementById('myIcon');
+
+            //eye.addEventListener('click', togglePass);
+
+            //function togglePass() {
+
+            //    eye.classList.toggle('active');
+
+            //    (pwdField.type == 'password') ? pwdField.type == 'text' : pwdField.type == 'password';
+            //}
+
+
+            //function showMotDePasse() {
+            //    var motDePasse = document.getElementById("myPassword");
+            //    if (motDePasse.className == "fas fa-eye-slash") {
+            //        motDePasse.type = "text";
+            //        motDePasse.className = "fas fa-eye";
+            //    }
+            //    else {
+            //        motDePasse.type = "password";
+            //        motDePasse.className = "fas fa-eye-slash";
+            //    }
+
+            //}
+    </script>
+}

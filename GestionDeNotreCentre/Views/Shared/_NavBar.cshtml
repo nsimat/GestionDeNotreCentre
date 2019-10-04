@@ -16,13 +16,14 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("Formations", "Index", "Formation", null, new { @class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("À propos de", "About", "Home", null, new { @class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+            <li class="nav-item">@Html.ActionLink("Nos formations", "Index", "Formation", null, new { @class = "nav-link"})</li>
+            <li class="nav-item">@Html.ActionLink("À propos de nous", "About", "Home", null, new { @class = "nav-link"})</li>
+            <li class="nav-item">@Html.ActionLink("Nous contacter", "Contact", "Home", null, new { @class = "nav-link" })</li>
         </ul> 
-        <ul class="navbar-nav ml-auto">
+        @*<ul class="navbar-nav ml-auto">
             <li class="nav-item">@Html.ActionLink("S'enregistrer", "NewPersonne", "Personne", null, new { @class = "nav-link" })</li>
             <li class="nav-item">@Html.ActionLink("S'identifier", "Index", "Login", null, new { @class = "nav-link" })</li>
-        </ul>
+        </ul>*@
+        @Html.Partial("_LoginPartial")
     </div>
 </nav>

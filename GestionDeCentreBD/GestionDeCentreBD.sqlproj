@@ -96,6 +96,8 @@
     <Build Include="dbo\Views\V_Personne.sql" />
     <Build Include="dbo\Views\V_Entreprise.sql" />
     <Build Include="dbo\Views\V_Formation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAPersonne.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAPersonne.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GestionDeCentreBD.refactorlog" />

@@ -1,4 +1,4 @@
-﻿using DALGestionDeCentre.Services;
+﻿using GestionDeCentreDAL.Services;
 using GestionDeCentreDAL.Models;
 using System;
 using System.Collections.Generic;
@@ -40,19 +40,27 @@ namespace GestionDeCentreDAL.Repositories
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Command command = new Command("sp_DeleteAPersonne", true);
+
+            command.AddParameter("IdPersonne", id);
+
+            return _Connection.ExecuteNonQuery(command) == 1;
         }
 
         public Personne Get(int id)
         {
-            throw new NotImplementedException();
+            Command command = new Command("SELECT * FROM V_Personne WHERE IdPersonne = @IdPersonne;");
+
+            command["IdPersonne"] = id;
+
+            return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
         }
 
-        public IEnumerable<Personne> Get()//à modifier
+        public IEnumerable<Personne> Get()
         {
             Command command = new Command("SELECT * FROM V_Personne;");
 
-            return _Connection.ExecuteReader(command, dr => new Personne().From(dr));
+            return _Connection.ExecuteReader(command, dr => new Personne().From(dr));//à modifier?
         }
 
         public Personne Authentifier(string userLogin, string motDePasse)
@@ -76,7 +84,25 @@ namespace GestionDeCentreDAL.Repositories
 
         public bool Put(Personne entity, int id)
         {
-            throw new NotImplementedException();
+            Command command = new Command("sp_UpdateAPersonne", true);
+
+            command.AddParameter("IdPersonne", entity.IdPersonne);
+            command.AddParameter("NumeroRegistre", entity.NumeroRegistre);
+            command.AddParameter("Nom", entity.Nom);
+            command.AddParameter("Prenom", entity.Prenom);
+            command.AddParameter("Email", entity.Email);
+            command.AddParameter("Rue", entity.Rue);
+            command.AddParameter("Ville", entity.Ville);
+
+            command["CodePostal"] = entity.CodePostal;
+            command["Pays"] = entity.Pays;
+            command["NumeroTelephone"] = entity.NumeroTelephone;
+            command["CV"] = entity.PersonCV;
+            command["UserLogin"] = entity.UserLogin;
+            command["MotDePasse"] = entity.MotDePasse;
+            command["IdEntreprise"] = entity.IdEntreprise;
+
+            return _Connection.ExecuteNonQuery(command) == 1;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DALGestionDeCentre.Services;
+﻿using GestionDeCentreDAL.Services;
 using GestionDeCentreDAL.Models;
 using GestionDeCentreDAL.Repositories;
 using GestionDeNotreCentre.Models;
@@ -17,14 +17,23 @@ namespace GestionDeNotreCentre.Controllers
         private readonly PersonneRepository persoRepo = new PersonneRepository();
         // GET: Personne
         public ActionResult Index()
+        {            
+            return View();            
+        }
+
+        public ActionResult GetPersonnes()
         {
-            return View(persoRepo.Get());
+            //Ajout pour utiliser ajax et DataTables
+            var personnes = persoRepo.Get().ToList();
+            var jsonResult = Json(new { data = personnes }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
         }
 
         // GET: Personne/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View("DetailsPersonne", persoRepo.Get(id));
         }
 
         /*Ajout de l'Action NewPersonne*/
@@ -38,6 +47,8 @@ namespace GestionDeNotreCentre.Controllers
         [HttpPost]
         public ActionResult NewPersonne(PersonneViewModel viewModel)
         {
+            Personne personneInserted;
+
             if (!ModelState.IsValid)
             {
                 return View(viewModel);
@@ -71,7 +82,7 @@ namespace GestionDeNotreCentre.Controllers
                 
                 //utilisateur.Entreprise = personne.NomEntreprise;//à revoir car erreur
 
-                persoRepo.Insert(utilisateur);
+                personneInserted =  persoRepo.Insert(utilisateur);
 
             }
             else
@@ -80,56 +91,49 @@ namespace GestionDeNotreCentre.Controllers
                 return View(viewModel);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = personneInserted.IdPersonne });
         }
 
 
-
-
-
+        public FileResult Telecharger(int id)
+        {
+            Personne personne = persoRepo.Get(id);
+            string nomPersonne = personne.Prenom + " " + personne.Nom + ".pdf";
+            return File(personne.PersonCV, "application/pdf", "CV de " + nomPersonne);
+        }
 
         // GET: Personne/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(persoRepo.Get(id));
         }
 
         // POST: Personne/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Personne personne)
         {
-            try
+            if(persoRepo.Put(personne, personne.IdPersonne))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");//à revoir
             }
-            catch
-            {
-                return View();
-            }
+            return null;
         }
 
         // GET: Personne/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View("DeletePersonne", persoRepo.Get(id));
         }
 
         // POST: Personne/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Personne personne)
         {
-            try
+            if (persoRepo.Delete(personne.IdPersonne))
             {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return null;
         }
     }
 }

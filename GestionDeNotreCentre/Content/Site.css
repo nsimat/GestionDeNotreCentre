@@ -3,6 +3,16 @@
     padding-bottom: 20px;
 }
 
+/* Pour l'entête de la table */
+table {
+    width: 100%;    
+}
+thead th {
+    background-color:#00ffff;
+    color:black; 
+    align-content: center;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -30,7 +40,25 @@ textarea {
 }
 
 .input-validation-error {
-    /*background: pink;*/
+    background: pink;
     border: 2px solid red;
     box-shadow: 2px 2px 2px red;
+}
+
+.validation-summary-errors {
+    color: red;
+    font-weight: bold;
+}
+
+.fas{
+    position:absolute;
+    left:380px;
+    top: 10px;
+    font-size: 25px;
+    cursor:pointer;
+    color: blue;
+}
+
+.fas.active{
+    color:darkorange;
 }

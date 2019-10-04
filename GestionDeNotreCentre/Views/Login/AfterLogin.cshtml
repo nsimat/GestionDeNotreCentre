@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "AfterLogin";
+}
+
+<h2>AfterLogin</h2>
+
+@if(Session.SessionID != null)
+{
+    <p>
+        Bienvenu(e) @Session["UserName"]
+    </p>
+
+    @Html.ActionLink("Continuer vers l'inscription à une formation", "InscrireAFormation", "InstanceFormation", null, new { @class = "btn btn-primary streched-link" })
+
+}
+
