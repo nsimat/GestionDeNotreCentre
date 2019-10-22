@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GestionDeCentreDAL.Repositories
 {
-    class CompetenceRepository
+    public class CompetenceRepository
     {
+
     }
 }

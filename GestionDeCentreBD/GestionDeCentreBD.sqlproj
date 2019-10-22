@@ -98,6 +98,35 @@
     <Build Include="dbo\Views\V_Formation.sql" />
     <Build Include="dbo\Stored Procedures\sp_DeleteAPersonne.sql" />
     <Build Include="dbo\Stored Procedures\sp_UpdateAPersonne.sql" />
+    <Build Include="dbo\Views\V_InstanceFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAEntreprise.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAnInstanceFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAModule.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAPlanification.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteATache.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteATchat.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAEntreprise.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAnInstanceFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAModule.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAPlanification.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertATache.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertATchat.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpadateAEntreprise.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAInstanceFormation.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAModule.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAPlanification.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateATache.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateATchat.sql" />
+    <Build Include="dbo\Views\V_Module.sql" />
+    <Build Include="dbo\Views\V_Tache.sql" />
+    <Build Include="dbo\Views\V_Tchat.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAnEmploye.sql" />
+    <Build Include="dbo\Views\V_Inscription.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAnInscription.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAnInscription.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GestionDeCentreBD.refactorlog" />

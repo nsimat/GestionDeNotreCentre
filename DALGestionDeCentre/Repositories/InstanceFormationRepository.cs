@@ -11,7 +11,7 @@ using ToolBox.Repositories;
 
 namespace GestionDeCentreDAL.Repositories
 {
-    class InstanceFormationRepository : IRepository<InstanceFormation, int>
+    public class InstanceFormationRepository : IRepository<InstanceFormation, int>
     {
         private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
             ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
@@ -41,10 +41,10 @@ namespace GestionDeCentreDAL.Repositories
             command["Statut"] = entity.Statut;
             command["DateDebut"] = entity.DateDebut;
             command["DateFin"] = entity.DateFin;
-            command["IdFormation"] = entity.Formation;
-            command["IdPersonne"] = entity.Employe;
+            command["IdFormation"] = entity.IdFormation;
+            command["IdEmploye"] = entity.IdEmploye;
             int lastId = _Connection.ExecuteNonQuery(command);
-            entity.IdInstanceformation = lastId;
+            entity.IdInstanceFormation = lastId;
             return entity;
 
         }

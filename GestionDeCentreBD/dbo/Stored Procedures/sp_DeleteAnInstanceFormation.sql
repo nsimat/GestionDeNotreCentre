@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[sp_DeleteAInstanceFormation]
+﻿CREATE PROCEDURE [dbo].[sp_DeleteAnInstanceFormation]
 	@IdInstanceFormation INT
 AS
 	BEGIN

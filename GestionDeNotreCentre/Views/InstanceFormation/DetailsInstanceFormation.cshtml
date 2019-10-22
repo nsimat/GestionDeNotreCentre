@@ -1,0 +1,75 @@
+﻿@model GestionDeCentreDAL.Models.InstanceFormation
+
+@{
+    ViewBag.Title = "Details de la formation";
+}
+
+<h2>DetailsInstanceFormation</h2>
+
+<div>
+    <h4>InstanceFormation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Formation.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Formation.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdFormation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdFormation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdEmploye)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdEmploye)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(linkText:"<< Revoir le catalogue des formations",
+                     actionName:"Index",
+                     controllerName:"InstanceFormation",
+                     routeValues:null,
+                     htmlAttributes:new { @class = "btn btn-primary"/*, @style = "color:magenta"*/})
+    <span>&nbsp;</span>|<span>&nbsp;</span>
+    @Html.ActionLink(linkText:"S'inscrire à la formation >>",
+                     actionName:"InscrirePersonne",
+                     controllerName:"InstanceFormation",
+                     routeValues:new { id = Model.IdInstanceFormation },
+                     htmlAttributes:new { @class = "btn btn-warning"/*, @style = "color:brown"*/ } )
+</p>

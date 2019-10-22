@@ -56,6 +56,14 @@ namespace GestionDeCentreDAL.Repositories
             return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
         }
 
+        public Personne Get(string idString)
+        {
+
+            if (Int32.TryParse(idString, out int idPersonne))
+                return Get(idPersonne);
+            return null;
+        }
+
         public IEnumerable<Personne> Get()
         {
             Command command = new Command("SELECT * FROM V_Personne;");
@@ -74,13 +82,13 @@ namespace GestionDeCentreDAL.Repositories
             return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
         }
 
-        public Personne Get(string userLogin)
-        {
-            Command command = new Command("SELECT * FROM V_Personne WHERE UserLogin=@UserLogin;");
+        //public Personne Get(string userLogin)
+        //{
+        //    Command command = new Command("SELECT * FROM V_Personne WHERE UserLogin=@UserLogin;");
 
-            command["UserLogin"] = userLogin;
-            return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
-        }
+        //    command["UserLogin"] = userLogin;
+        //    return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
+        //}
 
         public bool Put(Personne entity, int id)
         {

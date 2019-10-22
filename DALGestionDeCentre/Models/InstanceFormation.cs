@@ -12,7 +12,7 @@ namespace GestionDeCentreDAL.Models
     public class InstanceFormation
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdInstanceformation { get; set; }
+        public int IdInstanceFormation { get; set; }
 
         [StringLength(25)]
         [Required]
@@ -38,7 +38,7 @@ namespace GestionDeCentreDAL.Models
 
         [Required]
         [Display(Name ="Employé")]
-        public string NumeroRegistre { get; set; }
+        public int IdEmploye { get; set; }
         public Employe Employe { get; set; }
 
         //Clefs étrangères
@@ -50,12 +50,12 @@ namespace GestionDeCentreDAL.Models
         {
             return new InstanceFormation()
             {
-                IdInstanceformation = (int)dr["IdInstanceFormation"],
+                IdInstanceFormation = (int)dr["IdInstanceFormation"],
                 Statut = (string)dr["Statut"],
                 DateDebut = (DateTime)dr["DateDebut"],
                 DateFin = (DateTime)dr["DateFin"],
                 IdFormation = (int)dr["IdFormation"],
-                NumeroRegistre = (string)dr["IdPersonne"]
+                IdEmploye = (int)dr["IdPersonne"]
             };
 
         }

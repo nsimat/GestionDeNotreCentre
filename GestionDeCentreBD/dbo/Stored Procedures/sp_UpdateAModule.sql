@@ -10,8 +10,7 @@ AS
 	BEGIN
 	IF EXISTS (SELECT * FROM MODULE WHERE IdModule= @IdModule)
 		UPDATE MODULE
-			SET
-			  IdModule = @IdModule,
+			SET			  
 			  Nom = @Nom,
 			  DescriptionModule = @Description,
 			  TableDeMatieres = @TableDeMatieres,
@@ -19,5 +18,5 @@ AS
 			  NombreJours = NombreJours,
 			  NbreJoursAffectes = @nbreJoursAffectes
 	  ELSE
-	  THROW 50021, 'Le module que vous voulez mettre à jour n''existe pas dans la table Module' ,1;
+	  THROW 50021, 'Le module que vous voulez mettre à jour n''existe pas dans la table Module', 1;
 	END

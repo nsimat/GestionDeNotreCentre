@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ToolBox.Repositories;
+using System.Web.Security;
 
 namespace GestionDeNotreCentre.Controllers
 {
@@ -61,7 +62,7 @@ namespace GestionDeNotreCentre.Controllers
 
                 byte[] uploadedFile = new byte[viewModel.AttachedFile.InputStream.Length];
                 viewModel.AttachedFile.InputStream.Read(uploadedFile, 0, uploadedFile.Length);
-
+                
                 //Mappage avec la classe Personne
                 Personne utilisateur = new Personne
                 {
@@ -83,6 +84,7 @@ namespace GestionDeNotreCentre.Controllers
                 //utilisateur.Entreprise = personne.NomEntreprise;//à revoir car erreur
 
                 personneInserted =  persoRepo.Insert(utilisateur);
+                FormsAuthentication.SetAuthCookie(personneInserted.IdPersonne.ToString(), false);//Ajout pour créer le cookie de la personne insérée
 
             }
             else

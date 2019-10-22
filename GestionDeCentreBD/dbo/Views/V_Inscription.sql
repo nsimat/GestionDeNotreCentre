@@ -1,0 +1,2 @@
+﻿CREATE VIEW [dbo].[V_Inscription]
+	AS SELECT * FROM [INSCRIPTION];

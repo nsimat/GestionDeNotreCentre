@@ -60,6 +60,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -136,7 +139,9 @@
     <Compile Include="Controllers\EntrepriseController.cs" />
     <Compile Include="Controllers\FormationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InscriptionController.cs" />
     <Compile Include="Controllers\InstanceFormationController.cs" />
+    <Compile Include="Models\InstanceFormationViewModel.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\PersonneController.cs" />
@@ -509,6 +514,13 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="SleekLogin\css\style.css" />
+    <Content Include="SleekLogin\images\background.jpg" />
+    <Content Include="SleekLogin\images\mail.png" />
+    <Content Include="SleekLogin\images\password.png" />
+    <Content Include="SleekLogin\images\tick.png" />
+    <Content Include="SleekLogin\index.html" />
+    <Content Include="SleekLogin\w3layouts-License.txt" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -555,6 +567,11 @@
     <Content Include="Views\Personne\DeletePersonne.cshtml" />
     <Content Include="Views\Login\AfterLogin.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\InstanceFormation\AfficherFormations.cshtml" />
+    <Content Include="Views\InstanceFormation\DetailsInstanceFormation.cshtml" />
+    <Content Include="Views\InstanceFormation\InscriptionAFormation.cshtml" />
+    <Content Include="Views\Inscription\AfficherNewInscription.cshtml" />
+    <Content Include="Views\InstanceFormation\InscrirePersonne.cshtml" />
     <None Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -594,7 +611,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\InstanceFormation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

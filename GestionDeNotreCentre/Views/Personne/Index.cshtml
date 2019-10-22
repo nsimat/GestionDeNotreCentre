@@ -10,107 +10,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table id="personnes" class="table table-bordered table-hover">
+<table id="personnes" class="table table-striped table-hover" style="width:110%">
     <thead>
         <tr>
-            <th scope="col">
-                <h5>Numéro de registre</h5>
-                @*@Html.DisplayNameFor(model => model.NumeroRegistre)*@
-            </th>
-            <th scope="col">
-                <h5>Nom</h5>
-                @*@Html.DisplayNameFor(model => model.Nom)*@
-            </th>
-            <th scope="col">
-                <h5>Prénom</h5>
-                @*@Html.DisplayNameFor(model => model.Prenom)*@
-            </th>
-            <th scope="col">
-                <h5>Email</h5>
-                @*@Html.DisplayNameFor(model => model.Email)*@
-            </th>
-            <th scope="col">
-                <h5>Rue</h5>
-                @*@Html.DisplayNameFor(model => model.Rue)*@
-            </th>
-            <th scope="col">
-                <h5>Ville</h5>
-                @*@Html.DisplayNameFor(model => model.Ville)*@
-            </th>
-            <th scope="col">
-                <h5>Code postal</h5>
-                @*@Html.DisplayNameFor(model => model.CodePostal)*@
-            </th>
-            <th scope="col">
-                <h5>Pays</h5>
-                @*@Html.DisplayNameFor(model => model.Pays)*@
-            </th>
-            <th scope="col">
-                <h5>Téléphone</h5>
-                @*@Html.DisplayNameFor(model => model.NumeroTelephone)*@
-            </th>
-            <th scope="col">
-                <h5>Nom d'utilisateur</h5>
-                @*@Html.DisplayNameFor(model => model.UserLogin)*@
-            </th>
-            <th scope="col">
-                <h5>Mot de passe</h5>
-                @*@Html.DisplayNameFor(model => model.MotDePasse)*@
-            </th>
-            <th scope="col">
-                <h5>Entreprise</h5>
-                @*@Html.DisplayNameFor(model => model.Entreprise)*@
-            </th>
-            <th scope="col"><h4>Détails</h4></th>
+            <th scope="col"><h5>Numéro de registre</h5></th>
+            <th scope="col"><h5>Nom</h5></th>
+            <th scope="col"><h5>Prénom</h5></th>
+            <th scope="col"><h5>Email</h5></th>
+            <th scope="col"><h5>Rue</h5></th>
+            <th scope="col"><h5>Ville</h5></th>
+            <th scope="col"><h5>Code postal</h5></th>
+            <th scope="col"><h5>Pays</h5></th>
+            <th scope="col"><h5>Téléphone</h5></th>
+            <th scope="col"><h5>Nom d'utilisateur</h5></th>
+            <th scope="col"><h5>Mot de passe</h5></th>
+            <th scope="col"><h5>Entreprise</h5></th>
+            <th scope="col"><h5>Détails</h5></th>
         </tr>
     </thead>
     <tbody>
-        @*@foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumeroRegistre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prenom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rue)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ville)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CodePostal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pays)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumeroTelephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserLogin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MotDePasse)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdEntreprise)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdPersonne }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IdPersonne }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IdPersonne })
-                </td>
-            </tr>
-        }*@
     </tbody>
 
 </table>
@@ -119,10 +37,13 @@
 {
     <script>
         $(document).ready(function () {
-            $("#personnes").DataTable({                
+            $("#personnes").DataTable({
+                language: {
+                    //url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/French.json'
+                    url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
+                },
                 ajax: {
                     url: "/Personne/GetPersonnes",
-                    //dataSrc: " ",
                     type: "get",
                     dataType: "json"
                 },
@@ -140,15 +61,14 @@
                     { data: 'MotDePasse', autowidth: true },
                     { data: 'IdEntreprise', autowidth: true },
                     {
-                        data: 'IdPersonne',                        
+                        data: 'IdPersonne',
                         render: function (data) {
-                            //return "<a class='btn btn-primary stretched-link' href='/Personne/Details/" + data + "'>Details" + "</a>";
-                            return '<a class="btn btn-primary streched-link" href="/Personne/Details/'+data+'">Profil' + '</a>';
+                            return '<a class="btn btn-primary streched-link" href="/Personne/Details/' + data + '">Profil' + '</a>';
                         }
                     }
                 ]
             });
-        })
-        
-    </script>    
+        });
+
+    </script>
 }

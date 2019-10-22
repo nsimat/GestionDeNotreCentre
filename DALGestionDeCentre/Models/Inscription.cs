@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -24,7 +25,7 @@ namespace GestionDeCentreDAL.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0: yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name ="Date de validation")]
-        public DateTime DateValidation { get; set; }
+        public DateTime? DateValidation { get; set; }
 
         [Required]
         [Display(Name ="Formation")]
@@ -34,14 +35,27 @@ namespace GestionDeCentreDAL.Models
         [Required]
         [MaxLength(25), MinLength(11)]
         [Display(Name ="Stagiaire")]
-        public string NumeroRegistreStatigiaire{ get; set; }
+        public int IdStatigiaire{ get; set; }
         public Personne Personne { get; set; }
 
         [Required]
         [MaxLength(25), MinLength(11)]
         [Display(Name ="Employé")]
-        public string NumeroRegistreEmployes { get; set; }
+        public int IdEmploye { get; set; }
         public Employe Employe { get; set; }
+
+        public Inscription From(IDataRecord dr)
+        {
+            return new Inscription()
+            {
+                IdInscription = (int)dr["IdInscription"],
+                DateInscription = (DateTime)dr["DateInscription"],
+                DateValidation = (dr["DateValidation"] is DBNull) ? null : (DateTime?)dr["DateValidation"],
+                IdInstanceFormation = (int)dr["IdInstanceFormation"],
+                IdStatigiaire = (int)dr["IdStagiaire"],
+                IdEmploye = (int)dr["IdEmploye"]                
+            };
+        }
 
 
     }

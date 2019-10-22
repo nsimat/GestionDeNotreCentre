@@ -1,0 +1,36 @@
+﻿@model GestionDeNotreCentre.Models.InstanceFormationViewModel
+
+@{
+    ViewBag.Title = "Inscription à la formation";
+}
+
+@{TempData["InscriptionData"] = Model;}
+
+@using (Html.BeginForm("ConfirmerInscription", "Inscription", Model, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Inscription à la formation</h4>
+        <hr />
+
+        <h4>Intitulé de la formation:</h4><br />
+        @Model.Formation.Nom <br /><hr />
+
+        <h4>Description:</h4><br />
+        @Model.Formation.DescriptionFormation <br /><hr />
+
+        <h4>Durée de la formation:</h4><br />
+        Du @Model.InstanceFormation.DateDebut.ToLongDateString() à @Model.InstanceFormation.DateFin.ToLongDateString() <br /><hr />
+
+        <h4>Personne de contact:</h4><br />
+        La personne responsable pour cette formation est <b>@Model.InstanceFormation.Employe.Personne.Prenom @Model.InstanceFormation.Employe.Personne.Nom</b>.<br />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">                
+                <input type="submit" value="Confirmer l'inscription" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

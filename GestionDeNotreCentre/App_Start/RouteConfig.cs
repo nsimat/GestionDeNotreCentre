@@ -9,6 +9,9 @@ namespace GestionDeNotreCentre
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Ajout pour configurer les routes avec attribut
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

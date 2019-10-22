@@ -45,7 +45,7 @@ namespace GestionDeCentreDAL.Repositories
 
         public Formation Get(int id)
         {
-            Command command = new Command("SELECT * FROM Formation WHERE Nom = @Nom");
+            Command command = new Command("SELECT * FROM Formation WHERE IdFormation = @IdFormation");
             command.AddParameter("IdFormation", id);
             return _Connection.ExecuteReader(command, dr => new Formation().From(dr)).FirstOrDefault();
         }

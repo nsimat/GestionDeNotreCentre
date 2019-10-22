@@ -8,7 +8,7 @@ using ToolBox.Repositories;
 
 namespace GestionDeCentreDAL.Repositories
 {
-    class CompositionRepository : IRepository<Composition, int>
+    public class CompositionRepository : IRepository<Composition, int>
     {
         public bool Delete(int id)
         {

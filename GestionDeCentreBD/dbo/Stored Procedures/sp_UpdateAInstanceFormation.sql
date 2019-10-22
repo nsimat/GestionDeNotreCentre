@@ -4,7 +4,7 @@
 	@DateDebut DATETIME,
 	@DateFin DATETIME,
 	@IdFormation INT,
-	@IdPersonne INT
+	@IdEmploye INT
 
 
 AS
@@ -16,7 +16,7 @@ IF EXISTS(SELECT * FROM INSTANCEFORMATION WHERE IdInstanceFormation = @IdInstanc
 			DateDebut = @DateDebut,
 			DateFin = @DateFin,
 			IdFormation = @IdFormation,
-			IdPersonne = @IdPersonne
+			IdEmploye = @IdEmploye
 ELSE 
 	THROW 50021, 'L''instance de formation que vous voulez mettre à jour n''existe pas dans la table', 1;
 END

@@ -1,4 +1,5 @@
-﻿using GestionDeCentreDAL.Repositories;
+﻿using DALGestionDeCentre.Models;
+using GestionDeCentreDAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,9 +16,10 @@ namespace GestionDeCentreDAL.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdPersonne { get; set; }
 
-        [MaxLength(25), MinLength(11)]
+        [MaxLength(11), MinLength(11)]
         [Required(ErrorMessage ="Le numéro de registre doit avoir au moins 11 chiffres.")]
         [Display(Name ="Numéro de registre")]
+        [ValidNumeroRegistreAttribute]
         public string NumeroRegistre { get; set; }
 
         [MaxLength(50), MinLength(2)]

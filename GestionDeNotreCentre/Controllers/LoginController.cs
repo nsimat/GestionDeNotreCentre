@@ -9,22 +9,26 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using ToolBox.Repositories;
+using Microsoft.AspNet.Identity;
 
 namespace GestionDeNotreCentre.Controllers
 {
+    [Authorize]
     public class LoginController : Controller
     {
         private readonly PersonneRepository persoRepo = new PersonneRepository();
 
         // GET: Login
-        public ActionResult Index()
-        {
+        [AllowAnonymous]
+        public ActionResult Index()//string returnUrl
+        {            
+
             LoginViewModel viewModel = new LoginViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
-            Personne personne = new Personne();
+            Personne personne = null;
 
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                personne = persoRepo.Get(HttpContext.User.Identity.Name);//à modifier pour récupérer la personne à partir de son username (unique) et le mapper avec le viewModel
+                personne = persoRepo.Get(HttpContext.User.Identity.Name);
             }
 
             if (personne != null)
@@ -35,21 +39,26 @@ namespace GestionDeNotreCentre.Controllers
                 return View(viewModel);
             }
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Index(LoginViewModel loginViewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 Personne personne = persoRepo.Authentifier(loginViewModel.Email, loginViewModel.MotDePasse);
+                                
 
                 if (personne != null)
                 {
                     loginViewModel.Authentifie = true;
                     HttpContext.Session["UserName"] = personne.Prenom + " " + personne.Nom;
-                    FormsAuthentication.SetAuthCookie(personne.IdPersonne.ToString(), false);
+                    HttpContext.Session["UserId"] = personne.IdPersonne;
+                    ViewBag.IdentifiedPersonne = personne;
+                    FormsAuthentication.SetAuthCookie(personne.IdPersonne.ToString(), loginViewModel.RememberMe);//false est remplacé par RememberMe???
+                    
                     if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
 
@@ -62,16 +71,17 @@ namespace GestionDeNotreCentre.Controllers
             return View(loginViewModel);
         }
 
+        [Authorize]
         public ActionResult AfterLogin()
         {
             return View();
         }
         
-        
+        [Authorize]
         public ActionResult Deconnexion()
         {
             FormsAuthentication.SignOut();
-            Session.Abandon();
+            //Session.Abandon();//ajout -- revoir si ça marche pour ce cas
             return RedirectToAction("Index", "Home");//Retourne vers le home, la page d'accueil à modifier?
         }
 

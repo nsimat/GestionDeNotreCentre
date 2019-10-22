@@ -1,29 +1,31 @@
-﻿<nav role="navigation" class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
-    <div class="navbar-header">
-        @Html.ActionLink("DigitalCenter", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <button type="button"
-                class="navbar-toggler"
-                data-toggle="collapse"
-                data-target="#navbarCollapse"
-                aria-controls="navbarCollapse"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    
+﻿<div class="bs-component">
+    <nav role="navigation" class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+        <div class="navbar-header">
+            @Html.ActionLink("DigitalCenter", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button"
+                    class="navbar-toggler"
+                    data-toggle="collapse"
+                    data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("Nos formations", "Index", "Formation", null, new { @class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("À propos de nous", "About", "Home", null, new { @class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("Nous contacter", "Contact", "Home", null, new { @class = "nav-link" })</li>
-        </ul> 
-        @*<ul class="navbar-nav ml-auto">
-            <li class="nav-item">@Html.ActionLink("S'enregistrer", "NewPersonne", "Personne", null, new { @class = "nav-link" })</li>
-            <li class="nav-item">@Html.ActionLink("S'identifier", "Index", "Login", null, new { @class = "nav-link" })</li>
-        </ul>*@
-        @Html.Partial("_LoginPartial")
-    </div>
-</nav>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Catalogue de nos formations", "Index", "InstanceFormation", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("À propos de nous", "About", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Nous contacter", "Contact", "Home", null, new { @class = "nav-link" })</li>
+            </ul>
+            @*<ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("S'enregistrer", "NewPersonne", "Personne", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("S'identifier", "Index", "Login", null, new { @class = "nav-link" })</li>
+                </ul>*@
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+</div>

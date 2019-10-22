@@ -1,0 +1,91 @@
+﻿@model IEnumerable<GestionDeCentreDAL.Models.InstanceFormation>
+
+@{
+    ViewBag.Title = "Affichage du catalogue des formations";
+}
+
+<h2>Catalogue des formations</h2>
+
+<table id="catalogue-formations" class="table table-striped table-hover" style="width:110%">
+    <thead>
+        <tr>
+            <th scope="col">
+                <h5>Nom de la formation</h5>
+            </th>
+            <th scope="col">
+                <h5>Statut de la formation</h5>
+            </th>
+            <th scope="col">
+                <h5>Date de début</h5>
+            </th>
+            <th scope="col">
+                <h5>Date de fin</h5>
+            </th>
+            <th scope="col">
+                <h5>Détails</h5>
+            </th>
+            <th scope="col">
+                <h5>Inscription</h5>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            // Accepte la valeur temporelle d'epoch et retourne une date sous forme de chaîne de caractère
+            function getDateString(date) {
+                var dateObj = new Date(parseInt(date.substr(6)));
+                return dateObj.toLocaleDateString();
+            }
+
+            $("#catalogue-formations").DataTable({
+                language: {                    
+                    url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
+                },
+                ajax: {
+                    url: "/InstanceFormation/AfficherFormations",                    
+                    type: "get",
+                    dataType: "json"
+                },
+                columns: [
+                    { data: 'Formation.Nom', autowidth: true },
+                    { data: 'Statut', autowidth: true },
+                    {
+                        data: 'DateDebut',
+                        autowidth: true,
+                        render: function (data) {
+                            return getDateString(data);
+                        }
+                    },
+                    {
+                        data: 'DateFin',
+                        autowidth: true,
+                        render: function (data) {
+                            return getDateString(data);
+                        }
+                    },
+                    {
+                        data: 'IdInstanceFormation',
+                        render: function (data) {
+                            return '<a class="btn btn-primary streched-link" href="/InstanceFormation/Details/' + data + '">Voir Détails' + '</a>';
+                        }
+                    },
+                    {
+                        data: 'IdInstanceFormation',
+                        render: function (data) {
+                            return '<a class="btn btn-warning streched-link" href="/InstanceFormation/InscrirePersonne/' + data + '">Inscrivez-vous' + '</a>';
+                        }
+                    }
+                ]
+            });
+        })
+
+    </script>
+}

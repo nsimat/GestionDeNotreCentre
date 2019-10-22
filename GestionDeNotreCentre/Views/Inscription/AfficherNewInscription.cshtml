@@ -1,0 +1,66 @@
+﻿@model GestionDeCentreDAL.Models.Inscription
+
+@{
+    ViewBag.Title = "Inscription créée";
+}
+
+<h2>Merci de votre inscription! Nous confirmerons votre inscription après sa validation ou non que nous vous enverrons par courrier électronique.</h2>
+
+<div>
+    <h4>Voici le récapitulatif de votre inscription:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdInscription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdInscription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateInscription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateInscription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateValidation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateValidation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdInstanceFormation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdInstanceFormation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdStatigiaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdStatigiaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdEmploye)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdEmploye)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBox", "ToolBox\ToolBox.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionDeCentreDAL", "DALGestionDeCentre\GestionDeCentreDAL.csproj", "{B8929A1F-0D61-4DA4-82FF-0E8850512D61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionDeNotreCentre.App", "GestionDeNotreCentre.App\GestionDeNotreCentre.App.csproj", "{1F2CAABA-081B-4771-9A8E-65709D102B39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{B8929A1F-0D61-4DA4-82FF-0E8850512D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8929A1F-0D61-4DA4-82FF-0E8850512D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8929A1F-0D61-4DA4-82FF-0E8850512D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F2CAABA-081B-4771-9A8E-65709D102B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F2CAABA-081B-4771-9A8E-65709D102B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F2CAABA-081B-4771-9A8E-65709D102B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F2CAABA-081B-4771-9A8E-65709D102B39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
