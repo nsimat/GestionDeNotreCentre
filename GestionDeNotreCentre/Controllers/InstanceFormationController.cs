@@ -23,7 +23,7 @@ namespace GestionDeNotreCentre.Controllers
         {
             return View("AfficherFormations");
         }
-
+        
         public ActionResult AfficherFormations()
         {
             //Ajout pour utiliser ajax et DataTables

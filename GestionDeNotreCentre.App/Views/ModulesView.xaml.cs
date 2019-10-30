@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GestionDeNotreCentre.App
+namespace GestionDeNotreCentre.App.Views
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour ModulesView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ModulesView : UserControl
     {
-        public MainWindow()
+        public ModulesView()
         {
             InitializeComponent();
-        }
-
-        private void BtnQuitterApp_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void GridBarreDeTitre_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
         }
     }
 }

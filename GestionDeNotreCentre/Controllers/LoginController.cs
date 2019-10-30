@@ -20,6 +20,7 @@ namespace GestionDeNotreCentre.Controllers
 
         // GET: Login
         [AllowAnonymous]
+        [HttpGet]
         public ActionResult Index()//string returnUrl
         {            
 
@@ -44,6 +45,7 @@ namespace GestionDeNotreCentre.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel loginViewModel, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -71,13 +73,15 @@ namespace GestionDeNotreCentre.Controllers
             return View(loginViewModel);
         }
 
-        [Authorize]
+        [Authorize]  
+        [HttpGet]
         public ActionResult AfterLogin()
         {
             return View();
         }
         
-        [Authorize]
+        [Authorize]   
+        [HttpGet]
         public ActionResult Deconnexion()
         {
             FormsAuthentication.SignOut();

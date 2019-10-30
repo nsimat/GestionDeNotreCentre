@@ -1,9 +1,19 @@
 ﻿@*@using Microsoft.AspNet.Identity*@
-@if (HttpContext.Current.Session["UserName"] != null)
+@if (User.Identity.IsAuthenticated)//HttpContext.Current.Session["UserName"] != null
 {
     using (Html.BeginForm("Deconnexion", "Login", FormMethod.Post, new { id = "logoutForm", @class = "navbar-nav ml-auto" }))
     {
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown-item">
+                <a class="nav-link dropdown-toggle text-center text-uppercase" href="#" 
+                   id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @User.Identity.Name
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @Html.ActionLink("Mon Compte", "Edit", "Personne", null, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Editer mon profil", "Details", "Personne", null, new { @class = "dropdown-item" })
+                </div>
+            </li>
             <li class="nav-item active">@Html.ActionLink("Bonjour " + HttpContext.Current.Session["UserName"] + "!", "Details", "Personne", null, new { @class = "nav-link" })</li>
             <li class="nav-item active"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Déconnexion</a></li>
         </ul>

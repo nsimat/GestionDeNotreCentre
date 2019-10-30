@@ -12,8 +12,19 @@ namespace GestionDeCentreDAL.Repositories
 {
     public class PersonneRepository : IRepository<Personne, int>
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+        private readonly Connection _Connection;
+
+        public PersonneRepository()
+        {
+            _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
                                                                 ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        }
+
+        public PersonneRepository(Connection connection)
+        {
+            if(_Connection == null)
+                 _Connection = connection;
+        }
 
         public Personne Insert(Personne entity)
         {

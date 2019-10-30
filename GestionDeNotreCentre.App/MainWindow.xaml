@@ -4,9 +4,123 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDeNotreCentre.App"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vmodel="clr-namespace:GestionDeNotreCentre.App.ViewModels"
+        xmlns:myviews="clr-namespace:GestionDeNotreCentre.App.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"
         
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        DataContext="{StaticResource mainWindowViewModel}">
+
+    <!--<Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>-->
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vmodel:LoginViewModel}">
+            <myviews:LoginAppView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:WelcomeScreenViewModel}">
+            <myviews:WelcomeScreenView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:ModuleViewModel}">
+            <myviews:ModulesView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="GridBarreDeTitre" Grid.ColumnSpan="2" Background="#FFA11AC8" MouseDown="GridBarreDeTitre_MouseDown">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                    <materialDesign:PackIcon Kind="Bell"/>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                    <materialDesign:PackIcon Kind="Account"/>
+                </Button>
+                <Button x:Name="BtnQuitterApp" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="BtnQuitterApp_Click">
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" x:Name="NavBarGrid">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC5C5C5" Offset="1"/>
+                    <GradientStop Color="#FFE0E0E0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFDADADA" RenderingBias="Quality" ShadowDepth="1"/>
+            </Grid.Effect>
+            <Grid Background="#FFA46FE4">
+                <TextBlock Text="DASHBOARD" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Webdings" Foreground="#FFBC96EA" FontSize="20"/>
+            </Grid>
+            <StackPanel Grid.Row="1" x:Name="NavBar">
+                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="ViewDashboard" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="ACCEUIL" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="PROFIL" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="ContentPaste" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="MODULES" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="TshirtCrew" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="FORMATIONS" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="TruckDelivery" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="INSCRIPTIONS" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="SettingsApplications" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="PARAMÈTRES" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Background="#FFB4B0B0">
+            <ContentControl Content="{Binding CurrentViewModel}">
+                
+            </ContentControl>
+        </Grid>
+
     </Grid>
 </Window>
