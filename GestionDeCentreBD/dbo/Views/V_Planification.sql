@@ -1,0 +1,2 @@
+﻿CREATE VIEW [dbo].[V_Planification]
+	AS SELECT * FROM [PLANIFICATION];

@@ -8,6 +8,8 @@
         xmlns:vmodel="clr-namespace:GestionDeNotreCentre.App.ViewModels"
         xmlns:myviews="clr-namespace:GestionDeNotreCentre.App.Views"
         mc:Ignorable="d"
+        
+        x:Name="mainWindow"
         Title="MainWindow" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"
         
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,7 +19,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        DataContext="{StaticResource mainWindowViewModel}">
+        
+        DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=MainWindowViewModel}">
 
     <!--<Window.DataContext>
         <local:MainWindowViewModel />
@@ -32,6 +35,48 @@
         <DataTemplate DataType="{x:Type vmodel:ModuleViewModel}">
             <myviews:ModulesView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:ModuleDetailViewModel}">
+            <myviews:ModuleDetailView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:NewModuleViewModel}">
+            <myviews:NewModuleView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:UserProfilViewModel}">
+            <myviews:UserProfilView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:FormationViewModel}">
+            <myviews:FormationsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:FormationDetailViewModel}">
+            <myviews:FormationDetailView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:NewFormationViewModel}">
+            <myviews:NewFormationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:FormateurViewModel}">
+            <myviews:FormateurView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:FormateurDetailViewModel}">
+            <myviews:FormateurDetailView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:NewFormateurViewModel}">
+            <myviews:NewFormateurView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:InstanceFormationViewModel}">
+            <myviews:InstanceFormationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:InstanceFormationDetailViewModel}">
+            <myviews:InstanceFormationDetailView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:NewInstanceFormationViewModel}">
+            <myviews:NewInstanceFormationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:PlanningViewModel}">
+            <myviews:PlanningView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmodel:InscriptionViewModel}">
+            <myviews:InscriptionsView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -43,14 +88,30 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="GridBarreDeTitre" Grid.ColumnSpan="2" Background="#FFA11AC8" MouseDown="GridBarreDeTitre_MouseDown">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        Margin="10,0">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                        Command="{Binding}"
+                        IsEnabled="{Binding Path=IsLoggedIn}" 
+                        Width="30" Height="30" 
+                        Background="{x:Null}" BorderBrush="{x:Null}" 
+                        Foreground="White">
                     <materialDesign:PackIcon Kind="Bell"/>
                 </Button>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                <Button x:Name="BtnUserProfil" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="userprofil"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
                     <materialDesign:PackIcon Kind="Account"/>
                 </Button>
-                <Button x:Name="BtnQuitterApp" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="BtnQuitterApp_Click">
+                <Button x:Name="BtnQuitterApp" 
+                        Command="{Binding ExitCommand}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                        Width="30" Height="30" 
+                        Background="{x:Null}" BorderBrush="{x:Null}" 
+                        Foreground="White">
                     <materialDesign:PackIcon Kind="Power"/>
                 </Button>
             </StackPanel>
@@ -73,42 +134,107 @@
                 <TextBlock Text="DASHBOARD" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Webdings" Foreground="#FFBC96EA" FontSize="20"/>
             </Grid>
             <StackPanel Grid.Row="1" x:Name="NavBar">
-                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="welcome"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
                     <Grid Width="150">
-                        <materialDesign:PackIcon Kind="ViewDashboard" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Text="ACCEUIL" FontFamily="Segoe Print"/>
+                        <materialDesign:PackIcon Kind="House" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="ACCUEUIL" FontFamily="Segoe Print"/>
                     </Grid>
                 </Button>
 
-                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="userprofil"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
                     <Grid Width="150">
                         <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Text="PROFIL" FontFamily="Segoe Print"/>
                     </Grid>
                 </Button>
 
-                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="module"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
                     <Grid Width="150">
-                        <materialDesign:PackIcon Kind="ContentPaste" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="BookOpenPageVariant" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Text="MODULES" FontFamily="Segoe Print"/>
                     </Grid>
                 </Button>
 
-                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="formation"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
                     <Grid Width="150">
-                        <materialDesign:PackIcon Kind="TshirtCrew" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="UserCardDetailsOutline" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Text="FORMATIONS" FontFamily="Segoe Print"/>
                     </Grid>
                 </Button>
 
-                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="instanceformation"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
                     <Grid Width="150">
-                        <materialDesign:PackIcon Kind="TruckDelivery" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="UserCardDetailsOutline" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="INSTANCES" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="formateur"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="UsersGroup" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="FORMATEURS" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="planification"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="ContentPaste" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Text="PLANIFICATION" FontFamily="Segoe Print"/>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="inscription" 
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="LaptopWindows" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Text="INSCRIPTIONS" FontFamily="Segoe Print"/>
                     </Grid>
                 </Button>
 
-                <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                <Button Margin="10" 
+                        Command="{Binding NavigationCommand}"
+                        CommandParameter="settings"
+                        IsEnabled="{Binding IsLoggedIn}"
+                        Background="#FF8522BD" BorderBrush="#FF8522BD">
                     <Grid Width="150">
                         <materialDesign:PackIcon Kind="SettingsApplications" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Text="PARAMÈTRES" FontFamily="Segoe Print"/>
@@ -116,10 +242,8 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1" Background="#FFB4B0B0">
-            <ContentControl Content="{Binding CurrentViewModel}">
-                
-            </ContentControl>
+        <Grid x:Name="MainContent" Grid.Row="1" Grid.Column="1" Background="#FFB4B0B0">
+            <ContentControl Content="{Binding CurrentViewModel}"/>
         </Grid>
 
     </Grid>

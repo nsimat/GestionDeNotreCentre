@@ -1,5 +1,5 @@
 ﻿create table PREREQUIS (     
-	IdModulePrerequis int IDENTITY(1,1) not null,     
+	IdModulePrerequis int not null,     
 	IdModule int not null,     
 	constraint ID_PREREQUIS_ID primary key (IdModule, IdModulePrerequis));
 GO

@@ -5,8 +5,104 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GestionDeNotreCentre.App.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=ModuleViewModel}">
     <Grid>
-        <TextBlock Text="Voic nos modules..." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" Margin="5" 
+                  Name="ModuleListView" 
+                  ItemsSource="{Binding Modules}"
+                  SelectedItem="{Binding SelectedModule}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="15"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding Nom}" 
+                                   FontSize="14" 
+                                   Grid.Column="1" 
+                                   Grid.ColumnSpan="2" FontWeight="Bold"></Label>
+                            
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="165"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Content="Id" FontWeight="Bold"></Label>
+            <Label Grid.Row="2" Content="Nom" FontWeight="Bold"></Label>
+            <Label Grid.Row="3" Content="Description" FontWeight="Bold"></Label>
+            <Label Grid.Row="4" Content="Table de matières" FontWeight="Bold"></Label>
+            <Label Grid.Row="5" Content="Prix journalier" FontWeight="Bold"></Label>
+            <Label Grid.Row="6" Content="Nombre de jours" FontWeight="Bold"></Label>
+            <Label Grid.Row="7" Content="Nombre de jours affectés" FontWeight="Bold"></Label>
+
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding SelectedModule.IdModule, Mode=OneWay}"></Label>
+            <Label Grid.Row="2" Grid.Column="2" Content="{Binding SelectedModule.Nom, Mode=OneWay}"></Label>
+            <Label Grid.Row="3" Grid.Column="3" Content="{Binding SelectedModule.DescriptionModule, Mode=OneWay}"></Label>
+            <Button Grid.Row="4" 
+                    Grid.Column="4" 
+                    Content="TÉLÉCHARGER FICHIER" 
+                    Margin="15,0,15,0"
+                    Background="#FF8522BD"
+                    BorderBrush="#FF8522BD"></Button>
+            <Label Grid.Row="5" Grid.Column="5" Content="{Binding SelectedModule.PrixJournalier, Mode=OneWay}"></Label>
+            <Label Grid.Row="6" Grid.Column="6" Content="{Binding SelectedModule.NombreJours, Mode=OneWay}"></Label>
+            <Label Grid.Row="7" Grid.Column="7" Content="{Binding SelectedModule.NbreJoursAffectes, Mode=OneWay}"></Label>
+
+            <StackPanel Grid.Row="8" 
+                        Grid.ColumnSpan="2" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <Button Margin="0,0,10,0" 
+                        Command="{Binding EditModuleCommand}" 
+                        Content="ÉDITER MODULE" 
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
+                </Button>
+                <Button Margin="10,0,10,0" 
+                        Command="{Binding CreateModuleCommand}"
+                        Content="NOUVEAU MODULE"
+                        Background="#FF8522BD"
+                        BorderBrush="#FF8522BD"></Button>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
 </UserControl>

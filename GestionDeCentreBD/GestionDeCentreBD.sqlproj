@@ -99,7 +99,7 @@
     <Build Include="dbo\Stored Procedures\sp_DeleteAPersonne.sql" />
     <Build Include="dbo\Stored Procedures\sp_UpdateAPersonne.sql" />
     <Build Include="dbo\Views\V_InstanceFormation.sql" />
-    <Build Include="dbo\Stored Procedures\sp_DeleteAEntreprise.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAnEntreprise.sql" />
     <Build Include="dbo\Stored Procedures\sp_DeleteAFormation.sql" />
     <Build Include="dbo\Stored Procedures\sp_DeleteAnInstanceFormation.sql" />
     <Build Include="dbo\Stored Procedures\sp_DeleteAModule.sql" />
@@ -127,6 +127,20 @@
     <Build Include="dbo\Views\V_Inscription.sql" />
     <Build Include="dbo\Stored Procedures\sp_DeleteAnInscription.sql" />
     <Build Include="dbo\Stored Procedures\sp_InsertAnInscription.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAFormateur.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAFormateur.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAFormateur.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteACompetence.sql" />
+    <Build Include="dbo\Views\V_Competence.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertACompetence.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateACompetence.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAComposition.sql" />
+    <Build Include="dbo\Views\V_Composition.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateAComposition.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteAPreRequis.sql" />
+    <Build Include="dbo\Views\V_Planification.sql" />
+    <Build Include="dbo\Views\V_PreRequis.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAPreRequis.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GestionDeCentreBD.refactorlog" />

@@ -10,7 +10,7 @@ using ToolBox.Repositories;
 
 namespace GestionDeCentreDAL.Repositories
 {
-    class TacheRepository : IRepository<Tache, int>
+    public class TacheRepository : IRepository<Tache, int>
     {
         private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
             ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);

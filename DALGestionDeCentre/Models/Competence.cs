@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -11,11 +12,27 @@ namespace GestionDeCentreDAL.Models
     public class Competence
     {
         [Required]
-        [StringLength(25, ErrorMessage ="Le nom de la compétence doit avoir au plus 25 caractères.")]
-        public string NumeroRegistre { get; set; }
+        [Display(Name = "Formateur")]
+        public int IdFormateur { get; set; }
 
         [Required]
         [Display(Name ="Module")]
         public int IdModule { get; set; }
+
+        #region Les clés étrangères
+
+        public Formateur Formateur { get; set; }
+        public Module Module { get; set; }
+
+        #endregion
+
+        public Competence From(IDataRecord dr)
+        {
+            return new Competence()
+            {
+                IdFormateur = (int)dr["IdFormateur"],
+                IdModule = (int)dr["IdModule"]
+            };
+        }
     }
 }

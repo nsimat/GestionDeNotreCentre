@@ -86,8 +86,8 @@ GO
 
 create table MODULE (     
 	IdModule int IDENTITY(1,1) not null,     
-	Nom varchar(50) not null unique,     
-	DescriptionModule varchar(50) not null,     
+	Nom varchar(MAX) not null unique,     
+	DescriptionModule varchar(MAX) not null,     
 	TableDeMatieres varbinary(MAX) not null,     
 	PrixJournalier money not null,     
 	NombreJours int not null,     

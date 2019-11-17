@@ -8,12 +8,29 @@ using System.Threading.Tasks;
 using ToolBox.DataAccess;
 using ToolBox.Repositories;
 
-namespace DALGestionDeCentre.Repositories
+namespace GestionDeCentreDAL.Repositories
 {
     public class EmployeRepository : IRepository<Employe, int>
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+        private readonly Connection _Connection;
+        private readonly PersonneRepository personneRepository = new PersonneRepository();
+
+        #region Les constructeurs
+
+        public EmployeRepository()
+        {
+            _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
                                                                 ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        }
+
+        public EmployeRepository(Connection connection)
+        {
+            if (_Connection == null)
+                _Connection = connection;
+        }
+
+        #endregion
+
         public bool Delete(int id)
         {
             Command command = new Command("sp_DeleteAnEmploye", true);
@@ -59,9 +76,10 @@ namespace DALGestionDeCentre.Repositories
             return entity;
         }
 
-        public bool Put(Employe entity, int id)
+        public bool Put(Employe entity, int id)//Les données de l'employé se trouvent dans la table Personne
         {
-            throw new NotImplementedException();
+            Personne personne = personneRepository.Get(entity.IdEmploye);
+            return personneRepository.Put(personne, personne.IdPersonne);
         }
     }
 }

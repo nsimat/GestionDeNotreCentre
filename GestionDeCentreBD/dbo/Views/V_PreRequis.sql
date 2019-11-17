@@ -1,0 +1,2 @@
+﻿CREATE VIEW [dbo].[V_PreRequis]
+	AS SELECT * FROM [PREREQUIS];

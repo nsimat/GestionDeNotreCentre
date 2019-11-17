@@ -25,10 +25,10 @@ namespace GestionDeNotreCentre.App
             InitializeComponent();
         }
 
-        private void BtnQuitterApp_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+        //private void BtnQuitterApp_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Application.Current.Shutdown();
+        //}
 
         private void GridBarreDeTitre_MouseDown(object sender, MouseButtonEventArgs e)
         {

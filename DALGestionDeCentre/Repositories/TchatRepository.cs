@@ -10,7 +10,7 @@ using ToolBox.Repositories;
 
 namespace GestionDeCentreDAL.Repositories
 {
-    class TchatRepository : IRepository<Tchat, int>
+    public class TchatRepository : IRepository<Tchat, int>
     {
         private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
             ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);  

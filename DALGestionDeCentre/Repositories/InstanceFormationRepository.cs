@@ -13,8 +13,20 @@ namespace GestionDeCentreDAL.Repositories
 {
     public class InstanceFormationRepository : IRepository<InstanceFormation, int>
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
-            ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        private readonly Connection _Connection;
+
+        public InstanceFormationRepository()
+        {
+            _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        }
+
+        public InstanceFormationRepository(Connection connection)
+        {
+            if (_Connection == null)
+                _Connection = connection;
+        }
+
         public bool Delete(int id)
         {
             Command command = new Command("sp_DeleteAInstanceFormation");
@@ -52,6 +64,13 @@ namespace GestionDeCentreDAL.Repositories
         public bool Put(InstanceFormation entity, int id)
         {
             Command command = new Command("sp_UpdateAInstanceFormation");
+
+            command["Statut"] = entity.Statut;
+            command["DateDebut"] = entity.DateDebut;
+            command["DateFin"] = entity.DateFin;
+            command["IdFormation"] = entity.IdFormation;
+            command["IdEmploye"] = entity.IdEmploye;
+
             return _Connection.ExecuteNonQuery(command) == 1;
         }
 

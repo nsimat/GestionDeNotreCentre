@@ -14,12 +14,12 @@ namespace GestionDeCentreDAL.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdModule { get; set; }
 
-        [MaxLength(50), MinLength(3)]
+        [MinLength(3)]
         [Required(ErrorMessage ="Le nom de module doit avoir au moins 3 caractères.")]
         [Display(Name ="Nom")]
         public string Nom { get; set; }
 
-        [MaxLength(50), MinLength(3)]
+        [MinLength(3)]
         [Required(ErrorMessage ="Une description doit avoir au moins 3 caractères.")]
         [Display(Name ="Description")]
         public string DescriptionModule { get; set; }
@@ -49,6 +49,7 @@ namespace GestionDeCentreDAL.Models
         {
             return new Module()
             {
+                IdModule = (int)dr["IdModule"],
                 Nom = (string)dr["Nom"],
                 DescriptionModule = (string)dr["DescriptionModule"],
                 TableDeMatieres = (byte[])dr["TableDeMatieres"],

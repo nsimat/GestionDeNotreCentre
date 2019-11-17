@@ -13,27 +13,28 @@ namespace GestionDeNotreCentre.App.ViewModels
 {
     public class WelcomeScreenViewModel : ViewModelBase
     {
-        private Personne _employe { get; set; }
+        private Personne Employe { get; set; }
 
         public WelcomeScreenViewModel()
         {
-            Messenger.Default.Register<PersonneAuthenticatedMessage>(this, OnReceivedMessage);
+            //Messenger.Default.Register<PersonneAuthenticatedMessage>(this, OnReceivedMessage);
+            MyMessenger<PersonneAuthenticatedMessage>.Instance.Register(OnReceivedMessage);
         }
 
         private void OnReceivedMessage(PersonneAuthenticatedMessage obj)
         {
-            _employe = obj.Employe;
+            Employe = obj.Employe;
         }
 
         public Personne WelcomePersonne
         {
             get
             {
-                return _employe;
+                return Employe;
             }
             set 
             { 
-                _employe = value;
+                Employe = value;
                 RaisePropertyChanged(nameof(WelcomePersonne));
             }
         }
@@ -42,7 +43,7 @@ namespace GestionDeNotreCentre.App.ViewModels
         {
             get 
             {
-                return "Bienvenu(e)" + _employe.Prenom + " " + _employe.Nom + " pour l'utilisation de notre application...";
+                return "Bienvenu(e) " + Employe.Prenom + " " + Employe.Nom + " pour l'utilisation de notre application...";
             }              
         }
     }

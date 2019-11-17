@@ -10,18 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GestionDeNotreCentre.App.Views
 {
     /// <summary>
-    /// Logique d'interaction pour LoginView.xaml
+    /// Logique d'interaction pour InscriptionDetailView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class InscriptionDetailView : UserControl
     {
-        public LoginView()
+        public InscriptionDetailView()
         {
             InitializeComponent();
-        }        
+        }
     }
 }

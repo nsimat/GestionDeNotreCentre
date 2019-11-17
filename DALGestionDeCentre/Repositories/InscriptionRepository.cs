@@ -8,12 +8,33 @@ using System.Threading.Tasks;
 using ToolBox.DataAccess;
 using ToolBox.Repositories;
 
-namespace DALGestionDeCentre.Repositories
+namespace GestionDeCentreDAL.Repositories
 {
     public class InscriptionRepository : IRepository<Inscription, int>
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
-                                                                 ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        #region Les champs
+
+        private readonly Connection _Connection;
+
+        #endregion
+
+        #region Les constructeurs
+
+        public InscriptionRepository()
+        {
+            _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        }
+
+        public InscriptionRepository(Connection connection)
+        {
+            if (_Connection == null)
+                _Connection = connection;
+        }
+
+        #endregion
+
+        #region Les méthodes
 
         public bool Delete(int id)
         {
@@ -67,5 +88,7 @@ namespace DALGestionDeCentre.Repositories
             
             return _Connection.ExecuteNonQuery(command) == 1;
         }
+
+        #endregion
     }
 }

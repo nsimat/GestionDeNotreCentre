@@ -6,10 +6,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <local:ViewModelLocator x:Key="mainViewModelLocator"/>
-            <local:MainWindowViewModel x:Key="mainWindowViewModel"/>
-            <vm:LoginViewModel x:Key="Login"/>
-            <vm:WelcomeScreenViewModel x:Key="welcomescreen"/>
+            <local:ViewModelLocator x:Key="mainViewModelLocator"></local:ViewModelLocator>            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

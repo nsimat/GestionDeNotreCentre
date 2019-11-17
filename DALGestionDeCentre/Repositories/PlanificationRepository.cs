@@ -10,10 +10,32 @@ using ToolBox.Repositories;
 
 namespace GestionDeCentreDAL.Repositories
 {
-    class PlanificationRepository : IRepository<Planification, int>
+    public class PlanificationRepository : IRepository<Planification, int>
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
-            ConfigurationManager.ConnectionStrings["GestionDeCentre"].ConnectionString);
+        #region Les champs
+
+        private readonly Connection _Connection;
+
+        #endregion
+
+        #region Les constructeurs
+
+        public PlanificationRepository()
+        {
+            _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        }
+
+        public PlanificationRepository(Connection connection)
+        {
+            if (_Connection == null)
+                _Connection = connection;
+        }
+
+        #endregion
+
+        #region Les méthodes
+
         public bool Delete(int id)
         {
             Command command = new Command("sp_DeleteAPlanification");
@@ -23,12 +45,15 @@ namespace GestionDeCentreDAL.Repositories
 
         public IEnumerable<Planification> Get()
         {
-            throw new NotImplementedException();
+            Command command = new Command("SELECT * FROM V_Planification;");
+            return _Connection.ExecuteReader(command, dr => new Planification().From(dr));
         }
 
         public Planification Get(int id)
         {
-            throw new NotImplementedException();
+            Command command = new Command("SELECT * FROM V_Planification WHERE IdPlanification = @IdPlanification");
+            command.AddParameter("IdPlanification", id);
+            return _Connection.ExecuteReader(command, dr => new Planification().From(dr)).FirstOrDefault();
         }
 
         public Planification Insert(Planification entity)
@@ -49,5 +74,7 @@ namespace GestionDeCentreDAL.Repositories
             Command command = new Command("sp_UpdateAPlanification");
             return _Connection.ExecuteNonQuery(command) == 1;
         }
+
+        #endregion
     }
 }

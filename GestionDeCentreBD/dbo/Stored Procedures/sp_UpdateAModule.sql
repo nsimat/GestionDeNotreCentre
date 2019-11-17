@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[sp_UpdateAModule]
 	   @IdModule INT,
-	   @Nom VARCHAR(50),
-	   @Description VARCHAR(50),
+	   @Nom VARCHAR(100),
+	   @Description VARCHAR(MAX),
 	   @TableDeMatieres VARBINARY(MAX),
 	   @PrixJournalier MONEY,
 	   @NombreJours INT,
-	   @nbreJoursAffectes INT 
+	   @NbreJoursAffectes INT 
 AS
 	BEGIN
 	IF EXISTS (SELECT * FROM MODULE WHERE IdModule= @IdModule)
@@ -16,7 +16,8 @@ AS
 			  TableDeMatieres = @TableDeMatieres,
 			  PrixJournalier = @PrixJournalier,
 			  NombreJours = NombreJours,
-			  NbreJoursAffectes = @nbreJoursAffectes
-	  ELSE
+			  NbreJoursAffectes = @NbreJoursAffectes
+			WHERE IdModule = @IdModule
+   ELSE
 	  THROW 50021, 'Le module que vous voulez mettre à jour n''existe pas dans la table Module', 1;
 	END

@@ -15,10 +15,9 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}"
+             FontFamily="{DynamicResource MaterialDesignFont}"             
              
-             
-             DataContext="{StaticResource Login}">
+             DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=LoginViewModel}">
     <Grid>
         <Rectangle Height="280" VerticalAlignment="Top">
             <Rectangle.Fill>

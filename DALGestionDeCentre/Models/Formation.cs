@@ -25,6 +25,7 @@ namespace GestionDeCentreDAL.Models
         public string DescriptionFormation { get; set; }
 
         public ICollection<Composition> Compositions { get; set; }
+        public ICollection<InstanceFormation> InstanceFormations { get; set; }
 
 
         public Formation From(IDataRecord dr)

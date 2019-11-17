@@ -12,9 +12,24 @@ namespace GestionDeCentreDAL.Repositories
     public class FormationRepository : IRepository<Formation, int>
 
     {
-        private readonly Connection _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
-                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        private readonly Connection _Connection;
 
+        #region Les constructeurs
+        public FormationRepository()
+        {
+            _Connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+        }
+
+        public FormationRepository(Connection connection)
+        {
+            if (_Connection == null)
+                _Connection = connection;
+        }
+
+        #endregion
+
+        #region Les méthodes
 
         public Formation Insert(Formation entity)
         {
@@ -26,13 +41,16 @@ namespace GestionDeCentreDAL.Repositories
 
             return entity;
             
-        }
-        
+        }        
 
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Command command = new Command("sp_DeleteAFormation", true);
+
+            command.AddParameter("IdFormation", id);
+
+            return _Connection.ExecuteNonQuery(command) == 1;
         }
 
 
@@ -76,6 +94,7 @@ namespace GestionDeCentreDAL.Repositories
         //    return _Connection.ExecuteNonQuery(command) == 1;
         //}
 
-       
+        #endregion
+
     }
 }

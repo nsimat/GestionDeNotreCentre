@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[sp_DeleteAEntreprise]
+﻿CREATE PROCEDURE [dbo].[sp_DeleteAnEntreprise]
 	@IdEntreprise INT
 	
 AS

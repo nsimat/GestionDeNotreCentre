@@ -2,9 +2,11 @@
 using GestionDeCentreDAL.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToolBox.DataAccess;
 
 namespace GestionDeNotreCentre.App.Services
 {
@@ -12,9 +14,11 @@ namespace GestionDeNotreCentre.App.Services
     {
         private readonly ModuleRepository repository;
 
-        public ModuleDataService(ModuleRepository repository)
+        public ModuleDataService()
         {
-            this.repository = repository;
+            Connection connection = new Connection(ConfigurationManager.ConnectionStrings["GestionCentre"].ConnectionString,
+                                                                ConfigurationManager.ConnectionStrings["GestionCentre"].ProviderName);
+            repository = new ModuleRepository(connection);
         }
 
         public Module CreateElement(Module element)
@@ -35,6 +39,11 @@ namespace GestionDeNotreCentre.App.Services
         public Module GetElementDetail(int elementId)
         {
             return repository.Get(elementId);
+        }
+
+        public Module GetModuleByName(string moduleName)
+        {
+            return repository.GetModule(moduleName);
         }
 
         public bool UpdateElement(Module element)

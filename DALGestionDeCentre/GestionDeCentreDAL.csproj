@@ -66,12 +66,14 @@
     <Compile Include="Repositories\CompositionRepository.cs" />
     <Compile Include="Repositories\EmployeRepository.cs" />
     <Compile Include="Repositories\EntrepriseRepository.cs" />
+    <Compile Include="Repositories\FormateurRepository.cs" />
     <Compile Include="Repositories\FormationRepository.cs" />
     <Compile Include="Repositories\InscriptionRepository.cs" />
     <Compile Include="Repositories\InstanceFormationRepository.cs" />
     <Compile Include="Repositories\ModuleRepository.cs" />
     <Compile Include="Repositories\PersonneRepository.cs" />
     <Compile Include="Repositories\PlanificationRepository.cs" />
+    <Compile Include="Repositories\PreRequisRepository.cs" />
     <Compile Include="Repositories\TacheRepository.cs" />
     <Compile Include="Repositories\TchatRepository.cs" />
     <Compile Include="Services\HashingMotDePasse.cs" />

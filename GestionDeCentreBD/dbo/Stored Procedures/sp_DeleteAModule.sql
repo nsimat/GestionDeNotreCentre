@@ -7,6 +7,6 @@ AS
 				WHERE IdModule = @IdModule)
 				DELETE FROM MODULE
 				WHERE IdModule = @IdModule;
-		ELSE
-		THROW 50021, 'Le module que vous voulez supprimer n''existe pas table MODULE', 1;
+	ELSE
+		THROW 50021, 'Le module que vous voulez supprimer n''existe pas dans la table MODULE', 1;
 	END

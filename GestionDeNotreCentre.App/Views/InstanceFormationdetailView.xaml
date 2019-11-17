@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="GestionDeNotreCentre.App.Views.InstanceFormationDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:GestionDeNotreCentre.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=InstanceFormationDetailViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="165"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="219"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="2" 
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                    <TextBlock Text="DÉTAIL DE L'INSTANCE DE FORMATION" 
+                               FontSize="20" 
+                               FontWeight="Bold"/>
+                </StackPanel>
+                <Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>
+                <Label Grid.Row="3" Content="Statut" FontWeight="Bold"></Label>
+                <Label Grid.Row="4" Content="Date de début" FontWeight="Bold"></Label>
+                <Label Grid.Row="5" Content="Date de fin" FontWeight="Bold"></Label>
+                <Label Grid.Row="6" Content="Formation" FontWeight="Bold"></Label>
+                <Label Grid.Row="7" Content="Responsable" FontWeight="Bold"></Label>
+
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedInstanceFormation.IdInstanceFormation, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Statut, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedInstanceformation.DateDebut, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedInstanceFormation.DateFin, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Formation.Nom, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></TextBox>
+
+
+                <StackPanel Grid.Row="9" 
+                            Orientation="Horizontal" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Grid.ColumnSpan="2">
+                    <Button Margin="0,0,10,0" 
+                            FontSize="13"
+                            Content="ENREGISTRER INSTANCE"
+                            Background="#FF8522BD"
+                            BorderBrush="#FF8522BD">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding SaveInstanceFormationCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Margin="10,0,0,0" 
+                            FontSize="13"
+                            Content="SUPPRIMER INSTANCE"
+                            Background="#FF8522BD"
+                            BorderBrush="#FF8522BD">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding DeleteInstanceformationCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="SES PLANIFICATIONS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+            <ListView Grid.Row="1" Margin="5" 
+                      Name="PlanificationsListView"
+                      ItemsSource="{Binding Planifications}"
+                      SelectedItem="{Binding SelectedPlanification}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1">
+                            <Grid>
+                                <Label Content="{Binding DatePlanification}"
+                                       FontSize="13"
+                                       FontWeight="Bold"></Label>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="3" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button Margin="10,0,0,0" 
+                        Content="VOIR PLANIFICATION"
+                        Command="{Binding DisplaySelectedPlanificationCommand}"
+                        Background="#FF8522BD"
+                        BorderBrush="#FF8522BD"
+                        FontSize="13"></Button>
+            </StackPanel>
+            <StackPanel Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="SES INSCRIPTIONS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+            <ListView Grid.Row="6" 
+                      Margin="5"
+                      Name="InscriptionsListView"
+                      ItemsSource="{Binding Inscriptions}"
+                      SelectedItem="{Binding SelectedInscription}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1">
+                            <Grid>
+                                <Label Content="{Binding DateInscription}"></Label>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <StackPanel Grid.Row="8" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button Margin="0,0,10,0" 
+                        Content="VOIR INSCRIPTION"
+                        Command="{Binding DisplaySelectedInscriptionCommand}"
+                        Background="#FF8522BD"
+                        BorderBrush="#FF8522BD"
+                        FontSize="13"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

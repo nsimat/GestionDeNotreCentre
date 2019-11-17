@@ -11,11 +11,19 @@ namespace GestionDeNotreCentre.App.Utility
     {
         private readonly Action<object> execute;
         private readonly Predicate<object> canExecute;
+        private Action saveModule;
+        private Func<object, bool> canSaveModule;
 
         public RelayCommand(Action<object> executeMethod, Predicate<object> canExecuteMethod)
         {
             execute = executeMethod;
             canExecute = canExecuteMethod;
+        }
+
+        public RelayCommand(Action saveModule, Func<object, bool> canSaveModule)
+        {
+            this.saveModule = saveModule;
+            this.canSaveModule = canSaveModule;
         }
 
         public event EventHandler CanExecuteChanged
@@ -44,18 +52,18 @@ namespace GestionDeNotreCentre.App.Utility
 
     public class RelayCommand<T> : ICommand
     {
-        private readonly Action<T> _execute;
-        private readonly Func<T, bool> _canExecute;
+        Action<T> execute;
+        Func<T, bool> canExecute;
 
         public RelayCommand(Action<T> executeMethod)
         {
-            _execute = executeMethod;
+            execute = executeMethod;
         }
 
         public RelayCommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
         {
-            _execute = executeMethod;
-            _canExecute = canExecuteMethod;
+            execute = executeMethod;
+            canExecute = canExecuteMethod;
         }
 
         public void RaiseCanExecuteChanged()
@@ -65,14 +73,14 @@ namespace GestionDeNotreCentre.App.Utility
 
         #region ICommand Members
 
-        public bool CanExecute(object parameter)
+        bool ICommand.CanExecute(object parameter)
         {
-            if (_execute != null)
+            if (canExecute != null)
             {
                 T tparm = (T)parameter;
-                return _canExecute(tparm);
+                return canExecute(tparm);
             }
-            if (_execute != null)
+            if (execute != null)
             {
                 return true;
             }
@@ -85,9 +93,9 @@ namespace GestionDeNotreCentre.App.Utility
 
         void ICommand.Execute(object parameter)
         {
-            if (_execute != null)
+            if (execute != null)
             {
-                _execute((T)parameter);
+                execute((T)parameter);
             }
         }
         #endregion

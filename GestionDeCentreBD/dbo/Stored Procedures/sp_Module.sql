@@ -1,7 +1,7 @@
 ﻿--Procédure stockée pour insérer un module dans la table MODULE--
 create procedure sp_Module 
-       @Nom varchar(50),
-	   @Description varchar(50),
+       @Nom varchar(100),
+	   @Description varchar(MAX),
 	   @TableDeMatieres varbinary(MAX),
 	   @PrixJournalier money,
 	   @NbreJours int,

@@ -6,8 +6,17 @@
              xmlns:local="clr-namespace:GestionDeNotreCentre.App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800"
-             DataContext="{StaticResource welcomescreen}">
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=WelcomeScreenViewModel}">
     <Grid>
-        <TextBlock Text="{Binding Welcome}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Welcome}" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

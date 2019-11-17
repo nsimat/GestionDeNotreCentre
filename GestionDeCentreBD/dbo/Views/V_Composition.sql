@@ -1,0 +1,2 @@
+﻿CREATE VIEW [dbo].[V_Composition]
+	AS SELECT * FROM [COMPOSITION];

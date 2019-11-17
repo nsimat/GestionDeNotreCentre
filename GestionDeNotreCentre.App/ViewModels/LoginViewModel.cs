@@ -16,34 +16,35 @@ namespace GestionDeNotreCentre.App.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly LoginDataService loginService;
-        private readonly LoginDialogService dialogService;
-        private string _adresseMail;
-        
+        private readonly LoginDataService loginService;        
+        private string adresseMail;
+
+        #region Les propriétés
+
         public ICommand LoginCommand { get; set; }
 
         public string AdresseMail
         {
             get
             {
-                return _adresseMail;
+                return adresseMail;
             }
 
             set
             {
-                _adresseMail = value;
+                adresseMail = value;
                 RaisePropertyChanged(nameof(AdresseMail));
             }
         }
         
-        public bool Authentified { get; set; }
+        public bool LoggedIn { get; set; }
         public Personne Employe { get; set; }
+
+        #endregion
 
         public LoginViewModel()
         {
-            loginService = new LoginDataService();
-            dialogService = new LoginDialogService();
-
+            loginService = new LoginDataService();            
             LoadLoginCommand();
         }
 
@@ -56,22 +57,23 @@ namespace GestionDeNotreCentre.App.ViewModels
         {
             var passwordBox = obj as PasswordBox;
             var password = passwordBox.Password;
-            passwordBox.Clear();
+            //passwordBox.Clear();//? est-ce utile? à vérifier son utilité
 
-            MessageBox.Show("Welcome " + AdresseMail);
+            MessageBox.Show("Welcome " + AdresseMail);//à supprimer
 
             Employe = loginService.Authentifier(AdresseMail, password);
 
             if (Employe != null)
             {
-                Authentified = true;
-                PersonneAuthenticatedMessage result = new PersonneAuthenticatedMessage()
+                LoggedIn = true;
+                PersonneAuthenticatedMessage message = new PersonneAuthenticatedMessage()
                 {
                     Employe = Employe,
-                    Authenticated = Authentified
+                    Authenticated = LoggedIn
                 };
                 //var window = Application.Current.MainWindow;
-                Messenger.Default.Send<PersonneAuthenticatedMessage>(result);
+                //Messenger.Default.Send<PersonneAuthenticatedMessage>(message);
+                MyMessenger<PersonneAuthenticatedMessage>.Instance.Send(message);
                 //dialogService.ShowDialog();
                 //MainWindow dashboard = new MainWindow();
                 //dashboard.Show();

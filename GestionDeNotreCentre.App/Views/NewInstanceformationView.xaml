@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="GestionDeNotreCentre.App.Views.NewInstanceFormationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:GestionDeNotreCentre.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=NewInstanceFormationViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="165"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="219"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="2" 
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                    <TextBlock Text="NOUVELLE INSTANCE DE FORMATION" 
+                               FontSize="20" 
+                               FontWeight="Bold"/>
+                </StackPanel>
+                <Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>
+                <Label Grid.Row="3" Content="Statut" FontWeight="Bold"></Label>
+                <Label Grid.Row="4" Content="Date de début" FontWeight="Bold"></Label>
+                <Label Grid.Row="5" Content="Date de fin" FontWeight="Bold"></Label>
+                <Label Grid.Row="6" Content="Formation" FontWeight="Bold"></Label>
+                <Label Grid.Row="7" Content="Responsable" FontWeight="Bold"></Label>
+
+                <TextBox Grid.Row="2" Grid.Column="1" Text="0"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewInstanceFormation.Statut, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewInstanceFormation.DateDebut, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.DateFin, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewInstanceFormation.Formation.Nom, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding NewInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></TextBox>
+
+
+                <StackPanel Grid.Row="9" 
+                            Orientation="Horizontal" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Grid.ColumnSpan="2">
+                    <Button Margin="0,0,10,0" 
+                            FontSize="13"
+                            Content="ENREGISTRER INSTANCE"
+                            Background="#FF8522BD"
+                            BorderBrush="#FF8522BD">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding SaveNewInstanceFormationCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Margin="10,0,0,0" 
+                            FontSize="13"
+                            Content="ANNULER CRÉATION"
+                            Background="#FF8522BD"
+                            BorderBrush="#FF8522BD">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding CancelNewInstanceFormationCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>        
+    </Grid>
+</UserControl>

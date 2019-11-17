@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="GestionDeNotreCentre.App.Views.InstanceFormationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GestionDeNotreCentre.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=InstanceFormationViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" Margin="5" 
+                  Name="InstanceFormationsListView"
+                  ItemsSource="{Binding InstanceFormations}"
+                  SelectedItem="{Binding SelectedInstanceFormation}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1">
+                        <Label Content="{Binding SelectedInstanceFormation.Formation.Nom}"
+                               FontSize="14"></Label>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>                
+                <RowDefinition Height="219"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" 
+                        Grid.ColumnSpan="2" 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="INSTANCE DE FORMATION SÉLECTIONNÉE"
+                           FontSize="19" 
+                           FontWeight="Bold"></TextBlock>
+            </StackPanel>
+            <Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>
+            <Label Grid.Row="3" Content="Statut" FontWeight="Bold"></Label>
+            <Label Grid.Row="4" Content="Date de début" FontWeight="Bold"></Label>
+            <Label Grid.Row="5" Content="Date de fin" FontWeight="Bold"></Label>
+            <Label Grid.Row="6" Content="Formation" FontWeight="Bold"></Label>
+            <Label Grid.Row="7" Content="Responsable" FontWeight="Bold"></Label>
+            
+
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedInstanceFormation.IdInstanceFormation, Mode=OneWay}"></Label>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Statut, Mode=OneWay}"></Label>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SelectedInstanceformation.DateDebut, Mode=OneWay}"></Label>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateFin, Mode=OneWay}"></Label>
+            <Label Grid.Row="6" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Formation.Nom, Mode=OneWay}"></Label>
+            <Label Grid.Row="7" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></Label>
+            
+            <StackPanel Grid.Row="9" 
+                        Grid.ColumnSpan="2" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center">
+                <Button Margin="0,0,10,0" 
+                        Command="{Binding EditInstanceFormationCommand}" 
+                        Content="ÉDITER INSTANCE" 
+                        Background="#FF8522BD" 
+                        BorderBrush="#FF8522BD">
+                </Button>
+                <Button Margin="10,0,10,0" 
+                        Command="{Binding CreateInstanceFormationCommand}"
+                        Content="CRÉER INSTANCE"
+                        Background="#FF8522BD"
+                        BorderBrush="#FF8522BD"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
