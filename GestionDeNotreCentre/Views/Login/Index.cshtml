@@ -27,9 +27,9 @@ else
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">                            
+                        @*<div class="input-group-prepend">                            
                                 <span class="fas fa-user"></span>                            
-                        </div>
+                        </div>*@
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Adresse électronique" } })
                     </div>
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -40,9 +40,9 @@ else
                 @Html.LabelFor(model => model.MotDePasse, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">                            
+                        @*<div class="input-group-prepend">                            
                                 <span class="fas fa-key"></span>                           
-                        </div>
+                        </div>*@
                         @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mot de passe", @id = "myPassword" } })
                     </div>
                     @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })

@@ -75,6 +75,15 @@ namespace GestionDeCentreDAL.Repositories
             return null;
         }
 
+        public Personne GetPersonneFrom(string userLogin)
+        {
+            Command command = new Command("SELECT * FROM V_Personne WHERE UserLogin = @UserLogin;");
+
+            command["UserLogin"] = userLogin;
+
+            return _Connection.ExecuteReader(command, dr => new Personne().From(dr)).FirstOrDefault();
+        }
+
         public IEnumerable<Personne> Get()
         {
             Command command = new Command("SELECT * FROM V_Personne;");

@@ -58,11 +58,11 @@
                 <Label Grid.Row="7" Content="Responsable" FontWeight="Bold"></Label>
 
                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedInstanceFormation.IdInstanceFormation, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Statut, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedInstanceformation.DateDebut, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedInstanceFormation.DateFin, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Formation.Nom, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Statut, Mode=TwoWay}"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedInstanceFormation.DateDebut, Mode=TwoWay}"></TextBox>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedInstanceFormation.DateFin, Mode=TwoWay}"></TextBox>
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding SelectedInstanceFormation.Formation.Nom, Mode=TwoWay}"></TextBox>
+                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Supervisor.FullName, Mode=OneWay}"></TextBox>
 
 
                 <StackPanel Grid.Row="9" 
@@ -150,7 +150,7 @@
                     <DataTemplate>
                         <Border BorderThickness="1">
                             <Grid>
-                                <Label Content="{Binding DateInscription}"></Label>
+                                <Label Content="{Binding Personne.FullName}"></Label>
                             </Grid>
                         </Border>
                     </DataTemplate>

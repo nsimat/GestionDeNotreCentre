@@ -60,7 +60,8 @@ namespace GestionDeNotreCentre.Controllers
         {            
             InstanceFormation instanceFormation = instanceRepo.Get(id);
             instanceFormation.Employe = employeRepo.Get(instanceFormation.IdEmploye);
-            instanceFormation.Employe.Personne = employeRepo.GetEmployes().FirstOrDefault(p => p.IdPersonne == instanceFormation.IdEmploye);
+            //instanceFormation.Employe.Personne = employeRepo.GetEmployes().FirstOrDefault(p => p.IdPersonne == instanceFormation.IdEmploye);
+            instanceFormation.Employe.Personne = personneRepo.Get(instanceFormation.IdEmploye);
             instanceFormation.Formation = formationRepo.Get(instanceFormation.IdFormation);
 
             InstanceFormationViewModel viewModel = new InstanceFormationViewModel()

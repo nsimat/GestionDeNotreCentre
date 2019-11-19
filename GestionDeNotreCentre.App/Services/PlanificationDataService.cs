@@ -55,6 +55,11 @@ namespace GestionDeNotreCentre.App.Services
             return planificationRepository.Get().ToList();
         }
 
+        public List<Planification> GetPlanificationsFrom(InstanceFormation instanceFormation)
+        {
+            return planificationRepository.GetPlanificationsFrom(instanceFormation).ToList();
+        }
+
         public Planification GetElementDetail(int elementId)
         {
             return planificationRepository.Get(elementId);

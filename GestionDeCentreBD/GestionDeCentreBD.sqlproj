@@ -141,6 +141,7 @@
     <Build Include="dbo\Views\V_Planification.sql" />
     <Build Include="dbo\Views\V_PreRequis.sql" />
     <Build Include="dbo\Stored Procedures\sp_InsertAPreRequis.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertAComposition.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GestionDeCentreBD.refactorlog" />

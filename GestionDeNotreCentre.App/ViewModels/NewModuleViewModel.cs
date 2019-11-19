@@ -170,7 +170,9 @@ namespace GestionDeNotreCentre.App.ViewModels
                     foreach (var pr in newModule.PreRequis)
                     {
                         pr.IdModule = newModule.IdModule;
-                        preRequisDataService.CreateElement(pr);//renvoie un objet PreRequis
+
+                        //Renvoie un objet PreRequis
+                        preRequisDataService.CreateElement(pr);
                     }                    
                 }
 
@@ -256,7 +258,7 @@ namespace GestionDeNotreCentre.App.ViewModels
 
                 //Ajouter le Prerequis dans la liste des Prérequis du Module à créer
                 newModule.PreRequis.Add(ourSelectedPreRequis);//les prerequis sont aussi ajoutés dans la liste des prérequis du module
-                                                              //NewModule = newModule;
+                                                              
                 ModulePreRequisites = newModule.PreRequis.ToObservableCollection();
             }                        
         }

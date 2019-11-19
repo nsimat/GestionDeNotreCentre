@@ -4,6 +4,7 @@ using GestionDeNotreCentre.App.Services;
 using GestionDeNotreCentre.App.Utility;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,14 @@ namespace GestionDeNotreCentre.App.ViewModels
         #region Les champs
 
         private readonly InstanceFormationDataService instanceFormationDataService;
+        private readonly FormationDataService formationDataService;
+        private readonly EmployeDataService employeDataService;
 
-        private InstanceFormation newInstanceFormation; //L'instance de formation que l'on veut créer         
+        private InstanceFormation newInstanceFormation; //L'instance de formation que l'on veut créer  
+        private ObservableCollection<Formation> formations;//
+        private Formation selectedFormation;
+        private ObservableCollection<string> formationStatuts;
+        private Personne responsable;
 
         #endregion
 
@@ -43,6 +50,58 @@ namespace GestionDeNotreCentre.App.ViewModels
             }
         }
 
+        public Formation SelectedFormation
+        {
+            get
+            {
+                return selectedFormation;
+            }
+            set
+            {
+                selectedFormation = value;
+                RaisePropertyChanged(nameof(SelectedFormation));
+            }
+        }
+
+        public Personne Responsable
+        {
+            get
+            {
+                return responsable;
+            }
+            set
+            {
+                responsable = value;
+                RaisePropertyChanged(nameof(Responsable));
+            }
+        }
+
+        public ObservableCollection<Formation> Formations
+        {
+            get
+            {
+                return formations;
+            }
+            set
+            {
+                formations = value;
+                RaisePropertyChanged(nameof(Formations));
+            }
+        }
+        
+        public ObservableCollection<string> FormationStatuts
+        {
+            get
+            {
+                return formationStatuts;
+            }
+            set
+            {
+                formationStatuts = value;
+                RaisePropertyChanged(nameof(FormationStatuts));
+            }
+        }
+
         #endregion
 
         #region Le constructeur
@@ -51,6 +110,8 @@ namespace GestionDeNotreCentre.App.ViewModels
         {
             newInstanceFormation = new InstanceFormation();
             instanceFormationDataService = new InstanceFormationDataService();
+            formationDataService = new FormationDataService();
+            employeDataService = new EmployeDataService();
 
             LoadCommands();
         }
@@ -68,7 +129,8 @@ namespace GestionDeNotreCentre.App.ViewModels
         private void SaveNewInstanceFormation(object obj)
         {
             instanceFormationDataService.CreateElement(newInstanceFormation);
-            MyMessenger<ReturnToInstanceFormationsViewMessage>.Instance.Send(new ReturnToInstanceFormationsViewMessage());
+            MyMessenger<DisplayInstanceFormationViewMessage>.Instance.Send(new DisplayInstanceFormationViewMessage());
+            //MyMessenger<ReturnToInstanceFormationsViewMessage>.Instance.Send(new ReturnToInstanceFormationsViewMessage());
         }
 
         private bool CanSaveNewInstanceFormation(object obj)
@@ -78,7 +140,8 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private void CancelNewInstanceFormation(object obj)
         {
-            MyMessenger<ReturnToInstanceFormationsViewMessage>.Instance.Send(new ReturnToInstanceFormationsViewMessage());
+            MyMessenger<DisplayInstanceFormationViewMessage>.Instance.Send(new DisplayInstanceFormationViewMessage());
+            //MyMessenger<ReturnToInstanceFormationsViewMessage>.Instance.Send(new ReturnToInstanceFormationsViewMessage());
         }
 
         private bool CanCancelNewInstanceFormation(object obj)

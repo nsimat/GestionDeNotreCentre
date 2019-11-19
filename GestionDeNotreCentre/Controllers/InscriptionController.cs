@@ -20,7 +20,7 @@ namespace GestionDeNotreCentre.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult AfficherNewInscription(int id)
         {
             Inscription inscription = inscriptionRepo.Get(id);
@@ -29,7 +29,7 @@ namespace GestionDeNotreCentre.Controllers
         }
 
         [HttpPost] 
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult ConfirmerInscription()//InstanceFormationViewModel model
         {
             Inscription inscriptionCreated;

@@ -42,21 +42,21 @@ namespace GestionDeCentreDAL.Repositories
 
         public IEnumerable<Employe> Get()
         {
-            Command command = new Command("SELECT * FROM Employe;");
+            Command command = new Command("SELECT * FROM V_Employe;");
 
             return _Connection.ExecuteReader(command, dr => new Employe().From(dr));
         }
 
         public IEnumerable<Personne> GetEmployes()
         {
-            Command command = new Command("SELECT * FROM V_Personne;");
+            Command command = new Command("SELECT * FROM V_Employe;");
 
             return _Connection.ExecuteReader(command, dr => new Personne().From(dr));
         }
 
         public Employe Get(int id)
         {
-            Command command = new Command("SELECT * FROM Employe WHERE IdEmploye = @IdEmploye;");
+            Command command = new Command("SELECT * FROM V_Employe WHERE IdEmploye = @IdEmploye;");
 
             command["IdEmploye"] = id;
 

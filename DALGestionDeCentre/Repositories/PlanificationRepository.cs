@@ -56,6 +56,13 @@ namespace GestionDeCentreDAL.Repositories
             return _Connection.ExecuteReader(command, dr => new Planification().From(dr)).FirstOrDefault();
         }
 
+        public IEnumerable<Planification> GetPlanificationsFrom(InstanceFormation instanceFormation)
+        {
+            Command command = new Command("SELECT * FROM V_Planification WHERE IdInstanceFormation = @IdInstanceFormation;");
+            command.AddParameter("IdInstanceFormation", instanceFormation.IdInstanceFormation);
+            return _Connection.ExecuteReader(command, dr => new Planification().From(dr));
+        }
+
         public Planification Insert(Planification entity)
         {
             Command command = new Command("sp_InsertAPlanification", true);

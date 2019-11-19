@@ -75,15 +75,15 @@ namespace GestionDeNotreCentre.Controllers
                     CodePostal = viewModel.CodePostal,
                     Pays = viewModel.Pays,
                     NumeroTelephone = viewModel.NumeroTelephone,
-                    UserLogin = viewModel.UserLogin,
+                    UserLogin = viewModel.Email,
                     MotDePasse = HashPassword.Hash(viewModel.MotDePasse),
                     PersonCV = uploadedFile
-                };
-
+                };                
                 
-                //utilisateur.Entreprise = personne.NomEntreprise;//à revoir car erreur
 
-                personneInserted =  persoRepo.Insert(utilisateur);
+                Personne personne = persoRepo.Insert(utilisateur);
+                personneInserted =  persoRepo.GetPersonneFrom(personne.UserLogin);
+                
                 FormsAuthentication.SetAuthCookie(personneInserted.IdPersonne.ToString(), false);//Ajout pour créer le cookie de la personne insérée
 
             }

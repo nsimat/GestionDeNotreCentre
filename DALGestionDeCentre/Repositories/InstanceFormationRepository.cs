@@ -29,7 +29,7 @@ namespace GestionDeCentreDAL.Repositories
 
         public bool Delete(int id)
         {
-            Command command = new Command("sp_DeleteAInstanceFormation");
+            Command command = new Command("sp_DeleteAnInstanceFormation", true);
             command.AddParameter("IdInstanceFormation", id);
             return _Connection.ExecuteNonQuery(command) == 1;
         }

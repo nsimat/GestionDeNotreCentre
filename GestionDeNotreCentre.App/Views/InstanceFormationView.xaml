@@ -21,19 +21,32 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0" Margin="5" 
+        <Grid Grid.Column="0" Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+                <TextBlock Text="LES INSTANCES DE FORMATIONS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+            <ListView Grid.Row="1" Margin="5" 
                   Name="InstanceFormationsListView"
                   ItemsSource="{Binding InstanceFormations}"
                   SelectedItem="{Binding SelectedInstanceFormation}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1">
-                        <Label Content="{Binding SelectedInstanceFormation.Formation.Nom}"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1">
+                            <Label Content="{Binding Formation.Nom}"
                                FontSize="14"></Label>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        
         <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -71,7 +84,7 @@
 
             <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedInstanceFormation.IdInstanceFormation, Mode=OneWay}"></Label>
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Statut, Mode=OneWay}"></Label>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SelectedInstanceformation.DateDebut, Mode=OneWay}"></Label>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateDebut, Mode=OneWay}"></Label>
             <Label Grid.Row="5" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateFin, Mode=OneWay}"></Label>
             <Label Grid.Row="6" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Formation.Nom, Mode=OneWay}"></Label>
             <Label Grid.Row="7" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></Label>

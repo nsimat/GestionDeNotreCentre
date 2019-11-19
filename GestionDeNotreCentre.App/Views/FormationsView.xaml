@@ -20,19 +20,32 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0" Margin="5" 
+        <Grid Grid.Column="0" Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+                <TextBlock Text="LES FORMATIONS DU CENTRE" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+            <ListView Grid.Row="1" Margin="5" 
                   Name="FormationsListView"
                   ItemsSource="{Binding Formations}"
                   SelectedItem="{Binding SelectedFormation}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1">
-                        <Label Content="{Binding Nom}"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1">
+                            <Label Content="{Binding Nom}"
                                FontSize="14"></Label>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        
         <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>

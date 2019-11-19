@@ -51,6 +51,11 @@ namespace GestionDeNotreCentre.App.Services
             return repository.Get(elementId);
         }
 
+        public Formation GetFormationByName(string nom)
+        {
+            return repository.Get(nom);
+        }
+
         public bool UpdateElement(Formation element)
         {
             return repository.Put(element, element.IdFormation);

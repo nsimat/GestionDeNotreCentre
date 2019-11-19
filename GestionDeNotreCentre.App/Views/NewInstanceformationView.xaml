@@ -29,8 +29,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>                    
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
@@ -49,22 +48,42 @@
                                FontSize="20" 
                                FontWeight="Bold"/>
                 </StackPanel>
-                <Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>
-                <Label Grid.Row="3" Content="Statut" FontWeight="Bold"></Label>
-                <Label Grid.Row="4" Content="Date de début" FontWeight="Bold"></Label>
-                <Label Grid.Row="5" Content="Date de fin" FontWeight="Bold"></Label>
-                <Label Grid.Row="6" Content="Formation" FontWeight="Bold"></Label>
-                <Label Grid.Row="7" Content="Responsable" FontWeight="Bold"></Label>
+                
+                <Label Grid.Row="2" Content="Statut" FontWeight="Bold"></Label>
+                <Label Grid.Row="3" Content="Date de début" FontWeight="Bold"></Label>
+                <Label Grid.Row="4" Content="Date de fin" FontWeight="Bold"></Label>
+                <Label Grid.Row="5" Content="Formation" FontWeight="Bold"></Label>
+                <Label Grid.Row="6" Content="Responsable" FontWeight="Bold"></Label>
+                
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewInstanceFormation.Statut, Mode=OneWay}"></TextBox>
+                <DatePicker Grid.Row="3" 
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Margin="5,0,5,0"
+                            SelectedDate="{Binding NewInstanceFormation.DateDebut, Mode=TwoWay}"
+                            SelectedDateFormat="Long"/>
+                <!--<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewInstanceFormation.DateDebut, Mode=OneWay}"></TextBox>-->
+                <DatePicker Grid.Row="4" 
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Margin="5,0,5,0"
+                            SelectedDate="{Binding NewInstanceFormation.DateFin, Mode=TwoWay}"
+                            SelectedDateFormat="Long"/>
+                <!--<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.DateFin, Mode=OneWay}"></TextBox>-->
+                <ComboBox Grid.Row="5" 
+                          Grid.Column="1"
+                          ItemsSource="{Binding Formations}"
+                          DisplayMemberPath="Nom"
+                          SelectedValuePath="IdFormation"
+                          SelectedItem="{Binding SelectedFormation, Mode=TwoWay}"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="15"></ComboBox>
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.Formation.Nom, Mode=TwoWay}"></TextBox>
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></TextBox>
 
-                <TextBox Grid.Row="2" Grid.Column="1" Text="0"></TextBox>
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewInstanceFormation.Statut, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewInstanceFormation.DateDebut, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.DateFin, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewInstanceFormation.Formation.Nom, Mode=OneWay}"></TextBox>
-                <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding NewInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></TextBox>
 
-
-                <StackPanel Grid.Row="9" 
+                <StackPanel Grid.Row="8" 
                             Orientation="Horizontal" 
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"

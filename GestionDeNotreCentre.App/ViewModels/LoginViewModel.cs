@@ -57,9 +57,7 @@ namespace GestionDeNotreCentre.App.ViewModels
         {
             var passwordBox = obj as PasswordBox;
             var password = passwordBox.Password;
-            //passwordBox.Clear();//? est-ce utile? à vérifier son utilité
-
-            MessageBox.Show("Welcome " + AdresseMail);//à supprimer
+            
 
             Employe = loginService.Authentifier(AdresseMail, password);
 
@@ -71,14 +69,8 @@ namespace GestionDeNotreCentre.App.ViewModels
                     Employe = Employe,
                     Authenticated = LoggedIn
                 };
-                //var window = Application.Current.MainWindow;
-                //Messenger.Default.Send<PersonneAuthenticatedMessage>(message);
-                MyMessenger<PersonneAuthenticatedMessage>.Instance.Send(message);
-                //dialogService.ShowDialog();
-                //MainWindow dashboard = new MainWindow();
-                //dashboard.Show();
                 
-
+                MyMessenger<PersonneAuthenticatedMessage>.Instance.Send(message);
             }
             else
             {

@@ -19,7 +19,7 @@ namespace GestionDeCentreDAL.Models
         [MaxLength(11), MinLength(11)]
         [Required(ErrorMessage ="Le numéro de registre doit avoir au moins 11 chiffres.")]
         [Display(Name ="Numéro de registre")]
-        [ValidNumeroRegistreAttribute]
+        //[ValidNumeroRegistreAttribute]
         public string NumeroRegistre { get; set; }
 
         [MaxLength(50), MinLength(2)]
@@ -70,9 +70,9 @@ namespace GestionDeCentreDAL.Models
         [Display(Name ="Attacher votre CV")]        
         public byte[] PersonCV { get; set; }
 
-        [MaxLength(25)]
-        [Required(ErrorMessage ="Le champ 'Nom d'utilisateur' ne peut être vide.")]
-        [Display(Name ="Nom d'utilisateur")]
+        //[MaxLength(25)]
+        //[Required(ErrorMessage ="Le champ 'Nom d'utilisateur' ne peut être vide.")]
+        //[Display(Name ="Nom d'utilisateur")]
         public string UserLogin { get; set; }
 
         [MaxLength(25), MinLength(5)]
@@ -94,6 +94,9 @@ namespace GestionDeCentreDAL.Models
                 return null;
             }
         }
+
+        //Propriétés simples
+        public string FullName { get => Prenom + " " + Nom; }
 
         //les clefs étrangères
         public ICollection<Inscription> Inscriptions { get; set; }

@@ -45,7 +45,7 @@ namespace GestionDeNotreCentre.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Index(LoginViewModel loginViewModel, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -81,11 +81,11 @@ namespace GestionDeNotreCentre.Controllers
         }
         
         [Authorize]   
-        [HttpGet]
+        [HttpPost]
         public ActionResult Deconnexion()
         {
             FormsAuthentication.SignOut();
-            //Session.Abandon();//ajout -- revoir si ça marche pour ce cas
+            Session.Abandon();//ajout -- revoir si ça marche pour ce cas
             return RedirectToAction("Index", "Home");//Retourne vers le home, la page d'accueil à modifier?
         }
 

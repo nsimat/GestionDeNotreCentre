@@ -138,7 +138,7 @@ namespace GestionDeNotreCentre.App
 
             //Formation
             MyMessenger<ShowFormationDetailMessage>.Instance.Register(OnShowModuleDetailViewMessageReceived);
-            MyMessenger<CreateNewFormationMessage>.Instance.Register(OnCreateModuleMessageReceived);
+            MyMessenger<CreateNewFormationMessage>.Instance.Register(OnCreateNewFormationMessageReceived);
             MyMessenger<DisplayFormationViewMessage>.Instance.Register(OnDisplayFormationViewMessageReceived);
 
             //Formateur
@@ -212,7 +212,7 @@ namespace GestionDeNotreCentre.App
             CurrentViewModel = formationDetailViewModel;
         }
 
-        private void OnCreateModuleMessageReceived(CreateNewFormationMessage obj)
+        private void OnCreateNewFormationMessageReceived(CreateNewFormationMessage obj)
         {
             CurrentViewModel = newFormationViewModel;
         }

@@ -20,7 +20,9 @@ namespace GestionDeNotreCentre.App.ViewModels
         private readonly InstanceFormationDataService instanceFormationDataService;
         private readonly PlanificationDataService planificationDataService;
         private readonly InscriptionDataService inscriptionDataService;
+        private readonly PersonneDataService personneDataService;
 
+        private Personne supervisor;
         private InstanceFormation selectedInstanceFormation;        //L'instance de formation dont on affiche les détails
         private Inscription selectedInscription;                    //Inscription sélectionné dans la liste des inscriptions à la formation
         private Planification selectedPlanification;                //Occurence de planification concernant la formation sélectionné dans la liste des occurences de planifications
@@ -40,6 +42,19 @@ namespace GestionDeNotreCentre.App.ViewModels
         #endregion
 
         #region Les propriétés
+
+        public Personne Supervisor 
+        {
+            get 
+            {
+                return supervisor;
+            }
+            set 
+            {
+                supervisor = value;
+                RaisePropertyChanged(nameof(Supervisor));
+            } 
+        }
 
         public InstanceFormation SelectedInstanceFormation
         {
@@ -115,6 +130,7 @@ namespace GestionDeNotreCentre.App.ViewModels
             instanceFormationDataService = new InstanceFormationDataService();
             planificationDataService = new PlanificationDataService();
             inscriptionDataService = new InscriptionDataService();
+            personneDataService = new PersonneDataService();
 
             LoadPlanifications();
 
@@ -137,6 +153,11 @@ namespace GestionDeNotreCentre.App.ViewModels
         private void LoadInscriptions()
         {
             Inscriptions = inscriptionDataService.GetAllElements().ToObservableCollection();
+
+            foreach(Inscription inscription in inscriptions)
+            {
+                inscription.Personne = personneDataService.GetElementDetail(inscription.IdStatigiaire);
+            }
         }
 
         private void LoadCommands()
@@ -161,6 +182,24 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private void DeleteInstanceFormation(object obj)
         {
+            //Effacer d'abord les clés etrangères
+            if(selectedInstanceFormation.Inscriptions.Count != 0)
+            {
+                foreach (var inscription in selectedInstanceFormation.Inscriptions)
+                {
+                    inscriptionDataService.DeleteElement(inscription);
+                }
+            }
+
+            if(selectedInstanceFormation.Planifications.Count != 0)
+            {
+                foreach(var planification in selectedInstanceFormation.Planifications)
+                {
+                    planificationDataService.DeleteElement(planification);
+                }
+            }
+           
+            //Effacer ensuite l'instance de formation
             instanceFormationDataService.DeleteElement(selectedInstanceFormation);            
             MyMessenger<DisplayInstanceFormationViewMessage>.Instance.Send(new DisplayInstanceFormationViewMessage());            
         }
@@ -199,6 +238,7 @@ namespace GestionDeNotreCentre.App.ViewModels
         private void OnEditInstanceFormationMessageReceived(EditInstanceFormationMessage obj)
         {
             SelectedInstanceFormation = obj.SelectedInstanceFormation;
+            supervisor = personneDataService.GetElementDetail(selectedInstanceFormation.IdEmploye);
         }
 
         #endregion

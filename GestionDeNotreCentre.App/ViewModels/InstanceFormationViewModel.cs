@@ -18,7 +18,12 @@ namespace GestionDeNotreCentre.App.ViewModels
         #region Déclaration des champs
 
         private readonly InstanceFormationDataService instanceFormationDataService;
-        private PersonneDataService personneDataService;
+        private readonly FormationDataService formationDataService;
+        private readonly PersonneDataService personneDataService;
+        private readonly PlanificationDataService planificationDataService;
+        private readonly EmployeDataService employeDataService;
+        private readonly InscriptionDataService inscriptionDataService;
+
         private ObservableCollection<InstanceFormation> instanceFormations;
         private InstanceFormation selectedInstanceFormation;
 
@@ -60,6 +65,11 @@ namespace GestionDeNotreCentre.App.ViewModels
         public InstanceFormationViewModel()
         {
             instanceFormationDataService = new InstanceFormationDataService();
+            formationDataService = new FormationDataService();
+            personneDataService = new PersonneDataService();
+            employeDataService = new EmployeDataService();
+            planificationDataService = new PlanificationDataService();
+            inscriptionDataService = new InscriptionDataService();
 
             LoadInstanceFormations();
 
@@ -75,6 +85,14 @@ namespace GestionDeNotreCentre.App.ViewModels
         private void LoadInstanceFormations()
         {
             InstanceFormations = instanceFormationDataService.GetAllElements().ToObservableCollection();
+
+            foreach(var instance in instanceFormations)
+            {
+                instance.Formation = formationDataService.GetElementDetail(instance.IdFormation);
+                instance.Planifications = planificationDataService.GetPlanificationsFrom(instance);
+                instance.Inscriptions = inscriptionDataService.GetInscriptionsFrom(instance);
+                instance.Employe = employeDataService.GetElementDetail(instance.IdEmploye);
+            }
         }
 
         private void LoadCommands()

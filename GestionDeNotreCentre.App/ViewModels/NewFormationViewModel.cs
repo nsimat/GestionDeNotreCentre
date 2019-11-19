@@ -1,5 +1,6 @@
 ﻿using GestionDeCentreDAL.Models;
 using GestionDeNotreCentre.App.Extensions;
+using GestionDeNotreCentre.App.Messages;
 using GestionDeNotreCentre.App.Services;
 using GestionDeNotreCentre.App.Utility;
 using System;
@@ -18,6 +19,7 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private readonly FormationDataService formationDataService;
         private readonly ModuleDataService moduleDataService;
+        private readonly CompositionDataService compositionDataService;
 
         private Formation newFormation;                  //La formation à créer
         private Module selectedModuleFromFormation;      //Module sélectionné dans la liste des modules de la formation => supprimable
@@ -111,10 +113,13 @@ namespace GestionDeNotreCentre.App.ViewModels
         {
             newFormation = new Formation
             {
-                Compositions = new List<Composition>()
+                Compositions = new List<Composition>(),
+                InstanceFormations = new List<InstanceFormation>()
             };
+
             moduleDataService = new ModuleDataService();
             formationDataService = new FormationDataService();
+            compositionDataService = new CompositionDataService();
 
             LoadModules();
 
@@ -136,9 +141,10 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private void LoadModulesOfFormation()
         {
-            var formationCompositions = newFormation.Compositions;
+            var formationCompositions = newFormation.Compositions;//?vide en cas de new Formation
             var formationModules = new List<Module>();
 
+            //????
             foreach(var composition in formationCompositions)
             {
                 formationModules.Add(composition.Module);
@@ -155,27 +161,69 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private void AddNewFormation(object obj)
         {
-            throw new NotImplementedException();
+            //Ajouter finalement la formation dans la table de Formation
+
+            Formation result = formationDataService.CreateElement(newFormation);
+            
+            if(result != null)
+            {
+                Formation formation = formationDataService.GetFormationByName(result.Nom);
+
+                //Ajouter ensuite les compositions
+
+                foreach (var module in modulesOfFormation)
+                {
+                    Composition composition = new Composition
+                    {
+                        IdFormation = formation.IdFormation,
+                        IdModule = module.IdModule,
+                        DateAjout = DateTime.Today
+                    };
+                    compositionDataService.CreateElement(composition);
+                }
+                MyMessenger<UpdateFormationsListMessage>.Instance.Send(new UpdateFormationsListMessage());
+                MyMessenger<DisplayFormationViewMessage>.Instance.Send(new DisplayFormationViewMessage());
+            }           
+            
         }
 
         private bool CanAddNewFormation(object obj)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private void CancelFormationCreation(object obj)
         {
-            throw new NotImplementedException();
+            //Retourner vers la vue générale 
+            MyMessenger<DisplayFormationViewMessage>.Instance.Send(new DisplayFormationViewMessage());
         }
 
         private bool CanCancelFormationCreation(object obj)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private void AddModule(object obj)
         {
-            throw new NotImplementedException();
+            //Vérifier si le module ne se trouve pas déjà sur la liste des modules qui forment la formation
+            if (!FindModuleFromModulesOfFormation(selectedModuleFromTableOfModules))
+            {
+                //Créer une composition pour la formation
+                Composition composition = new Composition
+                {                    
+                    IdModule = selectedModuleFromTableOfModules.IdModule,
+                    Formation = newFormation,
+                    Module = selectedModuleFromTableOfModules,
+                    DateAjout = DateTime.Today//Date de création
+                };
+
+                //Ajouter le module dans la liste des modules de l'objet NewFormation
+                newFormation.Compositions.Add(composition);
+
+                //Ajouter le module dans la liste des modules de la formation
+                modulesOfFormation.Add(selectedModuleFromTableOfModules);                
+            }
+
         }
 
         private bool CanAddModule(object obj)
@@ -185,9 +233,32 @@ namespace GestionDeNotreCentre.App.ViewModels
             return false;
         }
 
+        private bool FindModuleFromModulesOfFormation(Module module)
+        {
+            if(modulesOfFormation.Count != 0)
+            {
+                foreach(var md in modulesOfFormation)
+                {
+                    if (md.IdModule == module.IdModule)
+                        return true;
+                }
+            }
+            return false;
+        }
+
         private void DeleteModule(object obj)
         {
-            //if()
+            //Supprimer le module de la liste des modules composant la formation
+            Composition composition = new Composition
+            {
+                IdModule = selectedModuleFromFormation.IdModule,
+                Formation = newFormation,
+                Module = selectedModuleFromFormation,
+                DateAjout = DateTime.Today//Date de création
+            };
+            newFormation.Compositions.Remove(composition);
+
+            modulesOfFormation.Remove(selectedModuleFromFormation);
         }
 
         private bool CanDeleteModule(object obj)

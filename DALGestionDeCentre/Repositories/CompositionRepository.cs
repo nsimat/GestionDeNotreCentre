@@ -73,14 +73,14 @@ namespace GestionDeCentreDAL.Repositories
             throw new NotImplementedException();
         }
 
-        public Composition Insert(Composition entity)//à revoir
+        public Composition Insert(Composition entity)
         {
-            Command command = new Command("sp_Composition", true);
+            Command command = new Command("sp_InsertAComposition", true);
 
             command["IdFormation"] = entity.IdFormation;
             command["IdModule"] = entity.IdModule;
             command["DateAjout"] = entity.DateAjout;
-            command["DateSuppression"] = entity.DateSuppression;
+            //command["DateSuppression"] = entity.DateSuppression;
 
             int lastId = _Connection.ExecuteNonQuery(command);
             

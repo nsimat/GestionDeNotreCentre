@@ -52,6 +52,14 @@ namespace GestionDeCentreDAL.Repositories
             return _Connection.ExecuteReader(command, dr => new Inscription().From(dr));
         }
 
+        public IEnumerable<Inscription> GetInscriptionsFrom(InstanceFormation instanceFormation)
+        {
+            Command command = new Command("SELECT * FROM V_Inscription WHERE IdInstanceFormation = @IdInstanceformation;");
+
+            command.AddParameter("IdInstanceFormation", instanceFormation.IdInstanceFormation);
+
+            return _Connection.ExecuteReader(command, dr => new Inscription().From(dr));
+        }
         public Inscription Get(int id)
         {
             Command command = new Command("SELECT * FROM V_Inscription WHERE IdInscription = @IdInscription;");

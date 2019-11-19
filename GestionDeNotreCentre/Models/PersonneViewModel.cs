@@ -68,11 +68,11 @@ namespace GestionDeNotreCentre.Models
         [Display(Name = "Attacher votre CV au format PDF")]
         public HttpPostedFileBase AttachedFile { get; set; }        
 
-        [EmailAddress]
-        [MaxLength(25)]
-        [Required(ErrorMessage = "Le champ 'Nom d'utilisateur' est l'adresse éléctronique fournie par l'utilisateur.")]
-        [Display(Name = "Nom d'utilisateur")]
-        [Compare("Email")]
+        //[EmailAddress]
+        //[MaxLength(25)]
+        //[Required(ErrorMessage = "Le champ 'Nom d'utilisateur' est l'adresse éléctronique fournie par l'utilisateur.")]
+        //[Display(Name = "Nom d'utilisateur")]
+        //[Compare("Email")]
         public string UserLogin { get; set; }          
 
         [MaxLength(25), MinLength(5)]

@@ -45,11 +45,11 @@
                                FontSize="20" 
                                FontWeight="Bold"/>
                 </StackPanel>
-                <Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>
+                <!--<Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>-->
                 <Label Grid.Row="3" Content="Nom" FontWeight="Bold"></Label>
                 <Label Grid.Row="4" Content="Description" FontWeight="Bold" VerticalAlignment="Center"></Label>
 
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewFormation.IdFormation, Mode=TwoWay}"></TextBox>
+                <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewFormation.IdFormation, Mode=TwoWay}"></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NewFormation.Nom, Mode=TwoWay}"></TextBox>
                 <TextBox Grid.Row="4" 
                          Grid.Column="1"
@@ -115,7 +115,7 @@
                     <DataTemplate>
                         <Border BorderThickness="1">
                             <Grid>
-                                <Label Content="{Binding SelectedModuleFromFormation.Nom}"
+                                <Label Content="{Binding Nom}"
                                        FontSize="13"
                                        FontWeight="Bold"></Label>
                             </Grid>
@@ -146,12 +146,11 @@
                     <DataTemplate>
                         <Border BorderThickness="1">
                             <Grid>
-                                <Label Content="{Binding SelectedModuleFromTableOfModules.Nom}"></Label>
+                                <Label Content="{Binding Nom}"></Label>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
             <StackPanel Grid.Row="8" 
                         Orientation="Horizontal"

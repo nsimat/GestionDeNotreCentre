@@ -68,19 +68,20 @@ namespace GestionDeCentreDAL.Repositories
             return _Connection.ExecuteReader(command, dr => new Formation().From(dr)).FirstOrDefault();
         }
 
-        //public Formation Get(string nom)
-        //{
-        //    Command command = new Command("SELECT * FROM Formation WHERE Nom = @Nom");
-        //    command.AddParameter("Nom", nom);
-        //    return _Connection.ExecuteReader(command, dr => new Formation().From(dr)).FirstOrDefault();
-        //}
+        public Formation Get(string nom)
+        {
+            Command command = new Command("SELECT * FROM V_Formation WHERE Nom = @Nom");
+            command.AddParameter("Nom", nom);
+            return _Connection.ExecuteReader(command, dr => new Formation().From(dr)).FirstOrDefault();
+        }
 
         public bool Put(Formation entity, int id)
         {
-            Command command = new Command("UPDATE Formation SET Nom = @Nom WHERE IdFormation = @Id ");
+            Command command = new Command("sp_UpdateAFormation", true);
             command.AddParameter("IdFormation", id);
             command.AddParameter("Nom", entity.Nom);
             command.AddParameter("DescriptionFormation", entity.DescriptionFormation);
+            
             return _Connection.ExecuteNonQuery(command) == 1;
         }
 

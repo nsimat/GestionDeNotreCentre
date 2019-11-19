@@ -171,6 +171,7 @@ namespace GestionDeNotreCentre.App.ViewModels
         private void SaveFormation(object obj)
         {
             formationDataService.UpdateElement(selectedFormation);
+            MyMessenger<DisplayFormationViewMessage>.Instance.Send(new DisplayFormationViewMessage());
         }
 
         private bool CanSaveFormation(object obj)
@@ -218,23 +219,26 @@ namespace GestionDeNotreCentre.App.ViewModels
                 selectedFormation.Compositions = new List<Composition>();
             }
 
-            //Créer une composition pour la formation
-            Composition composition = new Composition
+            //Vérifier si le module ne se trouve pas déjà sur la liste des modules qui forment la formation
+            if (!FindModuleFromModulesOfFormation(selectedModule))
             {
-                IdFormation = selectedFormation.IdFormation,
-                IdModule = selectedModule.IdModule,
-                Formation = selectedFormation,
-                Module = moduleDataService.GetElementDetail(selectedModule.IdModule),
-                DateAjout = new DateTime().Date//Date de création
-            };
+                //Créer une composition pour la formation
+                Composition composition = new Composition
+                {
+                    IdFormation = selectedFormation.IdFormation,
+                    IdModule = selectedModule.IdModule,
+                    Formation = selectedFormation,
+                    Module = moduleDataService.GetElementDetail(selectedModule.IdModule),
+                    DateAjout = DateTime.Today//Date de création
+                };
 
-            Composition result = compositionDataService.CreateElement(composition);
-            if(result != null)
-            {
-                selectedFormation.Compositions.Add(composition);
-                moduleComponents.Add(selectedModule);
-            }            
-           
+                Composition result = compositionDataService.CreateElement(composition);
+                if (result != null)
+                {
+                    selectedFormation.Compositions.Add(composition);
+                    moduleComponents.Add(selectedModule);
+                }
+            }          
             //ModuleComponents = moduleComponents;
             
         }
@@ -246,10 +250,30 @@ namespace GestionDeNotreCentre.App.ViewModels
             return false;
         }
 
+        private bool FindModuleFromModulesOfFormation(Module module)
+        {
+            if (selectedFormation.Compositions.Count != 0)
+            {
+                foreach (var cmp in selectedFormation.Compositions)
+                {
+                    if (cmp.IdModule == module.IdModule)
+                        return true;
+                }
+            }
+            return false;
+        }
+
         private void DeleteModuleFromFormation(object obj)
         {
-            //Il faut supprimer la composition de la table de composition!!!!!!!!!!! => à revoir
-            ModuleComponents.Remove(selectedModuleComponent);
+            //Supprimer la composition de la table de composition
+            Composition composition = new Composition
+            {
+                IdFormation = selectedFormation.IdFormation,
+                IdModule = selectedModuleComponent.IdModule
+            };
+
+            compositionDataService.DeleteElement(composition);
+            moduleComponents.Remove(selectedModuleComponent);
         }
 
         private bool CanDeleteModuleFromFormation(object obj)

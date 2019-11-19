@@ -97,6 +97,7 @@
     <Compile Include="Messages\UpdateModulesListMessage.cs" />
     <Compile Include="Services\CompetenceDataService.cs" />
     <Compile Include="Services\CompositionDataService.cs" />
+    <Compile Include="Services\EmployeDataService.cs" />
     <Compile Include="Services\FormateurDataService.cs" />
     <Compile Include="Services\FormationDataService.cs" />
     <Compile Include="Services\IDataService.cs" />

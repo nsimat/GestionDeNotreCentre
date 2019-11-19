@@ -54,6 +54,11 @@ namespace GestionDeNotreCentre.App.Services
             return inscriptionRepository.Get().ToList();
         }
 
+        public List<Inscription> GetInscriptionsFrom(InstanceFormation instanceFormation)
+        {
+            return inscriptionRepository.GetInscriptionsFrom(instanceFormation).ToList();
+        }
+
         public Inscription GetElementDetail(int elementId)
         {
             return inscriptionRepository.Get(elementId);
