@@ -178,6 +178,7 @@ namespace GestionDeNotreCentre.App.ViewModels
 
                 MyMessenger<ShowModuleViewMessage>.Instance.Send(new ShowModuleViewMessage());
                 MyMessenger<UpdateModulesListMessage>.Instance.Send(new UpdateModulesListMessage());
+                newModule = new Module();
             }
                 
         }

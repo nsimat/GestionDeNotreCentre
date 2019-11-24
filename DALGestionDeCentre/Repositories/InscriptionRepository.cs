@@ -69,6 +69,21 @@ namespace GestionDeCentreDAL.Repositories
             return _Connection.ExecuteReader(command, dr => new Inscription().From(dr)).FirstOrDefault();
         }
 
+        public Inscription GetInscriptionFrom(Inscription inscription)
+        {
+            Command command = new Command(@"SELECT * FROM V_Inscription WHERE DateInscription = @DateInscription AND 
+                                                                              IdInstanceFormation = @IdInstanceFormation AND 
+                                                                              IdStagiaire = @IdStagiaire AND 
+                                                                              IdEmploye = @IdEmploye;");
+
+            command["DateInscription"] = inscription.DateInscription;
+            command["IdInstanceFormation"] = inscription.IdInstanceFormation;
+            command["IdStagiaire"] = inscription.IdStatigiaire;
+            command["IdEmploye"] = inscription.IdEmploye;
+
+            return _Connection.ExecuteReader(command, dr => new Inscription().From(dr)).FirstOrDefault();
+        }
+
         public Inscription Insert(Inscription entity)
         {
             Command command = new Command("sp_InsertAnInscription", true);

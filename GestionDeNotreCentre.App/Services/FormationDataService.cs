@@ -61,6 +61,11 @@ namespace GestionDeNotreCentre.App.Services
             return repository.Put(element, element.IdFormation);
         }
 
+        public void EstimationOfDays(Formation formation)
+        {
+            repository.EstimateTrainingDaysNumber(formation);
+        }
+
         #endregion
     }
 }

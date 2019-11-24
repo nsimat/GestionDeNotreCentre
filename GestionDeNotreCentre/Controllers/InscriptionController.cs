@@ -13,6 +13,10 @@ namespace GestionDeNotreCentre.Controllers
     public class InscriptionController : Controller
     {
         private readonly InscriptionRepository inscriptionRepo = new InscriptionRepository();
+        private readonly InstanceFormationRepository instanceFormationRepository = new InstanceFormationRepository();
+        private readonly PersonneRepository personneRepository = new PersonneRepository();
+        private readonly EmployeRepository employeRepository = new EmployeRepository();
+        private readonly FormationRepository formationRepository = new FormationRepository();
 
         // GET: Inscription        
         public ActionResult Index()
@@ -24,6 +28,13 @@ namespace GestionDeNotreCentre.Controllers
         public ActionResult AfficherNewInscription(int id)
         {
             Inscription inscription = inscriptionRepo.Get(id);
+
+            inscription.Employe = employeRepository.Get(inscription.IdEmploye);
+            inscription.Employe.Personne = personneRepository.Get(inscription.IdEmploye);
+            inscription.Personne = personneRepository.Get(inscription.IdStatigiaire);
+
+            inscription.InstanceFormation = instanceFormationRepository.Get(inscription.IdInstanceFormation);
+            inscription.InstanceFormation.Formation = formationRepository.Get(inscription.InstanceFormation.IdFormation);
 
             return View(inscription);
         }
@@ -44,8 +55,9 @@ namespace GestionDeNotreCentre.Controllers
             };
 
             inscriptionCreated = inscriptionRepo.Insert(inscription);
+            Inscription newInscription = inscriptionRepo.GetInscriptionFrom(inscription);
 
-            return RedirectToAction("AfficherNewInscription", new { id = inscriptionCreated.IdInscription });
+            return RedirectToAction("AfficherNewInscription", new { id = newInscription.IdInscription });
         }
     }
 }

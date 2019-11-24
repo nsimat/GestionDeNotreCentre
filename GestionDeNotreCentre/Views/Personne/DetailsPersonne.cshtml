@@ -4,9 +4,86 @@
     ViewBag.Title = "DetailsPersonne";
 }
 
-<h2>Détails de la personne</h2>
+@*<h2>Détails de la personne</h2>*@
 
-<div>
+<div class="card" style="width: 100%">
+    <div class="card-header">
+        <h4>Données renseignées par @Model.Prenom @Model.Nom :</h4>
+    </div>
+    <table class="card-table table vertical">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.IdPersonne)</td>
+                <td>@Html.DisplayFor(model => model.IdPersonne)</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.NumeroRegistre)</td>
+                <td>@Html.DisplayFor(model => model.NumeroRegistre)</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Nom)</td>
+                <td>@Html.DisplayFor(model => model.Nom)</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Prenom)</td>
+                <td>@Html.DisplayFor(model => model.Prenom)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Email)</td>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Rue)</td>
+                <td>@Html.DisplayFor(model => model.Rue)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Ville)</td>
+                <td>@Html.DisplayFor(model => model.Ville)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CodePostal)</td>
+                <td>@Html.DisplayFor(model => model.CodePostal)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Pays)</td>
+                <td>@Html.DisplayFor(model => model.Pays)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.NumeroTelephone)</td>
+                <td>@Html.DisplayFor(model => model.NumeroTelephone)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.UserLogin)</td>
+                <td>@Html.DisplayFor(model => model.UserLogin)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.MotDePasse)</td>
+                <td>@Html.DisplayFor(model => model.MotDePasse)</td>
+            </tr>                    
+        </tbody>        
+    </table>
+</div>
+
+
+@*<div>
     <h4>Données renseignées par @Model.Prenom @Model.Nom: </h4>
     <hr />
     <dl class="dl-horizontal">
@@ -115,8 +192,8 @@
         </dd>
 
     </dl>
-</div>
+</div>*@
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPersonne }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifier son profil", "Edit", new { id = Model.IdPersonne }) @*|*@
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

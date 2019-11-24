@@ -27,6 +27,15 @@ namespace GestionDeCentreDAL.Models
         public ICollection<Composition> Compositions { get; set; }
         public ICollection<InstanceFormation> InstanceFormations { get; set; }
 
+        public int MaxJours { get; set; }
+
+        public int MinJours { get; set; }
+
+        public string EstimationJours
+        {
+            get => MinJours + " à " + MaxJours + " jours";
+        }
+
 
         public Formation From(IDataRecord dr)
         {

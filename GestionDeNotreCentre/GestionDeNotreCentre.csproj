@@ -395,6 +395,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\banner.jpg" />
     <Content Include="obj\Debug\GestionDeNotreCentre.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\GestionDeNotreCentre.dll" />
     <Content Include="obj\Debug\GestionDeNotreCentre.pdb" />

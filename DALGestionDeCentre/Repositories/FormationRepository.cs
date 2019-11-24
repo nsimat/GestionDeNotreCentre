@@ -13,6 +13,8 @@ namespace GestionDeCentreDAL.Repositories
 
     {
         private readonly Connection _Connection;
+        private readonly CompositionRepository compositionRepository = new CompositionRepository();
+        private readonly ModuleRepository moduleRepository = new ModuleRepository();
 
         #region Les constructeurs
         public FormationRepository()
@@ -65,7 +67,10 @@ namespace GestionDeCentreDAL.Repositories
         {
             Command command = new Command("SELECT * FROM Formation WHERE IdFormation = @IdFormation");
             command.AddParameter("IdFormation", id);
-            return _Connection.ExecuteReader(command, dr => new Formation().From(dr)).FirstOrDefault();
+            Formation result = _Connection.ExecuteReader(command, dr => new Formation().From(dr)).FirstOrDefault();
+            EstimateTrainingDaysNumber(result);
+
+            return result;
         }
 
         public Formation Get(string nom)
@@ -83,6 +88,24 @@ namespace GestionDeCentreDAL.Repositories
             command.AddParameter("DescriptionFormation", entity.DescriptionFormation);
             
             return _Connection.ExecuteNonQuery(command) == 1;
+        }
+
+        public void EstimateTrainingDaysNumber(Formation formation)
+        {
+            int nbreJoursMax = 0;
+            int nbreJoursMin = 0;
+
+            formation.Compositions = compositionRepository.GetFormationCompositions(formation.IdFormation).ToList();
+
+            foreach (var composition in formation.Compositions)
+            {
+                Module module = moduleRepository.Get(composition.IdModule);
+                nbreJoursMax += module.NombreJours;
+                nbreJoursMin += module.NbreJoursAffectes;
+            }
+
+            formation.MaxJours = nbreJoursMax;
+            formation.MinJours = nbreJoursMin;
         }
 
         //public bool Update(Formation entity, int id)

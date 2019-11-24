@@ -46,7 +46,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        
+
         <Grid Grid.Column="1" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -58,41 +58,41 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>                
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="219"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="131*"/>
+                <ColumnDefinition Width="259*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" 
                         Grid.ColumnSpan="2" 
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center" Height="22" Margin="6,4,5.4,4.4" Width="379">
                 <TextBlock Text="INSTANCE DE FORMATION SÉLECTIONNÉE"
                            FontSize="19" 
                            FontWeight="Bold"></TextBlock>
             </StackPanel>
-            <Label Grid.Row="2" Content="Id" FontWeight="Bold"></Label>
-            <Label Grid.Row="3" Content="Statut" FontWeight="Bold"></Label>
-            <Label Grid.Row="4" Content="Date de début" FontWeight="Bold"></Label>
-            <Label Grid.Row="5" Content="Date de fin" FontWeight="Bold"></Label>
-            <Label Grid.Row="6" Content="Formation" FontWeight="Bold"></Label>
-            <Label Grid.Row="7" Content="Responsable" FontWeight="Bold"></Label>
-            
+            <Label Grid.Row="2" Content="Id" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0.2,217.4,0.2"></Label>
+            <Label Grid.Row="2" Content="Statut" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,30.2,217.4,30" Grid.RowSpan="3"></Label>
+            <Label Grid.Row="4" Content="Date de début" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0.4,217.4,29" Grid.RowSpan="2"></Label>
+            <Label Grid.Row="5" Content="Date de fin" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,217.4,0"></Label>
+            <Label Grid.Row="6" Content="Formation" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,1,217.4,29" Grid.RowSpan="2"></Label>
+            <Label Grid.Row="7" Content="Responsable" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,217.4,0"></Label>
 
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedInstanceFormation.IdInstanceFormation, Mode=OneWay}"></Label>
-            <Label Grid.Row="3" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Statut, Mode=OneWay}"></Label>
-            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateDebut, Mode=OneWay}"></Label>
-            <Label Grid.Row="5" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateFin, Mode=OneWay}"></Label>
-            <Label Grid.Row="6" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Formation.Nom, Mode=OneWay}"></Label>
-            <Label Grid.Row="7" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></Label>
-            
+
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedInstanceFormation.IdInstanceFormation, Mode=OneWay}" Margin="11.8,0.2,0.4,0.2"></Label>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Statut, Mode=OneWay}" Margin="11.8,30.2,0.4,30" Grid.RowSpan="3"></Label>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateDebut, Mode=OneWay}" Margin="11.8,0.4,0.4,29" Grid.RowSpan="2"></Label>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding SelectedInstanceFormation.DateFin, Mode=OneWay}" Margin="11.8,0,0.4,0"></Label>
+            <Label Grid.Row="6" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Formation.Nom, Mode=OneWay}" Margin="11.8,1,0.4,29" Grid.RowSpan="2"></Label>
+            <Label Grid.Row="7" Grid.Column="1" Content="{Binding SelectedInstanceFormation.Employe.Personne.Nom, Mode=OneWay}" Margin="11.8,0,0.4,0"></Label>
+
             <StackPanel Grid.Row="9" 
                         Grid.ColumnSpan="2" 
                         Orientation="Horizontal" 
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center" Margin="36,0,36.4,0.4" Width="318">
                 <Button Margin="0,0,10,0" 
                         Command="{Binding EditInstanceFormationCommand}" 
                         Content="ÉDITER INSTANCE" 

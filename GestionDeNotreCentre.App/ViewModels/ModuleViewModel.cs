@@ -67,10 +67,8 @@ namespace GestionDeNotreCentre.App.ViewModels
             LoadModules();
 
             LoadCommands();
-
-            //Messenger.Default.Register<UpdateModulesListMessage>(this, OnUpdateModulesListMessageReceived);
-            MyMessenger<UpdateModulesListMessage>.Instance.Register(OnUpdateModulesListMessageReceived);
             
+            MyMessenger<UpdateModulesListMessage>.Instance.Register(OnUpdateModulesListMessageReceived);            
         }
 
         #endregion
@@ -79,8 +77,7 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private void OnUpdateModulesListMessageReceived(UpdateModulesListMessage obj)
         {
-            LoadModules();
-            //retourner ensuite vers le ModelView i.e CurrentViewModel = ModuleViewModel dans MainViewModel
+            LoadModules();            
         }
 
         private void LoadModules()
@@ -113,14 +110,10 @@ namespace GestionDeNotreCentre.App.ViewModels
 
         private void EditModule(object obj)
         {
-            EditModuleMessage message = new EditModuleMessage { SelectedModule = selectedModule };
-
-            //Messenger.Default.Send<ShowModuleDetailViewMessage>(new ShowModuleDetailViewMessage());
-            //Messenger.Default.Send<EditModuleMessage>(message);
+            EditModuleMessage message = new EditModuleMessage { SelectedModule = selectedModule };            
 
             MyMessenger<ShowModuleDetailViewMessage>.Instance.Send(new ShowModuleDetailViewMessage());
             MyMessenger<EditModuleMessage>.Instance.Send(message);
-
         }
 
         #endregion

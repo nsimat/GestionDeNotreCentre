@@ -18,101 +18,104 @@
              
              DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=NewInstanceFormationViewModel}">
     <Grid>
-        <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Grid Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="165"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>                    
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="219"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.ColumnSpan="2" 
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center">
-                    <TextBlock Text="NOUVELLE INSTANCE DE FORMATION" 
-                               FontSize="20" 
-                               FontWeight="Bold"/>
-                </StackPanel>
-                
-                <Label Grid.Row="2" Content="Statut" FontWeight="Bold"></Label>
-                <Label Grid.Row="3" Content="Date de début" FontWeight="Bold"></Label>
-                <Label Grid.Row="4" Content="Date de fin" FontWeight="Bold"></Label>
-                <Label Grid.Row="5" Content="Formation" FontWeight="Bold"></Label>
-                <Label Grid.Row="6" Content="Responsable" FontWeight="Bold"></Label>
-                
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewInstanceFormation.Statut, Mode=OneWay}"></TextBox>
-                <DatePicker Grid.Row="3" 
+        <GroupBox Header="NOUVELLE INSTANCE DE FORMATION" Margin="10,10,5.4,10" FontSize="18">
+            <Grid>
+
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="244.8"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="219"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Label Content="Statut" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,30,327,30.2" Grid.RowSpan="3"/>
+                    <Label Grid.Row="2" Content="Date de début" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0.2,327,0.2"></Label>
+                    <Label Grid.Row="2" Content="Date de fin" FontWeight="Bold" Margin="0,30.2,9.8,28.6" Grid.RowSpan="3"/>
+                    <Label Grid.Row="4" Content="Formation" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0.4,327,29.6" Grid.RowSpan="2"></Label>
+                    <Label Grid.Row="5" Content="Responsable" FontWeight="Bold" Margin="0,1.4,2.8,29" Grid.RowSpan="2"/>
+                    <Label Grid.Row="6" Content="Nombre limite de jours" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0.4,327,29" Grid.RowSpan="2"></Label>
+
+                    <ComboBox
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Right"
+                              ItemsSource="{Binding FormationStatuts}"
+                              SelectedItem="{Binding SelectedStatut, Mode=TwoWay}"
+                              Width="332" Height="30" Margin="0,30,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                    <DatePicker Grid.Row="2" 
                             Grid.Column="1"
                             VerticalAlignment="Center"
-                            Margin="5,0,5,0"
-                            SelectedDate="{Binding NewInstanceFormation.DateDebut, Mode=TwoWay}"
-                            SelectedDateFormat="Long"/>
-                <!--<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewInstanceFormation.DateDebut, Mode=OneWay}"></TextBox>-->
-                <DatePicker Grid.Row="4" 
+                            Margin="0.2,0.2,-1,0.2"
+                            SelectedDate="{Binding SelectedDateDebut, Mode=TwoWay}"
+                            SelectedDateFormat="Long" Height="30"/>
+                    <!--<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewInstanceFormation.DateDebut, Mode=OneWay}"></TextBox>-->
+                    <DatePicker Grid.Row="2" 
                             Grid.Column="1"
                             VerticalAlignment="Center"
-                            Margin="5,0,5,0"
-                            SelectedDate="{Binding NewInstanceFormation.DateFin, Mode=TwoWay}"
-                            SelectedDateFormat="Long"/>
-                <!--<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.DateFin, Mode=OneWay}"></TextBox>-->
-                <ComboBox Grid.Row="5" 
-                          Grid.Column="1"
+                            Margin="0.2,30.2,-1,30"
+                            SelectedDate="{Binding SelectedDateFin, Mode=TwoWay}"
+                            SelectedDateFormat="Long" Height="31" Grid.RowSpan="3"/>
+                    <!--<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.DateFin, Mode=OneWay}"></TextBox>-->
+                    <ComboBox Grid.Row="4"
                           ItemsSource="{Binding Formations}"
                           DisplayMemberPath="Nom"
-                          SelectedValuePath="IdFormation"
+                          SelectedValuePath="Nom"
+                          SelectedValue="{Binding SelectedFormation.Nom}"
                           SelectedItem="{Binding SelectedFormation, Mode=TwoWay}"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Right"
                           VerticalAlignment="Top"
-                          Width="15"></ComboBox>
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding NewInstanceFormation.Formation.Nom, Mode=TwoWay}"></TextBox>
-                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding NewInstanceFormation.Employe.Personne.Nom, Mode=OneWay}"></TextBox>
+                          Width="332" Height="30" Margin="0,0.4,0,0" Grid.ColumnSpan="2"/>
+                    <!--<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewInstanceFormation.Formation.Nom, Mode=TwoWay}"></TextBox>-->
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Responsable.FullName, Mode=OneWay}" Margin="2.2,1,0,29.4" Grid.RowSpan="2"></TextBox>
+                    <TextBox Grid.Row="6" Text="{Binding SelectedFormation.EstimationJours, Mode=OneWay}" Margin="0.2,1,0,29.4" Grid.Column="1" Grid.RowSpan="2"/>
 
-
-                <StackPanel Grid.Row="8" 
+                    <StackPanel Grid.Row="8" 
                             Orientation="Horizontal" 
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
-                            Grid.ColumnSpan="2">
-                    <Button Margin="0,0,10,0" 
+                            Grid.ColumnSpan="2" Height="30" Margin="109,1,110,218.2" Grid.RowSpan="2" Width="353">
+                        <Button Margin="0,0,10,0" 
                             FontSize="13"
                             Content="ENREGISTRER INSTANCE"
                             Background="#FF8522BD"
                             BorderBrush="#FF8522BD">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <i:InvokeCommandAction Command="{Binding SaveNewInstanceFormationCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                    <Button Margin="10,0,0,0" 
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding SaveNewInstanceFormationCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Margin="10,0,0,0" 
                             FontSize="13"
                             Content="ANNULER CRÉATION"
                             Background="#FF8522BD"
                             BorderBrush="#FF8522BD">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <i:InvokeCommandAction Command="{Binding CancelNewInstanceFormationCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding CancelNewInstanceFormationCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </StackPanel>
 
+                </Grid>
             </Grid>
-        </ScrollViewer>        
+        </GroupBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="307*"/>
+            <ColumnDefinition Width="93*"/>
+        </Grid.ColumnDefinitions>
+
     </Grid>
 </UserControl>

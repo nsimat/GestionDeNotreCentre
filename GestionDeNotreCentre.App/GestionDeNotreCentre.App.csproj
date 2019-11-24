@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Converter\FormationEstimatedDaysConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Messages\DisplayFormationViewMessage.cs" />
@@ -327,9 +328,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\home.png" />
   </ItemGroup>

@@ -12,6 +12,7 @@ namespace GestionDeCentreDAL.Models
     public class Inscription
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name ="Identifiant d'inscription")]
         public int IdInscription { get; set; }
 
 
@@ -40,7 +41,7 @@ namespace GestionDeCentreDAL.Models
 
         [Required]
         [MaxLength(25), MinLength(11)]
-        [Display(Name ="Employé")]
+        [Display(Name ="Responsable")]
         public int IdEmploye { get; set; }
         public Employe Employe { get; set; }
 
